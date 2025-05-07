@@ -61,12 +61,14 @@ public class DashToDirection : MonoBehaviour
 
     void AddForceToCubeRightDirection()
     {
-        AudioSource.PlayOneShot(ThrusterSound);
+        if (!AudioSource.isPlaying)
+            AudioSource.PlayOneShot(ThrusterSound);
         PlayerRigidbody.AddForce(CubeRight.transform.forward * ThrustPower);
     }
     void AddForceToCubeLeftDirection()
     {
-        AudioSource.PlayOneShot(ThrusterSound);
+        if (!AudioSource.isPlaying)
+            AudioSource.PlayOneShot(ThrusterSound);
         PlayerRigidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
     }
 
