@@ -21,6 +21,8 @@ public class DashToDirection : MonoBehaviour
     private bool HasLeftBeenPressed;
     private bool isGrounded;
 
+    bool nospeed = false;
+
     void OnEnable()
     {
         RightTrigger.Enable();
@@ -34,7 +36,6 @@ public class DashToDirection : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(PlayerRigidbody.linearVelocity);
         if (RightTrigger.ReadValue<float>() > 0.1f)
         {
             AddForceToCubeRightDirection();
@@ -56,9 +57,9 @@ public class DashToDirection : MonoBehaviour
             StopNoise();
             HasLeftBeenPressed = false;
         }
-        if (LeftTrigger.WasReleasedThisFrame())
+        if (LeftTrigger.WasReleasedThisFrame() && isGrounded)
         {
-            Debug.Log("Slow");
+            CheckForSlow();
         }
     }
 
@@ -82,18 +83,32 @@ public class DashToDirection : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        isGrounded = true;
+        if (collision.collider.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            CheckForSlow();
+        }
     }
 
-    private void CheckForSlow(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground"))
         {
-            if (PlayerRigidbody.linearVelocity.x >= 5 || PlayerRigidbody.linearVelocity.z >= 5)
-            {
-                Debug.Log("SPED");
-                //PlayerRigidbody.linearVelocity = Vector3.zero;
-            }
+            isGrounded = false;
+        }
+    }
+
+    private void CheckForSlow()
+    {
+        if (PlayerRigidbody.linearVelocity.x >= 3 || PlayerRigidbody.linearVelocity.x <= -3 || PlayerRigidbody.linearVelocity.z >= 3 || PlayerRigidbody.linearVelocity.z <= -3 && isGrounded)
+        {
+            Debug.Log("Need to slow");
+            Debug.Log(PlayerRigidbody.linearVelocity.x);
+            Debug.Log(-PlayerRigidbody.linearVelocity.x);
+            PlayerRigidbody.AddForce(-PlayerRigidbody.linearVelocity.x, 0, -PlayerRigidbody.linearVelocity.z);
+            PlayerRigidbody.linearVelocity = PlayerRigidbody.linearVelocity / 2;
+            Debug.Log(PlayerRigidbody.linearVelocity.x);
+            
         }
     }
 }
