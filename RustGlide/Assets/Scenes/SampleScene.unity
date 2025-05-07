@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stamina: 0
   velocity: 0
+  staminaLossSpeed: 0
 --- !u!4 &528310775
 Transform:
   m_ObjectHideFlags: 0
