@@ -5,8 +5,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private float radius;
 
     private EnemyMovement enemyMovement;
-    private GameObject player;
-    private Vector3 target;
 
     private void Awake()
     {
@@ -27,7 +25,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
             {
                 if (hit.gameObject.CompareTag("Player"))
                 {
-                    player = hit.gameObject;
                     enemyMovement.foundPlayer = true;
                 }
             }
@@ -35,9 +32,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (enemyMovement.foundPlayer)
         {
-            target = player.transform.position;
-            enemyMovement.MoveToPlayer(target);
-            Debug.Log("Found player");
+            enemyMovement.MoveToPlayer();
         }
     }
 }
