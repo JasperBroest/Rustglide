@@ -8,21 +8,21 @@ public class StaminaBar : MonoBehaviour
     private float velocity;
     [SerializeField] private float staminaLossSpeed;
 
-    [SerializeField] private GameObject XrOrigin;
-    private Rigidbody rb; Vector3 previousPosition;
+    private XROrigin XrOrigin;
+    Vector3 previousPosition;
 
     private void Start()
     {
         stamina = 100;
         staminaLossSpeed = 1;
-        rb = XrOrigin.GetComponent<Rigidbody>();
+
+        XrOrigin = FindFirstObjectByType<XROrigin>();
     }
 
     private void Update()
     {
         CheckVelocity();
         calculateVelocity();
-        Debug.Log(velocity);
     }
 
     private void CheckVelocity()
