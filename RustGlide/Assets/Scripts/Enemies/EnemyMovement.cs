@@ -13,9 +13,10 @@ public class EnemyMovement : MonoBehaviour
 
     public void MoveToPlayer()
     {
+        CheckForAttack();
+
         agent.SetDestination(playerPosition);
 
-        CheckForAttack();
     }
 
     private void Awake()

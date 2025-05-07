@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class PlayerDetection : MonoBehaviour
 {
     [SerializeField] private float radius;
 
