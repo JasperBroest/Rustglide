@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,8 +19,8 @@ public class DashToDirection : MonoBehaviour
 
     private bool HasRightBeenPressed;
     private bool HasLeftBeenPressed;
+    private bool isGrounded;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
     {
         RightTrigger.Enable();
@@ -31,12 +32,11 @@ public class DashToDirection : MonoBehaviour
         AudioSource.clip = ThrusterSound;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //Debug.Log(PlayerRigidbody.linearVelocity);
         if (RightTrigger.ReadValue<float>() > 0.1f)
         {
-            Debug.Log("RightHandTrigger");
             AddForceToCubeRightDirection();
             HasRightBeenPressed = true;
         }
@@ -48,7 +48,6 @@ public class DashToDirection : MonoBehaviour
 
         if (LeftTrigger.ReadValue<float>() > 0.1f)
         {
-            Debug.Log("LeftHandTrigger");
             AddForceToCubeLeftDirection();
             HasLeftBeenPressed = true;
         }
@@ -56,6 +55,10 @@ public class DashToDirection : MonoBehaviour
         {
             StopNoise();
             HasLeftBeenPressed = false;
+        }
+        if (LeftTrigger.WasReleasedThisFrame())
+        {
+            Debug.Log("Slow");
         }
     }
 
@@ -75,5 +78,22 @@ public class DashToDirection : MonoBehaviour
     void StopNoise()
     {
         AudioSource.Stop();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        isGrounded = true;
+    }
+
+    private void CheckForSlow(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            if (PlayerRigidbody.linearVelocity.x >= 5 || PlayerRigidbody.linearVelocity.z >= 5)
+            {
+                Debug.Log("SPED");
+                //PlayerRigidbody.linearVelocity = Vector3.zero;
+            }
+        }
     }
 }
