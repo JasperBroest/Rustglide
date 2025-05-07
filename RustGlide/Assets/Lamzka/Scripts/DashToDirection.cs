@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,8 +19,10 @@ public class DashToDirection : MonoBehaviour
 
     private bool HasRightBeenPressed;
     private bool HasLeftBeenPressed;
+    private bool isGrounded;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    bool nospeed = false;
+
     void OnEnable()
     {
         RightTrigger.Enable();
@@ -31,12 +34,10 @@ public class DashToDirection : MonoBehaviour
         AudioSource.clip = ThrusterSound;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (RightTrigger.ReadValue<float>() > 0.1f)
         {
-            Debug.Log("RightHandTrigger");
             AddForceToCubeRightDirection();
             HasRightBeenPressed = true;
         }
@@ -48,7 +49,6 @@ public class DashToDirection : MonoBehaviour
 
         if (LeftTrigger.ReadValue<float>() > 0.1f)
         {
-            Debug.Log("LeftHandTrigger");
             AddForceToCubeLeftDirection();
             HasLeftBeenPressed = true;
         }
@@ -56,6 +56,10 @@ public class DashToDirection : MonoBehaviour
         {
             StopNoise();
             HasLeftBeenPressed = false;
+        }
+        if (LeftTrigger.WasReleasedThisFrame() && isGrounded)
+        {
+            CheckForSlow();
         }
     }
 
@@ -75,5 +79,36 @@ public class DashToDirection : MonoBehaviour
     void StopNoise()
     {
         AudioSource.Stop();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            CheckForSlow();
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+
+    private void CheckForSlow()
+    {
+        if (PlayerRigidbody.linearVelocity.x >= 3 || PlayerRigidbody.linearVelocity.x <= -3 || PlayerRigidbody.linearVelocity.z >= 3 || PlayerRigidbody.linearVelocity.z <= -3 && isGrounded)
+        {
+            Debug.Log("Need to slow");
+            Debug.Log(PlayerRigidbody.linearVelocity.x);
+            Debug.Log(-PlayerRigidbody.linearVelocity.x);
+            PlayerRigidbody.AddForce(-PlayerRigidbody.linearVelocity.x, 0, -PlayerRigidbody.linearVelocity.z);
+            PlayerRigidbody.linearVelocity = PlayerRigidbody.linearVelocity / 2;
+            Debug.Log(PlayerRigidbody.linearVelocity.x);
+            
+        }
     }
 }
