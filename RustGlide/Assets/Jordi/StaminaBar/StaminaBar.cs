@@ -1,19 +1,31 @@
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class StaminaBar : MonoBehaviour
 {
     [SerializeField] private float stamina;
-    [SerializeField] private float velocity;
+    private Vector3 vectorVelocity;
+    private float velocity;
     [SerializeField] private float staminaLossSpeed;
+
+    [SerializeField] private GameObject XrOrigin;
+    private Rigidbody rb; Vector3 previousPosition;
 
     private void Start()
     {
         stamina = 100;
         staminaLossSpeed = 1;
-        velocity = 6;
+        rb = XrOrigin.GetComponent<Rigidbody>();
     }
 
     private void Update()
+    {
+        CheckVelocity();
+        calculateVelocity();
+        Debug.Log(velocity);
+    }
+
+    private void CheckVelocity()
     {
         if (stamina >= 0)
         {
@@ -43,10 +55,14 @@ public class StaminaBar : MonoBehaviour
                 stamina -= staminaLossSpeed / 20;
             }
         }
+    }
 
-        if (velocity > 5 && stamina < 100)
-        {
-            stamina += velocity * stamina / staminaLossSpeed / 100;
-        }
+    private void calculateVelocity()
+    {
+        Vector3 currentPosition = XrOrigin.transform.position;
+        vectorVelocity = (currentPosition - previousPosition) / Time.deltaTime;
+        previousPosition = currentPosition;
+
+        velocity = vectorVelocity.magnitude * 2;
     }
 }
