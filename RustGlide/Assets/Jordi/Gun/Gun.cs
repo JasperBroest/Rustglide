@@ -6,13 +6,15 @@ public class Gun : MonoBehaviour
 {
     public InputAction Trigger;
 
-    [SerializeField]private GameObject Bullethole;
+    [SerializeField] private GameObject Bullethole;
 
     private int dmg = 10;
 
     [SerializeField] private ParticleSystem GunShotParticle;
     private AudioSource GunShotSource;
     [SerializeField] private AudioClip GunShotAudio;
+
+    public ProTubeSettings gunHaptic;
 
     private bool GunHeld = false;
     private bool OnCooldown = false;
@@ -30,10 +32,11 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        if(Trigger.ReadValue<float>() > 0.1f && GunHeld && !OnCooldown)
+        if (Trigger.ReadValue<float>() > 0.1f && GunHeld && !OnCooldown)
         {
             GunShotSource.Play();
             GunShotParticle.Play();
+            ForceTubeVRInterface.Shoot(gunHaptic);
             RaycastHit hit;
             if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
