@@ -8,7 +8,7 @@ public class PlayerDetection : MonoBehaviour
 
     private void Awake()
     {
-        enemyMovement = FindFirstObjectByType<EnemyMovement>();
+        enemyMovement = GetComponent<EnemyMovement>();
     }
 
     void Update()
