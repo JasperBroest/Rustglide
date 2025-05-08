@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,7 +8,7 @@ public class Gun : MonoBehaviour
 
     [SerializeField]private GameObject Bullethole;
 
-    private int Dmg;
+    private int dmg = 10;
 
     [SerializeField] private ParticleSystem GunShotParticle;
     private AudioSource GunShotSource;
@@ -40,7 +39,7 @@ public class Gun : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    //get hp and decrease it with Dmg
+                    hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
                 }
             }
             OnCooldown = true;
@@ -58,6 +57,7 @@ public class Gun : MonoBehaviour
     {
         GunHeld = true;
     }
+
     public void OnRelease()
     {
         GunHeld = false;
