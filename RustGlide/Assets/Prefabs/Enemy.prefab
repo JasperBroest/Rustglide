@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 2
-  dmg: 0
+  dmg: 10
 --- !u!114 &4180956944211500042
 MonoBehaviour:
   m_ObjectHideFlags: 0
