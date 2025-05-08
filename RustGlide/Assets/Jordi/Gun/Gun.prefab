@@ -351,6 +351,10 @@ MonoBehaviour:
   Bullethole: {fileID: 5362729649084130404}
   GunShotParticle: {fileID: 6089446190540968699}
   GunShotAudio: {fileID: 8300000, guid: 539b7e25bad50454dac2a0add805450f, type: 3}
+  GunHitAudio: {fileID: 8300000, guid: 8a6b7ec067979e7499d63d3ebea6400a, type: 3}
+  EnemyHitAudio: {fileID: 8300000, guid: 38296cd18abdcdb4da1b9feb340e3753, type: 3}
+  hitAudioObject: {fileID: 2070650280826579499, guid: 80c92821996037e45bd2cace20ae55b7, type: 3}
+  shoot: 0
 --- !u!54 &6731655114814330523
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -825,15 +829,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1972487910709877232, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1972487910709877232, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1972487910709877232, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1972487910709877232, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -901,6 +905,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7980029976762078213, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980029976762078213, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980029976762078213, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980029976762078213, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980029976762078213, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

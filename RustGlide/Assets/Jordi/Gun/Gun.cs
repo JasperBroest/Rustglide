@@ -14,8 +14,16 @@ public class Gun : MonoBehaviour
     private AudioSource GunShotSource;
     [SerializeField] private AudioClip GunShotAudio;
 
+    private AudioSource GunHitSource;
+    private ParticleSystem GunHitparticle;
+    [SerializeField] private AudioClip GunHitAudio;
+    [SerializeField] private AudioClip EnemyHitAudio;
+    [SerializeField] private GameObject hitAudioObject;
+
     private bool GunHeld = false;
     private bool OnCooldown = false;
+
+    public bool shoot;
 
     private void OnEnable()
     {
@@ -30,20 +38,37 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        if(Trigger.ReadValue<float>() > 0.1f && GunHeld && !OnCooldown)
+        Shoot();
+    }
+
+    private void Shoot()
+    {
+        if (shoot && !OnCooldown)
         {
             GunShotSource.Play();
             GunShotParticle.Play();
             RaycastHit hit;
             if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
+                Instantiate(hitAudioObject, hit.transform);
+                GunHitSource = hitAudioObject.GetComponent<AudioSource>();
+                GunHitparticle = hitAudioObject.GetComponentInChildren<ParticleSystem>();
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
+                    GunHitSource.clip = EnemyHitAudio;
                 }
+                else
+                {
+                    GunHitSource.clip = GunHitAudio;
+                }
+                GunHitparticle.Play();
+                GunHitSource.Play();
+                StartCoroutine(DeleteSource(hitAudioObject));
             }
             OnCooldown = true;
             StartCoroutine(SetCooldown());
+            shoot = false;
         }
     }
 
@@ -51,6 +76,13 @@ public class Gun : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         OnCooldown = false;
+
+    }
+
+    public IEnumerator DeleteSource(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject.gameObject);
     }
 
     public void OnGrab()
