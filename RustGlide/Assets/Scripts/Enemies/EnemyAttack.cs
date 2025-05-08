@@ -20,7 +20,7 @@ public class EnemyAttack : MonoBehaviour
                     StartCoroutine(AttackCooldown());
 
                     // Damage
-                    hit.collider.GetComponent<StaminaBar>().TakeDamage(dmg);
+                    hit.collider.GetComponentInChildren<StaminaBar>().TakeDamage(dmg);
                 }
             }
         }
