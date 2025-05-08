@@ -31,7 +31,7 @@ public class StaminaBar : MonoBehaviour
 
     private void Update()
     {
-        //CheckVelocity();
+        CheckVelocity();
         CalculateVelocity();
     }
 

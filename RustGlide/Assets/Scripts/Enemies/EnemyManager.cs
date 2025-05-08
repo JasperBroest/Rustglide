@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -14,8 +14,8 @@ public class EnemyManager : MonoBehaviour
     [System.Serializable]
     public struct EnemyWave
     {
-       public GameObject enemy;
-       public int enemyAmount;
+        public GameObject enemy;
+        public int enemyAmount;
     }
 
     public void EnemiesClearedCheck()
@@ -53,6 +53,7 @@ public class EnemyManager : MonoBehaviour
         else
         {
             gameDone = true;
+            GameObject.Find("EndPoint Trigger").SetActive(true);
         }
     }
 }
