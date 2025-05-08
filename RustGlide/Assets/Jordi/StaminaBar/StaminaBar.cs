@@ -39,11 +39,11 @@ public class StaminaBar : MonoBehaviour
     {
         if (stamina >= 0)
         {
-            if (velocity <= 5 && velocity > 0)
+            if (velocity < 5 && velocity > 0)
             {
                 staminaLossSpeed = 6 - Mathf.CeilToInt(velocity);
             }
-            stamina -= staminaLossSpeed / 15f;
+            stamina -= staminaLossSpeed / 20f;
         }
 
     }
