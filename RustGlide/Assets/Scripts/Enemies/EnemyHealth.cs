@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -13,6 +14,10 @@ public class EnemyHealth : MonoBehaviour
         {
             Die();
         }
+        else
+        {
+            HitFlash();
+        }
     }
 
     private void Awake()
@@ -25,5 +30,18 @@ public class EnemyHealth : MonoBehaviour
         EnemyManager.Instance.enemyList.Remove(gameObject);
         EnemyManager.Instance.EnemiesClearedCheck();
         Destroy(gameObject);
+    }
+
+    private void HitFlash()
+    {
+        MeshRenderer mesh = GetComponent<MeshRenderer>();
+        mesh.material.color = new Color(255, 255, 255, 255);
+        StartCoroutine(HitFlashEffect(mesh));
+    }
+
+    private IEnumerator HitFlashEffect(MeshRenderer mesh)
+    {
+        yield return new WaitForSeconds(0.2f);
+        mesh.material.color = new Color(255, 0, 0, 100);
     }
 }
