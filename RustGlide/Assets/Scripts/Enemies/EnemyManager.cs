@@ -53,7 +53,7 @@ public class EnemyManager : MonoBehaviour
         else
         {
             gameDone = true;
-            GameObject.Find("EndPoint Trigger").SetActive(true);
+            GameObject.FindGameObjectWithTag("EndTrigger").GetComponent<EndRoom>().enabled = true;
         }
     }
 }
