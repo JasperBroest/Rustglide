@@ -22,6 +22,8 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         // Effect
+        EnemyManager.Instance.enemyList.Remove(gameObject);
+        EnemyManager.Instance.EnemiesClearedCheck();
         Destroy(gameObject);
     }
 }
