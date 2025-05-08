@@ -13,14 +13,17 @@ public class EnemyMovement : MonoBehaviour
 
     public void MoveToPlayer()
     {
-        agent.SetDestination(playerPosition);
+        if (!CheckForAttack())
+        {
+            agent.SetDestination(playerPosition);
+        }
 
-        CheckForAttack();
+
     }
 
     private void Awake()
     {
-        enemyAttack = FindFirstObjectByType<EnemyAttack>();
+        enemyAttack = GetComponent<EnemyAttack>();
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player");
     }
@@ -31,23 +34,19 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // Checks if enemy is in attack range
-    private void CheckForAttack()
+    private bool CheckForAttack()
     {
         if (Vector3.Distance(playerPosition, transform.position) <= 2)
         {
-            Debug.Log("attack");
-            foundPlayer = false;
-            agent.isStopped = true;
-
+            agent.ResetPath();
             enemyAttack.Attack();
-            StartCoroutine(wait()); // Temp
-        }
-    }
 
-    private IEnumerator wait()
-    {
-        yield return new WaitForSeconds(2.5f);
-        foundPlayer = true;
-        agent.isStopped = false;
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
     }
 }

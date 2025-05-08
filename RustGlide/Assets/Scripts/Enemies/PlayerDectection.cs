@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class PlayerDetection : MonoBehaviour
 {
     [SerializeField] private float radius;
 
@@ -8,7 +8,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void Awake()
     {
-        enemyMovement = FindFirstObjectByType<EnemyMovement>();
+        enemyMovement = GetComponent<EnemyMovement>();
     }
 
     void Update()
