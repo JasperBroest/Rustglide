@@ -1923,6 +1923,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5692353868369713336, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.759564
+      objectReference: {fileID: 0}
+    - target: {fileID: 5692353868369713336, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.2346695
+      objectReference: {fileID: 0}
+    - target: {fileID: 5692353868369713336, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -0.4895715
+      objectReference: {fileID: 0}
+    - target: {fileID: 5692353868369713336, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 5692353868369713336, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.055831432
+      objectReference: {fileID: 0}
     - target: {fileID: 5703709675492452490, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
       propertyPath: m_Layer
       value: 3
