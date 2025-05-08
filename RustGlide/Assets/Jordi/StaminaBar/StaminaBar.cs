@@ -5,21 +5,24 @@ public class StaminaBar : MonoBehaviour
 {
     [SerializeField] private int staminaLossSpeed;
     [SerializeField] private GameObject playerSpawn;
+    [SerializeField] private GameObject gun;
+    [SerializeField] private GameObject gunSpawn;
 
+    [Range(0,100)]
     public float stamina;
+
     private Vector3 vectorVelocity;
     private float velocity;
 
     private XROrigin XrOrigin;
     Vector3 previousPosition;
 
+    private AudioSource audioSource;
+
     public void TakeDamage(int damage)
     {
         stamina -= damage;
-        if (stamina <= 0)
-        {
-            Die();
-        }
+        CheckForDeath();
     }
 
     private void Start()
@@ -27,12 +30,15 @@ public class StaminaBar : MonoBehaviour
         stamina = 100;
 
         XrOrigin = FindFirstObjectByType<XROrigin>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         CheckVelocity();
         CalculateVelocity();
+        CheckForDeath();
     }
 
     private void CheckVelocity()
@@ -47,6 +53,10 @@ public class StaminaBar : MonoBehaviour
             else if(velocity > 4.5)
             {
                 stamina += staminaLossSpeed / 20f;
+                if(stamina > 100f)
+                {
+                    stamina = 100f;
+                }
             }
         }
 
@@ -61,9 +71,19 @@ public class StaminaBar : MonoBehaviour
         velocity = vectorVelocity.magnitude * 2;
     }
 
+    private void CheckForDeath()
+    {
+        if (stamina <= 1)
+        {
+            Die();
+        }
+    }
     private void Die()
     {
-        transform.position = playerSpawn.transform.position;
+        XrOrigin.transform.position = playerSpawn.transform.position;
+        gun.transform.position = gunSpawn.transform.position;
+
+        audioSource.Play();
         stamina = 100;
     }
 
