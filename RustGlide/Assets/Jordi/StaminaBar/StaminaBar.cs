@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StaminaBar : MonoBehaviour
 {
-    [SerializeField] private float stamina;
+    public float stamina;
     private Vector3 vectorVelocity;
     private float velocity;
     [SerializeField] private float staminaLossSpeed;
