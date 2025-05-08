@@ -3,26 +3,36 @@ using UnityEngine;
 
 public class StaminaBar : MonoBehaviour
 {
+    [SerializeField] private float staminaLossSpeed;
+    [SerializeField] private GameObject playerSpawn;
+
     public float stamina;
     private Vector3 vectorVelocity;
     private float velocity;
-    [SerializeField] private float staminaLossSpeed;
 
     private XROrigin XrOrigin;
     Vector3 previousPosition;
 
+    public void TakeDamage(int damage)
+    {
+        stamina -= damage;
+        if (stamina <= 0)
+        {
+            Die();
+        }
+    }
+
     private void Start()
     {
         stamina = 100;
-        staminaLossSpeed = 1;
 
         XrOrigin = FindFirstObjectByType<XROrigin>();
     }
 
     private void Update()
     {
-        CheckVelocity();
-        calculateVelocity();
+        //CheckVelocity();
+        CalculateVelocity();
     }
 
     private void CheckVelocity()
@@ -57,7 +67,7 @@ public class StaminaBar : MonoBehaviour
         }
     }
 
-    private void calculateVelocity()
+    private void CalculateVelocity()
     {
         Vector3 currentPosition = XrOrigin.transform.position;
         vectorVelocity = (currentPosition - previousPosition) / Time.deltaTime;
@@ -65,4 +75,11 @@ public class StaminaBar : MonoBehaviour
 
         velocity = vectorVelocity.magnitude * 2;
     }
+
+    private void Die()
+    {
+        transform.position = playerSpawn.transform.position;
+        stamina = 100;
+    }
+
 }

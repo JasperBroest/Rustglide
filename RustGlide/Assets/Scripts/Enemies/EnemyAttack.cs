@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] private float attackRange;
     [SerializeField] private int dmg;
+
+    private bool canAttack = true;
     public void Attack()
     {
         RaycastHit hit;
@@ -11,10 +14,16 @@ public class EnemyAttack : MonoBehaviour
         {
             if (hit.collider.CompareTag("Player"))
             {
-                // Damage
-                Debug.Log("Deal damage");
-                Debug.Log(PlayerHealth.Instance);
-                PlayerHealth.Instance.TakeDamage(dmg);
+                if (canAttack)
+                {
+                    canAttack = false;
+                    StartCoroutine(AttackCooldown());
+
+                    // Damage
+                    Debug.Log("Deal damage");
+                    hit.collider.GetComponent<StaminaBar>().TakeDamage(dmg);
+                    Debug.Log(dmg);
+                }
             }
         }
     }
@@ -23,5 +32,11 @@ public class EnemyAttack : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Debug.DrawRay(transform.position, transform.forward, Color.yellow);
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(2f);
+        canAttack = true;
     }
 }
