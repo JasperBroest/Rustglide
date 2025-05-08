@@ -10,6 +10,8 @@ public class StaminaBar : MonoBehaviour
     [SerializeField] private GameObject gun;
     [SerializeField] private GameObject gunSpawn;
 
+    public bool IsPlayerDead = false;
+
     [Range(0, 100)]
     public float stamina;
 
@@ -82,15 +84,20 @@ public class StaminaBar : MonoBehaviour
     }
     private void Die()
     {
+
         /*XrOrigin.transform.position = playerSpawn.transform.position;
         gun.transform.position = gunSpawn.transform.position;*/
+        if (!IsPlayerDead)
+        {
+            GameObject.Find("Player").transform.position = GameObject.Find("EndSpawnPos").transform.position;
+            GameObject.Find("HUD manager").GetComponent<HudManager>().StartDeathSequence();
+            StartCoroutine(finished());
 
-        GameObject.Find("Player").transform.position = GameObject.Find("EndSpawnPos").transform.position;
-        GameObject.Find("HUD manager").GetComponent<HudManager>().StartDeathSequence();
-        StartCoroutine(finished());
+            audioSource.Play();
+            stamina = 100;
+            IsPlayerDead = true;
+        }
 
-        audioSource.Play();
-        stamina = 100;
     }
 
 
