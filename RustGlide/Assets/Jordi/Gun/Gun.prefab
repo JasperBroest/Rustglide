@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7392406315276631466}
   m_Layer: 0
   m_Name: Holdster
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,11 +100,11 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 5531154031189056711}
   m_Layer: 0
   m_Name: Line
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 7197433397465661633}
   m_Layer: 0
   m_Name: BulletHole
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -293,9 +293,10 @@ GameObject:
   - component: {fileID: 6731655114814330523}
   - component: {fileID: 5456831876352208712}
   - component: {fileID: 8199807554539108825}
+  - component: {fileID: 683419447557508553}
   m_Layer: 0
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -351,6 +352,11 @@ MonoBehaviour:
   Bullethole: {fileID: 5362729649084130404}
   GunShotParticle: {fileID: 6089446190540968699}
   GunShotAudio: {fileID: 8300000, guid: 539b7e25bad50454dac2a0add805450f, type: 3}
+  gunHaptic: {fileID: 11400000, guid: b6df3fcce1df1e34ea737c5840ad9520, type: 2}
+  GunHitAudio: {fileID: 8300000, guid: 8a6b7ec067979e7499d63d3ebea6400a, type: 3}
+  EnemyHitAudio: {fileID: 8300000, guid: 38296cd18abdcdb4da1b9feb340e3753, type: 3}
+  hitAudioObject: {fileID: 2070650280826579499, guid: 80c92821996037e45bd2cace20ae55b7, type: 3}
+  shoot: 0
 --- !u!54 &6731655114814330523
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -537,7 +543,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -546,7 +552,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 250
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -581,7 +587,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -621,6 +627,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &683419447557508553
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5642525368980929122}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.36, y: 0.25, z: 0.1}
+  m_Center: {x: 0.1, y: 0.06, z: 0}
 --- !u!1 &6455817839924934160
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,10 +659,9 @@ GameObject:
   - component: {fileID: 1588563200381656770}
   - component: {fileID: 725704340288091492}
   - component: {fileID: 7906686362968868256}
-  - component: {fileID: 1505517553837425744}
   m_Layer: 0
   m_Name: Reticle
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -708,27 +734,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1505517553837425744
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6455817839924934160}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7821582385094094200
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,7 +748,7 @@ GameObject:
   - component: {fileID: 3460027923424193006}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -829,11 +834,11 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -847,15 +852,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1972487910709877232, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1972487910709877232, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1972487910709877232, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1972487910709877232, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -909,6 +914,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3515071930650600478, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: m_TagString
+      value: Gun
+      objectReference: {fileID: 0}
     - target: {fileID: 6725371519831039651, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -917,6 +926,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: vfx_MuzzleFlash_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6980259576133684760, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: m_TagString
+      value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222628775867560472, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: m_TagString
+      value: Gun
+      objectReference: {fileID: 0}
     - target: {fileID: 7520814639884122992, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -924,6 +941,30 @@ PrefabInstance:
     - target: {fileID: 7980029976762078213, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980029976762078213, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980029976762078213, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980029976762078213, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980029976762078213, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678474555929038593, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: m_TagString
+      value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739346576828255726, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
+      propertyPath: m_TagString
+      value: Gun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

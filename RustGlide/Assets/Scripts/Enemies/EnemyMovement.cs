@@ -17,8 +17,6 @@ public class EnemyMovement : MonoBehaviour
         {
             agent.SetDestination(playerPosition);
         }
-
-
     }
 
     private void Awake()

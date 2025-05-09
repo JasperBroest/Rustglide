@@ -102,12 +102,8 @@ public class DashToDirection : MonoBehaviour
     {
         if (PlayerRigidbody.linearVelocity.x >= 3 || PlayerRigidbody.linearVelocity.x <= -3 || PlayerRigidbody.linearVelocity.z >= 3 || PlayerRigidbody.linearVelocity.z <= -3 && isGrounded)
         {
-            Debug.Log("Need to slow");
-            Debug.Log(PlayerRigidbody.linearVelocity.x);
-            Debug.Log(-PlayerRigidbody.linearVelocity.x);
             PlayerRigidbody.AddForce(-PlayerRigidbody.linearVelocity.x, 0, -PlayerRigidbody.linearVelocity.z);
             PlayerRigidbody.linearVelocity = PlayerRigidbody.linearVelocity / 2;
-            Debug.Log(PlayerRigidbody.linearVelocity.x);
             
         }
     }
