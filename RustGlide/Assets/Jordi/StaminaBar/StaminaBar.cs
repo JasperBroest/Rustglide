@@ -88,7 +88,7 @@ public class StaminaBar : MonoBehaviour
 
         /*XrOrigin.transform.position = playerSpawn.transform.position;
         gun.transform.position = gunSpawn.transform.position;*/
-        if (!CanPlayerDie & !IsPlayerDead)
+        if (!IsPlayerDead)
         {
             GameObject.Find("Player").transform.position = GameObject.Find("EndSpawnPos").transform.position;
             GameObject.Find("HUD manager").GetComponent<HudManager>().StartDeathSequence();

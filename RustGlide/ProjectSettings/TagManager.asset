@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - EndTrigger
   - Gun
+  - Stamina
   layers:
   - Default
   - TransparentFX

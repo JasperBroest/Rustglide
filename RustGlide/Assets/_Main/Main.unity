@@ -2265,6 +2265,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3665685029870719786, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
+      propertyPath: m_TagString
+      value: Stamina
+      objectReference: {fileID: 0}
     - target: {fileID: 3765898055485857143, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -8673,21 +8677,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 249746171}
     m_Modifications:
+    - target: {fileID: 1314612804359634662, guid: 12f4af9609e2c9e4ead7a4be172c513c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314612804359634662, guid: 12f4af9609e2c9e4ead7a4be172c513c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.47
+      objectReference: {fileID: 0}
     - target: {fileID: 3750787335848643949, guid: 12f4af9609e2c9e4ead7a4be172c513c, type: 3}
       propertyPath: m_Name
       value: Endroom
       objectReference: {fileID: 0}
     - target: {fileID: 4973573840492043297, guid: 12f4af9609e2c9e4ead7a4be172c513c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1452315
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973573840492043297, guid: 12f4af9609e2c9e4ead7a4be172c513c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1452315
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973573840492043297, guid: 12f4af9609e2c9e4ead7a4be172c513c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1452315
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973573840492043297, guid: 12f4af9609e2c9e4ead7a4be172c513c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.469727
+      value: -15.978
       objectReference: {fileID: 0}
     - target: {fileID: 4973573840492043297, guid: 12f4af9609e2c9e4ead7a4be172c513c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.190001
+      value: -22.407
       objectReference: {fileID: 0}
     - target: {fileID: 4973573840492043297, guid: 12f4af9609e2c9e4ead7a4be172c513c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -32.22841
+      value: -28.14
       objectReference: {fileID: 0}
     - target: {fileID: 4973573840492043297, guid: 12f4af9609e2c9e4ead7a4be172c513c, type: 3}
       propertyPath: m_LocalRotation.w
