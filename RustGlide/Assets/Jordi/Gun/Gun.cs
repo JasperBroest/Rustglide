@@ -43,16 +43,18 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
-        if (shoot && !OnCooldown)
+        if (Trigger.ReadValue<float>() > 0.1f && GunHeld && !OnCooldown)
         {
             GunShotSource.Play();
             GunShotParticle.Play();
             RaycastHit hit;
             if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
-                Instantiate(hitAudioObject, hit.transform);
-                GunHitSource = hitAudioObject.GetComponent<AudioSource>();
-                GunHitparticle = hitAudioObject.GetComponentInChildren<ParticleSystem>();
+                GameObject SpawnedObject = Instantiate(hitAudioObject);
+                SpawnedObject.transform.parent = null;
+                SpawnedObject.transform.position = hit.point;
+                GunHitSource = SpawnedObject.GetComponent<AudioSource>();
+                GunHitparticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
@@ -64,7 +66,7 @@ public class Gun : MonoBehaviour
                 }
                 GunHitparticle.Play();
                 GunHitSource.Play();
-                StartCoroutine(DeleteSource(hitAudioObject));
+                StartCoroutine(DeleteSource(SpawnedObject));
             }
             OnCooldown = true;
             StartCoroutine(SetCooldown());
@@ -74,7 +76,7 @@ public class Gun : MonoBehaviour
 
     public IEnumerator SetCooldown()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         OnCooldown = false;
 
     }
