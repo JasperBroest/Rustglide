@@ -44,8 +44,8 @@ public class Gun : MonoBehaviour
     {
         if (Trigger.ReadValue<float>() > 0.1f && GunHeld && !OnCooldown)
         {
-            GunShotSource.Play();
             GunShotParticle.Play();
+            GunShotSource.PlayOneShot(GunShotSource.clip);
             ForceTubeVRInterface.Shoot(gunHaptic);
             RaycastHit hit;
             if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
@@ -65,12 +65,16 @@ public class Gun : MonoBehaviour
                     GunHitSource.clip = GunHitAudio;
                 }
                 GunHitparticle.Play();
-                GunHitSource.Play();
+                GunHitSource.PlayOneShot(GunHitSource.clip);
                 StartCoroutine(DeleteSource(SpawnedObject));
             }
             OnCooldown = true;
-            StartCoroutine(SetCooldown());
         }
+        if (Trigger.ReadValue<float>() == 0 && GunHeld)
+        {
+            OnCooldown = false;
+        }
+        Debug.Log(OnCooldown);
     }
 
     public IEnumerator SetCooldown()
