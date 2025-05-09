@@ -356,7 +356,6 @@ MonoBehaviour:
   GunHitAudio: {fileID: 8300000, guid: 8a6b7ec067979e7499d63d3ebea6400a, type: 3}
   EnemyHitAudio: {fileID: 8300000, guid: 38296cd18abdcdb4da1b9feb340e3753, type: 3}
   hitAudioObject: {fileID: 2070650280826579499, guid: 80c92821996037e45bd2cace20ae55b7, type: 3}
-  shoot: 0
 --- !u!54 &6731655114814330523
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -543,8 +542,8 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
-  m_Pitch: 1
+  m_Volume: 0.1
+  m_Pitch: 0.8
   Loop: 0
   Mute: 0
   Spatialize: 0
