@@ -10,6 +10,7 @@ public class StaminaBar : MonoBehaviour
     [SerializeField] private GameObject gun;
     [SerializeField] private GameObject gunSpawn;
 
+    public bool CanPlayerDie = true;
     public bool IsPlayerDead = false;
 
     [Range(0, 100)]
@@ -87,7 +88,7 @@ public class StaminaBar : MonoBehaviour
 
         /*XrOrigin.transform.position = playerSpawn.transform.position;
         gun.transform.position = gunSpawn.transform.position;*/
-        if (!IsPlayerDead)
+        if (!CanPlayerDie & !IsPlayerDead)
         {
             GameObject.Find("Player").transform.position = GameObject.Find("EndSpawnPos").transform.position;
             GameObject.Find("HUD manager").GetComponent<HudManager>().StartDeathSequence();

@@ -25,6 +25,8 @@ public class EndRoom : MonoBehaviour
         {
             if (!IsPlayerTeleported)
             {
+
+                GameObject.FindWithTag("Stamina").GetComponent<StaminaBar>().enabled = false;
                 other.gameObject.transform.position = EndRoomSpawn.transform.position;
                 IsPlayerTeleported = true;
                 StartCoroutine(finished());
