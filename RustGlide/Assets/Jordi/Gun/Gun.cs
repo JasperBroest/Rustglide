@@ -75,7 +75,7 @@ public class Gun : MonoBehaviour
 
     public IEnumerator SetCooldown()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         OnCooldown = false;
 
     }

@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
     public int Health;
 
     [SerializeField] private int maxHealth;
+    private Color oldColor;
 
     public void TakeDamage(int damage)
     {
@@ -34,14 +35,15 @@ public class EnemyHealth : MonoBehaviour
 
     private void HitFlash()
     {
-        MeshRenderer mesh = GetComponent<MeshRenderer>();
+        MeshRenderer mesh = GetComponentInChildren<MeshRenderer>();
+        oldColor = mesh.material.color;
         mesh.material.color = new Color(255, 255, 255, 255);
         StartCoroutine(HitFlashEffect(mesh));
     }
 
     private IEnumerator HitFlashEffect(MeshRenderer mesh)
     {
-        yield return new WaitForSeconds(0.2f);
-        mesh.material.color = new Color(255, 0, 0, 100);
+        yield return new WaitForSeconds(0.1f);
+        mesh.material.color = oldColor;
     }
 }
