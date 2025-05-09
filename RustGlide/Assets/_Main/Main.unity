@@ -856,27 +856,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5642525368980929122, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
   m_PrefabInstance: {fileID: 1278051596}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &207209178
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207209172}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36, y: 0.25, z: 0.1}
-  m_Center: {x: 0.1, y: 0.06, z: 0}
 --- !u!1 &213598105 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3002146505028463488, guid: bbf79fa7522f0cc49a0407aad233e718, type: 3}
@@ -7271,18 +7250,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 71767370641239452, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: gunHaptic
-      value: 
-      objectReference: {fileID: 11400000, guid: b6df3fcce1df1e34ea737c5840ad9520, type: 2}
-    - target: {fileID: 789474344608965344, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_TagString
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571421662760227905, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_TagString
-      value: Gun
-      objectReference: {fileID: 0}
     - target: {fileID: 2669549813036197967, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.15
@@ -7323,65 +7290,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3460027923424193006, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4453894673733911554, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_TagString
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777456462173112831, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_TagString
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 4860695300019079952, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_TagString
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 5362729649084130404, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_TagString
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 5456831876352208712, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_ForceGravityOnDetach
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5642525368980929122, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
       propertyPath: m_Name
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 5642525368980929122, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_TagString
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 6455817839924934160, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_TagString
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 6548815423287331046, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_TagString
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 6775423115826181350, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_TagString
-      value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 7392406315276631466, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7821582385094094200, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      propertyPath: m_TagString
       value: Gun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5642525368980929122, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 207209178}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
 --- !u!1 &1280174225 stripped
 GameObject:

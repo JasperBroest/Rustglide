@@ -24,8 +24,6 @@ public class Gun : MonoBehaviour
     private bool GunHeld = false;
     private bool OnCooldown = false;
 
-    public bool shoot;
-
     private void OnEnable()
     {
         Trigger.Enable();
@@ -72,7 +70,6 @@ public class Gun : MonoBehaviour
             }
             OnCooldown = true;
             StartCoroutine(SetCooldown());
-            shoot = false;
         }
     }
 
