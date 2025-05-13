@@ -5,22 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class StaminaBar : MonoBehaviour
 {
-    [SerializeField] private int staminaLossSpeed;
     [SerializeField] private GameObject playerSpawn;
     [SerializeField] private GameObject gun;
     [SerializeField] private GameObject gunSpawn;
 
     public bool IsPlayerDead = false;
+    [Range(0, 100)] public float stamina;
 
-    [Range(0, 100)]
-    public float stamina;
-
+    private int staminaLoss;
+    private int staminaLossSpeed;
     private Vector3 vectorVelocity;
     private float velocity;
-
     private XROrigin XrOrigin;
-    Vector3 previousPosition;
-
+    private Vector3 previousPosition;
     private AudioSource audioSource;
 
     public void TakeDamage(int damage)
@@ -32,9 +29,9 @@ public class StaminaBar : MonoBehaviour
     private void Start()
     {
         stamina = 100;
-
+        //the lower this is the faster it losses stamina
+        staminaLossSpeed = 20;
         XrOrigin = FindFirstObjectByType<XROrigin>();
-
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -51,19 +48,18 @@ public class StaminaBar : MonoBehaviour
         {
             if (velocity < 5)
             {
-                staminaLossSpeed = 6 - Mathf.CeilToInt(velocity);
-                stamina -= staminaLossSpeed / 20f;
+                staminaLoss = 6 - Mathf.CeilToInt(velocity);
+                stamina -= staminaLoss / staminaLossSpeed;
             }
             else if (velocity > 4.5)
             {
-                stamina += staminaLossSpeed / 20f;
+                stamina += staminaLossSpeed / staminaLossSpeed;
                 if (stamina > 100f)
                 {
                     stamina = 100f;
                 }
             }
         }
-
     }
 
     private void CalculateVelocity()
@@ -84,9 +80,8 @@ public class StaminaBar : MonoBehaviour
     }
     private void Die()
     {
-
-        /*XrOrigin.transform.position = playerSpawn.transform.position;
-        gun.transform.position = gunSpawn.transform.position;*/
+        XrOrigin.transform.position = playerSpawn.transform.position;
+        gun.transform.position = gunSpawn.transform.position;
         if (!IsPlayerDead)
         {
             GameObject.Find("Player").transform.position = GameObject.Find("EndSpawnPos").transform.position;
@@ -99,7 +94,6 @@ public class StaminaBar : MonoBehaviour
         }
 
     }
-
 
     //remove later
     public IEnumerator finished()
