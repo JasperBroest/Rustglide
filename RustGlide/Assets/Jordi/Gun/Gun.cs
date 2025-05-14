@@ -2,8 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Gun : MonoBehaviour
+public class Gun : GunSubject
 {
+    public bool gunHeld = false;
+
+
     [SerializeField] private GameObject Bullethole;
     [SerializeField] private AudioClip GunShotAudio;
     [SerializeField] private AudioClip GunHitAudio;
@@ -18,7 +21,7 @@ public class Gun : MonoBehaviour
     private AudioSource gunHitSource;
     private ParticleSystem gunHitparticle;
     private ParticleSystem GunShotParticle;
-    private bool gunHeld = false;
+
     private bool onCooldown = false;
 
     private void OnEnable()
@@ -28,9 +31,11 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
+
         gunShotSource = GetComponent<AudioSource>();
         GunShotParticle = GetComponentInChildren<ParticleSystem>();
         gunShotSource.clip = GunShotAudio;
+        OnRelease();
     }
 
     private void Update()
@@ -89,10 +94,14 @@ public class Gun : MonoBehaviour
     public void OnGrab()
     {
         gunHeld = true;
+        GetComponent<Rigidbody>().isKinematic = false;
+        NotifyIsGrabbed(gunHeld);
     }
 
     public void OnRelease()
     {
         gunHeld = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        NotifyIsGrabbed(gunHeld);
     }
 }
