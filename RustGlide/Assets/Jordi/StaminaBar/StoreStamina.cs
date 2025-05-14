@@ -6,7 +6,8 @@ public class StoreStamina : MonoBehaviour
 {
     public static StoreStamina instance;
 
-    public float staminaLevelMultiplier = 1f;
+    [HideInInspector] public float staminaLevelMultiplier = 1f;
+    [SerializeField] private float multiplier = 0.3f;
 
     private void Awake()
     {
@@ -23,6 +24,6 @@ public class StoreStamina : MonoBehaviour
 
     public void OnSceneLoaded()
     {
-        staminaLevelMultiplier += 0.3f;
+        staminaLevelMultiplier += multiplier;
     }
 }
