@@ -6,24 +6,23 @@ public class StoreStamina : MonoBehaviour
 {
     public static StoreStamina instance;
 
-    private StaminaBar StaminaBar;
-
     public float staminaLevelMultiplier = 1f;
 
     private void Awake()
     {
-        instance = this;
-
-        DontDestroyOnLoad(this);
-    }
-
-    private void Start()
-    {
-        StaminaBar = FindFirstObjectByType<StaminaBar>();
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void OnSceneLoaded()
     {
-        staminaLevelMultiplier += 0.2f;
+        staminaLevelMultiplier += 0.3f;
     }
 }

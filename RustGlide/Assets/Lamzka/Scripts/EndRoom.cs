@@ -53,7 +53,4 @@ public class EndRoom : MonoBehaviour
         StoreStamina.instance.OnSceneLoaded();
         SceneManager.LoadScene(0);
     }
-
-
-
 }

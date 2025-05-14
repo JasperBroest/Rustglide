@@ -39,6 +39,7 @@ public class StaminaBar : MonoBehaviour
         CheckVelocity();
         CalculateVelocity();
         CheckForDeath();
+        staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
     }
 
     private void CheckVelocity()
@@ -52,10 +53,10 @@ public class StaminaBar : MonoBehaviour
             }
             else if (velocity > 4.5)
             {
-                stamina += (staminaLoss * staminaLossSpeed) / 20f;
-                {
-                    stamina = 100f;
-                }
+                stamina += staminaLoss / 20f;
+                //{
+                //    stamina = 100f;
+                //}
             }
         }
     }

@@ -332,6 +332,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068dc7eb2e2d1ca4fb72a67aa4d3a74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bullethole: {fileID: 5362729649084130404}
+  GunShotAudio: {fileID: 8300000, guid: 539b7e25bad50454dac2a0add805450f, type: 3}
+  GunHitAudio: {fileID: 8300000, guid: 8a6b7ec067979e7499d63d3ebea6400a, type: 3}
+  EnemyHitAudio: {fileID: 8300000, guid: 38296cd18abdcdb4da1b9feb340e3753, type: 3}
+  hitAudioObject: {fileID: 2070650280826579499, guid: 80c92821996037e45bd2cace20ae55b7, type: 3}
   Trigger:
     m_Name: Trigger
     m_Type: 1
@@ -349,13 +354,7 @@ MonoBehaviour:
       m_Action: Trigger
       m_Flags: 0
     m_Flags: 0
-  Bullethole: {fileID: 5362729649084130404}
-  GunShotParticle: {fileID: 6089446190540968699}
-  GunShotAudio: {fileID: 8300000, guid: 539b7e25bad50454dac2a0add805450f, type: 3}
   gunHaptic: {fileID: 11400000, guid: b6df3fcce1df1e34ea737c5840ad9520, type: 2}
-  GunHitAudio: {fileID: 8300000, guid: 8a6b7ec067979e7499d63d3ebea6400a, type: 3}
-  EnemyHitAudio: {fileID: 8300000, guid: 38296cd18abdcdb4da1b9feb340e3753, type: 3}
-  hitAudioObject: {fileID: 2070650280826579499, guid: 80c92821996037e45bd2cace20ae55b7, type: 3}
 --- !u!54 &6731655114814330523
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -973,10 +972,5 @@ PrefabInstance:
 --- !u!4 &2405875177189465870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1972487910709877232, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
-  m_PrefabInstance: {fileID: 4196455417164039934}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6089446190540968699 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7980029976762078213, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
   m_PrefabInstance: {fileID: 4196455417164039934}
   m_PrefabAsset: {fileID: 0}
