@@ -10,6 +10,7 @@ public class StaminaBar : MonoBehaviour
     [SerializeField] private GameObject gun;
     [SerializeField] private GameObject gunSpawn;
 
+    public bool CanPlayerDie = true;
     public bool IsPlayerDead = false;
 
     [Range(0, 100)]
