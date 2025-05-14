@@ -8,12 +8,12 @@ public class StaminaBar : MonoBehaviour
     [SerializeField] private GameObject playerSpawn;
     [SerializeField] private GameObject gun;
     [SerializeField] private GameObject gunSpawn;
+    [SerializeField] private float staminaLossSpeed;
 
     public bool IsPlayerDead = false;
     [Range(0, 100)] public float stamina;
 
     private int staminaLoss;
-    private int staminaLossSpeed;
     private Vector3 vectorVelocity;
     private float velocity;
     private XROrigin XrOrigin;
@@ -29,8 +29,7 @@ public class StaminaBar : MonoBehaviour
     private void Start()
     {
         stamina = 100;
-        //the lower this is the faster it losses stamina
-        staminaLossSpeed = 20;
+        staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
         XrOrigin = FindFirstObjectByType<XROrigin>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -49,12 +48,11 @@ public class StaminaBar : MonoBehaviour
             if (velocity < 5)
             {
                 staminaLoss = 6 - Mathf.CeilToInt(velocity);
-                stamina -= staminaLoss / staminaLossSpeed;
+                stamina -= (staminaLoss * staminaLossSpeed) / 20f;
             }
             else if (velocity > 4.5)
             {
-                stamina += staminaLossSpeed / staminaLossSpeed;
-                if (stamina > 100f)
+                stamina += (staminaLoss * staminaLossSpeed) / 20f;
                 {
                     stamina = 100f;
                 }
