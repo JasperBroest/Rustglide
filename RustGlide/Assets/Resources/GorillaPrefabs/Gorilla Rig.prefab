@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 430285556596328392}
   - component: {fileID: 430285556596328394}
   - component: {fileID: 430285556596328393}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 430285556866155479}
   - component: {fileID: 430285556866155482}
   - component: {fileID: 430285556866155483}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 430285556925871860}
   - component: {fileID: 430285556925871862}
   - component: {fileID: 430285556925871861}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 430285557067231379}
   - component: {fileID: 174806945918032726}
   - component: {fileID: 8160769240841640525}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: RightHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,13 +540,13 @@ GameObject:
   m_Component:
   - component: {fileID: 430285557273465591}
   - component: {fileID: 3146714208540877942}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Gorilla Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &430285557273465591
 Transform:
   m_ObjectHideFlags: 0
@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 430285557519011102}
   - component: {fileID: 430285557519011103}
   - component: {fileID: 430285557519011168}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: GorillaPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 430285557680239425}
   - component: {fileID: 5246662291665705223}
   - component: {fileID: 4625550388497043265}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LeftHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 430285557946750774}
   - component: {fileID: 430285557946750773}
   - component: {fileID: 430285557946750772}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

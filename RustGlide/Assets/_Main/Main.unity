@@ -1401,17 +1401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab623d92c40385745954913cd73a5a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Upgrades:
-  - {fileID: 5642525368980929122, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-  - {fileID: 2597081445078767605, guid: e3d37f712a0c458449b56834a2b21535, type: 3}
-  - {fileID: 1121741764480708435, guid: fea60e7457f16bb46955f9aa0d5e5e75, type: 3}
-  - {fileID: 1265351880162917264, guid: a37f3721b6ebbae4bb4a90423b68f2c2, type: 3}
-  - {fileID: 2070650280826579499, guid: 80c92821996037e45bd2cace20ae55b7, type: 3}
-  - {fileID: 6980259576133684760, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
-  - {fileID: 2190012363487368119, guid: 78d8bb3241456b44182d576ae2da0b7b, type: 3}
-  - {fileID: 8228011274146237033, guid: 45a9e883bd9688c40b300f27a7ed5e08, type: 3}
-  - {fileID: 17622328885290142, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
-  - {fileID: 8642809416749111162, guid: 4dae411673a981e42b54e603106b749b, type: 3}
+  Upgrades: []
   ChosenUpgrades: []
 --- !u!4 &366214468
 Transform:
