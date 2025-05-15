@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private AudioClip GunHitAudio;
     [SerializeField] private AudioClip EnemyHitAudio;
     [SerializeField] private GameObject hitAudioObject;
+    [SerializeField] private GameObject holdster;
+    [SerializeField] private GameObject gorillaHoldster;
 
     public InputAction Trigger;
     public ProTubeSettings gunHaptic;
@@ -18,6 +21,7 @@ public class Gun : MonoBehaviour
     private AudioSource gunHitSource;
     private ParticleSystem gunHitparticle;
     private ParticleSystem GunShotParticle;
+    private XROrigin UsedOrigin;
     private bool gunHeld = false;
     private bool onCooldown = false;
 
@@ -26,11 +30,17 @@ public class Gun : MonoBehaviour
         Trigger.Enable();
     }
 
+    private void Awake()
+    {
+        UsedOrigin = FindFirstObjectByType<XROrigin>();
+    }
+
     private void Start()
     {
         gunShotSource = GetComponent<AudioSource>();
         GunShotParticle = GetComponentInChildren<ParticleSystem>();
         gunShotSource.clip = GunShotAudio;
+        CorrectHoldster();
     }
 
     private void Update()
@@ -71,6 +81,20 @@ public class Gun : MonoBehaviour
         if (Trigger.ReadValue<float>() == 0 && gunHeld)
         {
             onCooldown = false;
+        }
+    }
+
+    private void CorrectHoldster()
+    {
+        if(UsedOrigin.gameObject.CompareTag("GorillaPlayer"))
+        {
+            gorillaHoldster.SetActive(true);
+            holdster.SetActive(false);
+        }
+        else
+        {
+            gorillaHoldster.SetActive(false);
+            holdster.SetActive(true);
         }
     }
 

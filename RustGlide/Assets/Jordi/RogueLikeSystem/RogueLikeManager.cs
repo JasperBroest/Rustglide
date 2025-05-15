@@ -24,6 +24,7 @@ public class RogueLikeManager : MonoBehaviour
             RandValue = UnityEngine.Random.Range(0, Upgrades.Count);
             ChosenUpgrades.Add(Upgrades[RandValue]);
             Upgrades.Remove(Upgrades[RandValue]);
+            Instantiate(Upgrades[RandValue]);
         }
     }
 }
