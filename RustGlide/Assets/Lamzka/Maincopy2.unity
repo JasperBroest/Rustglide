@@ -1360,11 +1360,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1315787460967244704, guid: bbf79fa7522f0cc49a0407aad233e718, type: 3}
---- !u!4 &326234561 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8672976732640263430, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
-  m_PrefabInstance: {fileID: 564264275}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &326741571 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6699157030307326032, guid: bbf79fa7522f0cc49a0407aad233e718, type: 3}
@@ -2459,9 +2454,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8672976732640263430, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 8839415365884540231, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2031092280}
+      addedObject: {fileID: 1179519984}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6451939779552705983, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
       insertIndex: -1
@@ -5731,6 +5726,11 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: adf0a781c990dc84982b2e46074692c4, type: 2}
   m_BuildHeightMesh: 0
+--- !u!4 &946431549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8839415365884540231, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
+  m_PrefabInstance: {fileID: 564264275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &950369138 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2325085273785259599, guid: bbf79fa7522f0cc49a0407aad233e718, type: 3}
@@ -6943,6 +6943,55 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3329902420748629119, guid: bbf79fa7522f0cc49a0407aad233e718, type: 3}
+--- !u!1 &1179519983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1179519984}
+  - component: {fileID: 1179519985}
+  m_Layer: 3
+  m_Name: Holster Offset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1179519984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179519983}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2031092280}
+  m_Father: {fileID: 946431549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1179519985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179519983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6822fc1a80bffe549b22a3280a16378c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HeadRotation: {fileID: 660787383}
+  XModify: 0
+  YModify: 0
+  zModify: 0
 --- !u!1 &1182209370 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4424396828587804706, guid: bbf79fa7522f0cc49a0407aad233e718, type: 3}
@@ -9373,13 +9422,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031092279}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.362, y: 0.686, z: 0.009}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.901, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2126822896}
-  m_Father: {fileID: 326234561}
+  m_Father: {fileID: 1179519984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2031092281
 MonoBehaviour:
@@ -9393,6 +9442,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db90db4ca2f28cf47a6678c24d96a9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  XModify: 0
+  YModify: 0
+  zModify: 0
 --- !u!1 &2033606296 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3137722172632951806, guid: bbf79fa7522f0cc49a0407aad233e718, type: 3}
