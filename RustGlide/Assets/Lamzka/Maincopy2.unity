@@ -2123,6 +2123,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1453962213082454607, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
+      propertyPath: hudText.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1513794735955283019, guid: 6e414b3a8ca2884438eb68a411ccd72d, type: 3}
       propertyPath: m_Layer
       value: 3
