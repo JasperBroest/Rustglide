@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DashToDirection : MonoBehaviour
+public class DashToDirection : MonoBehaviour, IGunGetState
 {
     public GameObject CubeRight;
     public GameObject CubeLeft;
@@ -21,6 +21,8 @@ public class DashToDirection : MonoBehaviour
     private bool HasLeftBeenPressed;
     private bool isGrounded;
 
+    private bool isGunHeld;
+
     bool nospeed = false;
 
     void OnEnable()
@@ -29,9 +31,15 @@ public class DashToDirection : MonoBehaviour
         LeftTrigger.Enable();
     }
 
+    public void NotifyGrab(bool IsGunGrabbed)
+    {
+        isGunHeld = IsGunGrabbed;
+    }
+
     private void Start()
     {
         AudioSource.clip = ThrusterSound;
+        GetGun();
     }
 
     void Update()
@@ -65,15 +73,25 @@ public class DashToDirection : MonoBehaviour
 
     void AddForceToCubeRightDirection()
     {
-        if (!AudioSource.isPlaying)
+        if (!isGunHeld)
+        {
+            if(!AudioSource.isPlaying)
             AudioSource.PlayOneShot(ThrusterSound);
-        PlayerRigidbody.AddForce(CubeRight.transform.forward * ThrustPower);
+
+            PlayerRigidbody.AddForce(CubeRight.transform.forward * ThrustPower);
+        }
+           
     }
     void AddForceToCubeLeftDirection()
     {
-        if (!AudioSource.isPlaying)
-            AudioSource.PlayOneShot(ThrusterSound);
-        PlayerRigidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
+
+        if (!isGunHeld)
+        {
+            if (!AudioSource.isPlaying)
+                AudioSource.PlayOneShot(ThrusterSound);
+            PlayerRigidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
+        }
+            
     }
 
     void StopNoise()
@@ -106,5 +124,10 @@ public class DashToDirection : MonoBehaviour
             PlayerRigidbody.linearVelocity = PlayerRigidbody.linearVelocity / 2;
             
         }
+    }
+
+    private void GetGun()
+    {
+        GameObject.FindWithTag("Gun").GetComponent<GunSubject>().AddObserver(this);
     }
 }
