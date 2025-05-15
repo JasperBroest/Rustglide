@@ -8,9 +8,9 @@ public class FollowHorizontal : MonoBehaviour
 
     //dont touch
     [Header("offset Settings")]
-    public float XModify;
+    private float XModify;
     public float YModify;
-    public float zModify;
+    private float zModify;
 
 
 
