@@ -65,7 +65,8 @@ public class Gun : MonoBehaviour
                 gunHitparticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
+                    StateController stateController = hit.collider.GetComponent<StateController>();
+                    stateController.ChangeState(stateController.hurtState);
                     gunHitSource.clip = EnemyHitAudio;
                 }
                 else
