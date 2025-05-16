@@ -1,38 +1,46 @@
 using System.Collections;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviour
 {
-    public InputAction Trigger;
-
     [SerializeField] private GameObject Bullethole;
-
-    private int dmg = 10;
-
-    [SerializeField] private ParticleSystem GunShotParticle;
-    private AudioSource GunShotSource;
     [SerializeField] private AudioClip GunShotAudio;
-
-    public ProTubeSettings gunHaptic;
-    private AudioSource GunHitSource;
-    private ParticleSystem GunHitparticle;
     [SerializeField] private AudioClip GunHitAudio;
     [SerializeField] private AudioClip EnemyHitAudio;
     [SerializeField] private GameObject hitAudioObject;
+    [SerializeField] private GameObject holdster;
+    [SerializeField] private GameObject gorillaHoldster;
 
-    private bool GunHeld = false;
-    private bool OnCooldown = false;
+    public InputAction Trigger;
+    public ProTubeSettings gunHaptic;
+
+    private int dmg = 10;
+    private AudioSource gunShotSource;
+    private AudioSource gunHitSource;
+    private ParticleSystem gunHitparticle;
+    private ParticleSystem GunShotParticle;
+    private XROrigin UsedOrigin;
+    private bool gunHeld = false;
+    private bool onCooldown = false;
 
     private void OnEnable()
     {
         Trigger.Enable();
     }
 
+    private void Awake()
+    {
+        UsedOrigin = FindFirstObjectByType<XROrigin>();
+    }
+
     private void Start()
     {
-        GunShotSource = GetComponent<AudioSource>();
-        GunShotSource.clip = GunShotAudio;
+        gunShotSource = GetComponent<AudioSource>();
+        GunShotParticle = GetComponentInChildren<ParticleSystem>();
+        gunShotSource.clip = GunShotAudio;
+        CorrectHoldster();
     }
 
     private void Update()
@@ -42,10 +50,10 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
-        if (Trigger.ReadValue<float>() > 0.1f && GunHeld && !OnCooldown)
+        if (Trigger.ReadValue<float>() > 0.1f && gunHeld && !onCooldown)
         {
             GunShotParticle.Play();
-            GunShotSource.PlayOneShot(GunShotSource.clip);
+            gunShotSource.PlayOneShot(gunShotSource.clip);
             ForceTubeVRInterface.Shoot(gunHaptic);
             RaycastHit hit;
             if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
@@ -53,35 +61,47 @@ public class Gun : MonoBehaviour
                 GameObject SpawnedObject = Instantiate(hitAudioObject);
                 SpawnedObject.transform.parent = null;
                 SpawnedObject.transform.position = hit.point;
-                GunHitSource = SpawnedObject.GetComponent<AudioSource>();
-                GunHitparticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
+                gunHitSource = SpawnedObject.GetComponent<AudioSource>();
+                gunHitparticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
-                    GunHitSource.clip = EnemyHitAudio;
+                    gunHitSource.clip = EnemyHitAudio;
                 }
                 else
                 {
-                    GunHitSource.clip = GunHitAudio;
+                    gunHitSource.clip = GunHitAudio;
                 }
-                GunHitparticle.Play();
-                GunHitSource.PlayOneShot(GunHitSource.clip);
+                gunHitparticle.Play();
+                gunHitSource.PlayOneShot(gunHitSource.clip);
                 StartCoroutine(DeleteSource(SpawnedObject));
             }
-            OnCooldown = true;
+            onCooldown = true;
         }
-        if (Trigger.ReadValue<float>() == 0 && GunHeld)
+        if (Trigger.ReadValue<float>() == 0 && gunHeld)
         {
-            OnCooldown = false;
+            onCooldown = false;
         }
-        Debug.Log(OnCooldown);
+    }
+
+    private void CorrectHoldster()
+    {
+        if(UsedOrigin.gameObject.CompareTag("GorillaPlayer"))
+        {
+            gorillaHoldster.SetActive(true);
+            holdster.SetActive(false);
+        }
+        else
+        {
+            gorillaHoldster.SetActive(false);
+            holdster.SetActive(true);
+        }
     }
 
     public IEnumerator SetCooldown()
     {
         yield return new WaitForSeconds(0.5f);
-        OnCooldown = false;
-
+        onCooldown = false;
     }
 
     public IEnumerator DeleteSource(GameObject gameObject)
@@ -92,11 +112,11 @@ public class Gun : MonoBehaviour
 
     public void OnGrab()
     {
-        GunHeld = true;
+        gunHeld = true;
     }
 
     public void OnRelease()
     {
-        GunHeld = false;
+        gunHeld = false;
     }
 }
