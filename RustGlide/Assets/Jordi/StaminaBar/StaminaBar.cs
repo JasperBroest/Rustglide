@@ -10,6 +10,7 @@ public class StaminaBar : MonoBehaviour
     [SerializeField] private GameObject gunSpawn;
     [SerializeField] private float staminaLossSpeed;
 
+    public bool CanPlayerDie = true;
     public bool IsPlayerDead = false;
     [Range(0, 100)] public float stamina;
 
@@ -36,7 +37,7 @@ public class StaminaBar : MonoBehaviour
 
     private void Update()
     {
-        CheckVelocity();
+        //CheckVelocity();
         CalculateVelocity();
         CheckForDeath();
         staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
