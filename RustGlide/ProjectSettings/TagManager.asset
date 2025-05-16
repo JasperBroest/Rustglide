@@ -9,6 +9,8 @@ TagManager:
   - EndTrigger
   - Gun
   - GorillaPlayer
+  - DashPlayer
+  - RocketPlayer
   layers:
   - Default
   - TransparentFX

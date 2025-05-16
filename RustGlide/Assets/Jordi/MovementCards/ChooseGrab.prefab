@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1161331855644767836}
   - component: {fileID: 5779173422081158138}
   - component: {fileID: 6479856023598882831}
-  - component: {fileID: 1102204033722053586}
   m_Layer: 0
   m_Name: ChooseGrab
   m_TagString: Untagged
@@ -186,7 +185,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1102204033722053586}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GrabChoose, Assembly-CSharp
         m_MethodName: OnGrab
         m_Mode: 1
@@ -272,15 +271,3 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
---- !u!114 &1102204033722053586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323636934294248667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8035e7c5efd49ff4697a3a1c4aaac835, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
