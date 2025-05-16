@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyAttack = GetComponent<EnemyAttack>();
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.Find("Player");
+        player = FindFirstObjectByType<XROrigin>().gameObject;
     }
 
     private void Update()
