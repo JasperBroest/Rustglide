@@ -31,7 +31,7 @@ public class PlayerInputManager : InputSubject
             Debug.Log("true");
 
         }
-        else
+        else if (context.canceled)
         {
             NotifyTriggerRValue(false);
             Debug.Log("true");
@@ -47,7 +47,7 @@ public class PlayerInputManager : InputSubject
         {
             NotifyTriggerLValue(true);
         }
-        else
+        else if (context.canceled)
         {
             NotifyTriggerLValue(false);
         }
