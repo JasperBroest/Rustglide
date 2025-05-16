@@ -22,7 +22,7 @@ public class HudManager : MonoBehaviour
         StartCoroutine(TextStartSequence());
     }
 
-    /*public void StartEndSequence()
+    public void StartEndSequence()
     {
         StartCoroutine(EndSequence());
     }
@@ -30,7 +30,7 @@ public class HudManager : MonoBehaviour
     public void StartDeathSequence()
     {
         StartCoroutine(DeathSequence());
-    }*/
+    }
 
     public IEnumerator TextStartSequence()
     {
@@ -61,7 +61,7 @@ public class HudManager : MonoBehaviour
         TextObject.SetActive(false);
     }
 
-   /* public IEnumerator EndSequence()
+    public IEnumerator EndSequence()
     {
         Text.SetText("GOOD JOB");
         TextObject.SetActive(true);
@@ -128,5 +128,5 @@ public class HudManager : MonoBehaviour
         yield return new WaitForSeconds(WaitBeforeBlink);
         Text.SetText("KEEP MOVING");
 
-    }*/
+    }
 }

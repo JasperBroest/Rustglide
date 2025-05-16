@@ -1,21 +1,22 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class DashToDirection : MonoBehaviour, IGunGetState
+public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 {
+    [Header("dependencys")]
     public GameObject CubeRight;
     public GameObject CubeLeft;
-
     public Rigidbody PlayerRigidbody;
 
-    public InputAction RightTrigger;
-    public InputAction LeftTrigger;
-
+    [Header("Audio")]
     public AudioClip ThrusterSound;
     public AudioSource AudioSource;
 
+    [Header("Booster Settings")]
     public float ThrustPower;
+
+    [Header("Input")]
+    private bool IsRightTriggerPressed;
+    private bool IsLeftTriggerPressed;
 
     private bool HasRightBeenPressed;
     private bool HasLeftBeenPressed;
@@ -25,15 +26,20 @@ public class DashToDirection : MonoBehaviour, IGunGetState
 
     bool nospeed = false;
 
-    void OnEnable()
-    {
-        RightTrigger.Enable();
-        LeftTrigger.Enable();
-    }
+
 
     public void NotifyGrab(bool IsGunGrabbed)
     {
         isGunHeld = IsGunGrabbed;
+    }
+
+    public void RightTrigger(bool RState)
+    {
+        IsRightTriggerPressed = RState;
+    }
+    public void LeftTrigger(bool LState)
+    {
+        IsLeftTriggerPressed = LState;
     }
 
     private void Start()
@@ -44,7 +50,7 @@ public class DashToDirection : MonoBehaviour, IGunGetState
 
     void Update()
     {
-        if (RightTrigger.ReadValue<float>() > 0.1f)
+        if (IsRightTriggerPressed)
         {
             AddForceToCubeRightDirection();
             HasRightBeenPressed = true;
@@ -55,7 +61,7 @@ public class DashToDirection : MonoBehaviour, IGunGetState
             HasRightBeenPressed = false;
         }
 
-        if (LeftTrigger.ReadValue<float>() > 0.1f)
+        if (IsLeftTriggerPressed)
         {
             AddForceToCubeLeftDirection();
             HasLeftBeenPressed = true;
@@ -65,7 +71,7 @@ public class DashToDirection : MonoBehaviour, IGunGetState
             StopNoise();
             HasLeftBeenPressed = false;
         }
-        if (LeftTrigger.WasReleasedThisFrame() && isGrounded)
+        if (!IsLeftTriggerPressed && isGrounded)
         {
             CheckForSlow();
         }
@@ -75,12 +81,12 @@ public class DashToDirection : MonoBehaviour, IGunGetState
     {
         if (!isGunHeld)
         {
-            if(!AudioSource.isPlaying)
-            AudioSource.PlayOneShot(ThrusterSound);
+            if (!AudioSource.isPlaying)
+                AudioSource.PlayOneShot(ThrusterSound);
 
             PlayerRigidbody.AddForce(CubeRight.transform.forward * ThrustPower);
         }
-           
+
     }
     void AddForceToCubeLeftDirection()
     {
@@ -91,7 +97,7 @@ public class DashToDirection : MonoBehaviour, IGunGetState
                 AudioSource.PlayOneShot(ThrusterSound);
             PlayerRigidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
         }
-            
+
     }
 
     void StopNoise()
@@ -122,7 +128,7 @@ public class DashToDirection : MonoBehaviour, IGunGetState
         {
             PlayerRigidbody.AddForce(-PlayerRigidbody.linearVelocity.x, 0, -PlayerRigidbody.linearVelocity.z);
             PlayerRigidbody.linearVelocity = PlayerRigidbody.linearVelocity / 2;
-            
+
         }
     }
 
