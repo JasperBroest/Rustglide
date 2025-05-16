@@ -23,6 +23,7 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyAttack = GetComponent<EnemyAttack>();
         agent = GetComponent<NavMeshAgent>();
+
         player = GameObject.Find("Player");
     }
 

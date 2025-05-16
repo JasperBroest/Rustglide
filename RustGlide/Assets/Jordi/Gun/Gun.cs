@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,8 @@ public class Gun : GunSubject
     [SerializeField] private AudioClip GunHitAudio;
     [SerializeField] private AudioClip EnemyHitAudio;
     [SerializeField] private GameObject hitAudioObject;
+    [SerializeField] private GameObject holdster;
+    [SerializeField] private GameObject gorillaHoldster;
 
     public InputAction Trigger;
     public ProTubeSettings gunHaptic;
@@ -22,11 +25,21 @@ public class Gun : GunSubject
     private ParticleSystem gunHitparticle;
     private ParticleSystem GunShotParticle;
 
+
+
+    private XROrigin UsedOrigin;
+    private bool gunHeld = false;
+
     private bool onCooldown = false;
 
     private void OnEnable()
     {
         Trigger.Enable();
+    }
+
+    private void Awake()
+    {
+        UsedOrigin = FindFirstObjectByType<XROrigin>();
     }
 
     private void Start()
@@ -35,7 +48,11 @@ public class Gun : GunSubject
         gunShotSource = GetComponent<AudioSource>();
         GunShotParticle = GetComponentInChildren<ParticleSystem>();
         gunShotSource.clip = GunShotAudio;
+
         OnRelease();
+
+        CorrectHoldster();
+
     }
 
     private void Update()
@@ -60,7 +77,8 @@ public class Gun : GunSubject
                 gunHitparticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
+                    StateController stateController = hit.collider.GetComponent<StateController>();
+                    stateController.ChangeState(stateController.hurtState);
                     gunHitSource.clip = EnemyHitAudio;
                 }
                 else
@@ -76,6 +94,20 @@ public class Gun : GunSubject
         if (Trigger.ReadValue<float>() == 0 && gunHeld)
         {
             onCooldown = false;
+        }
+    }
+
+    private void CorrectHoldster()
+    {
+        if (UsedOrigin.gameObject.CompareTag("GorillaPlayer"))
+        {
+            gorillaHoldster.SetActive(true);
+            holdster.SetActive(false);
+        }
+        else
+        {
+            gorillaHoldster.SetActive(false);
+            holdster.SetActive(true);
         }
     }
 
