@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputManager : InputSubject
@@ -27,11 +28,16 @@ public class PlayerInputManager : InputSubject
         if (context.performed)
         {
             NotifyTriggerRValue(true);
+            Debug.Log("true");
+
         }
         else
         {
             NotifyTriggerRValue(false);
+            Debug.Log("true");
         }
+
+
 
     }
 
