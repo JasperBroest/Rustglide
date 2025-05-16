@@ -52,7 +52,7 @@ public class EndRoom : MonoBehaviour
     {
         HudManager.StartEndSequence();
         yield return new WaitForSeconds(7f);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
 
