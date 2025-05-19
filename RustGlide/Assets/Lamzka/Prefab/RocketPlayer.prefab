@@ -165,56 +165,6 @@ MonoBehaviour:
   CubeRight: {fileID: 4066720716508487061}
   CubeLeft: {fileID: 4352734467365502584}
   PlayerRigidbody: {fileID: 6085375513918965838}
-  RightTrigger:
-    m_Name: Right Trigger
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: bd7b2431-1872-4719-974e-a57214757146
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: f4fb6d1a-2bbf-445c-914b-a02e1cf775a5
-      m_Path: <XRController>{RightHand}/{TriggerButton}
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Right Trigger
-      m_Flags: 0
-    - m_Name: 
-      m_Id: c66049cf-5df7-40d9-be85-40268f1fa510
-      m_Path: <Keyboard>/quote
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Right Trigger
-      m_Flags: 0
-    m_Flags: 0
-  LeftTrigger:
-    m_Name: Left Trigger
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8dce13df-b35d-463c-b7ad-074edca1ab3e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: e9b0ccfc-ff6d-469d-b977-a024be5afd52
-      m_Path: <XRController>{LeftHand}/{TriggerButton}
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Left Trigger
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 018b4848-8fa0-4489-93f7-ce9c3dba56c9
-      m_Path: <Keyboard>/semicolon
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Left Trigger
-      m_Flags: 0
-    m_Flags: 0
   ThrusterSound: {fileID: 8300000, guid: 42b9de0f4104ee04d99478a3beabdeda, type: 3}
   AudioSource: {fileID: 855036697583928550}
   ThrustPower: 5
