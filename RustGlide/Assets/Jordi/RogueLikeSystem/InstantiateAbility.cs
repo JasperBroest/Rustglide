@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class InstantiateAbility : MonoBehaviour
 {
-    private List<GameObject> SpawnAbility;
+    public List<GameObject> SpawnAbility;
 
     private void Update()
     {
         if(GetComponentInParent<RogueLikeManager>().ChosenUpgradesFilled)
         {
-            SpawnAbility = GetComponentInParent<RogueLikeManager>().ChosenUpgrades;
             SpawnAbilities();
             GetComponentInParent<RogueLikeManager>().ChosenUpgradesFilled = false;
         }
@@ -22,8 +21,7 @@ public class InstantiateAbility : MonoBehaviour
         for(int i = 0; i < SpawnAbility.Count; i++)
         {
             GameObject ability = Instantiate(SpawnAbility[i], this.transform.GetChild(i));
-            ability.transform.localPosition = Vector3.zero;
-            ability.transform.localPosition += new Vector3(0, 1.5f, -1.5f);
+            ability.transform.localPosition = new Vector3(0, 1.5f, -1.5f);
         }
     }
 }

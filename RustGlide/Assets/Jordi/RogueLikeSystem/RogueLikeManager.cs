@@ -6,7 +6,6 @@ using System.Linq;
 public class RogueLikeManager : MonoBehaviour
 {
     public List<AllUpgrades> Upgrades;
-    public List<GameObject> ChosenUpgrades;
     [HideInInspector] public List<GameObject> localUpgrades;
     [HideInInspector] public List<int> localDropChance;
     [HideInInspector] public bool ChosenUpgradesFilled;
@@ -60,7 +59,7 @@ public class RogueLikeManager : MonoBehaviour
             }
             if(droppingItem != null)
             {
-                ChosenUpgrades.Add(droppingItem);
+                GetComponentInChildren<InstantiateAbility>().SpawnAbility.Add(droppingItem);
             }
         }
         ChosenUpgradesFilled = true;
