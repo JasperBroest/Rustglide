@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Gun : GunSubject
+public class Gun : GunSubject, IPlayerInput
 {
     public bool gunHeld = false;
 
@@ -25,16 +25,27 @@ public class Gun : GunSubject
     private ParticleSystem GunShotParticle;
     private bool onCooldown = false;
 
+    private bool TriggerPressed;
+
     private void OnEnable()
     {
         Trigger.Enable();
     }
 
+    public void RightTrigger(bool RState)
+    {
+        TriggerPressed = RState;
+    }
+
+    public void LeftTrigger(bool LState)
+    {
+
+    }
 
 
     private void Start()
     {
-
+        GetInput();
         gunShotSource = GetComponent<AudioSource>();
         GunShotParticle = GetComponentInChildren<ParticleSystem>();
         gunShotSource.clip = GunShotAudio;
@@ -47,7 +58,7 @@ public class Gun : GunSubject
 
     private void Shoot()
     {
-        if (Trigger.ReadValue<float>() > 0.1f && gunHeld && !onCooldown)
+        if (TriggerPressed && gunHeld && !onCooldown)
         {
             GunShotParticle.Play();
             gunShotSource.PlayOneShot(gunShotSource.clip);
@@ -84,6 +95,7 @@ public class Gun : GunSubject
 
 
 
+
     public IEnumerator SetCooldown()
     {
         yield return new WaitForSeconds(0.5f);
@@ -108,5 +120,14 @@ public class Gun : GunSubject
         gunHeld = false;
         GetComponent<Rigidbody>().isKinematic = true;
         NotifyIsGrabbed(gunHeld);
+    }
+
+    private void GetInput()
+    {
+        GameObject CurrentInput;
+
+        CurrentInput = GameObject.FindWithTag("PlayerInput");
+        CurrentInput.GetComponent<InputSubject>().AddObserver(this);
+
     }
 }

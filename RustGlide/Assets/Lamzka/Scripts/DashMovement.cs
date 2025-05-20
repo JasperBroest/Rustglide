@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
+public class DashMovement : MonoBehaviour, IPlayerInput
 {
     [Header("dependencys")]
     public GameObject CubeRight;
@@ -46,7 +46,7 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     private void Start()
     {
         AudioSource.clip = ThrusterSound;
-        GetGun();
+        /*  GetGun();*/
         GetInput();
     }
 
@@ -131,10 +131,10 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
         }
     }
 
-    private void GetGun()
+    /*private void GetGun()
     {
         GameObject.FindWithTag("Gun").GetComponent<GunSubject>().AddObserver(this);
-    }
+    }*/
 
     private void GetInput()
     {

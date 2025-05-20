@@ -11,6 +11,8 @@ TagManager:
   - GorillaPlayer
   - DashPlayer
   - RocketPlayer
+  - Stamina
+  - PlayerInput
   layers:
   - Default
   - TransparentFX
