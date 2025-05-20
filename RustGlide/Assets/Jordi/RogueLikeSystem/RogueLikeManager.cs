@@ -8,6 +8,7 @@ public class RogueLikeManager : MonoBehaviour
     public List<AllUpgrades> Upgrades;
     public List<GameObject> ChosenUpgrades;
     public List<GameObject> localUpgrades;
+    public List<int> localDropChance;
 
     private int RandValue;
 
@@ -31,6 +32,7 @@ public class RogueLikeManager : MonoBehaviour
         foreach(var upgrade in Upgrades)
         {
             localUpgrades.Add(upgrade.Upgrade);
+            localDropChance.Add(upgrade.DropChance);
         }
     }
 
@@ -40,7 +42,7 @@ public class RogueLikeManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             GameObject droppingItem = null;
-            int totalWeight = Upgrades.Sum(item => item.DropChance);
+            int totalWeight = localDropChance.Sum(item => item);
             RandValue = UnityEngine.Random.Range(1, totalWeight + 1);
             Debug.Log(RandValue);
             int cumulative = 0;
@@ -51,6 +53,7 @@ public class RogueLikeManager : MonoBehaviour
                 {
                     droppingItem = localUpgrades[j];
                     localUpgrades.RemoveAt(j);
+                    localDropChance.RemoveAt(j);
                     break;
                 }
             }
