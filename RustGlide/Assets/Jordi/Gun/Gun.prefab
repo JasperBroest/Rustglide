@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7392406315276631466}
   m_Layer: 0
   m_Name: Holdster
-  m_TagString: Gun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 5531154031189056711}
   m_Layer: 0
   m_Name: Line
-  m_TagString: Gun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 8964085283920671173}
   m_Layer: 0
   m_Name: GorillaHoldster
-  m_TagString: Gun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 7197433397465661633}
   m_Layer: 0
   m_Name: BulletHole
-  m_TagString: Gun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068dc7eb2e2d1ca4fb72a67aa4d3a74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunHeld: 0
   Bullethole: {fileID: 5362729649084130404}
   GunShotAudio: {fileID: 8300000, guid: 539b7e25bad50454dac2a0add805450f, type: 3}
   GunHitAudio: {fileID: 8300000, guid: 8a6b7ec067979e7499d63d3ebea6400a, type: 3}
@@ -591,8 +592,8 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AttachTransform: {fileID: 3347698676974299804}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
-  m_MatchAttachPosition: 1
+  m_UseDynamicAttach: 1
+  m_MatchAttachPosition: 0
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
@@ -770,7 +771,7 @@ GameObject:
   - component: {fileID: 7906686362968868256}
   m_Layer: 0
   m_Name: Reticle
-  m_TagString: Gun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -857,7 +858,7 @@ GameObject:
   - component: {fileID: 3460027923424193006}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: Gun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1029,7 +1030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3515071930650600478, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_TagString
-      value: Gun
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6725371519831039651, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: playOnAwake
@@ -1045,7 +1046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6980259576133684760, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_TagString
-      value: Gun
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7222628775867560472, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_Layer
@@ -1053,7 +1054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7222628775867560472, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_TagString
-      value: Gun
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7520814639884122992, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: playOnAwake
@@ -1085,7 +1086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8678474555929038593, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_TagString
-      value: Gun
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8739346576828255726, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_Layer
@@ -1093,7 +1094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8739346576828255726, guid: 5ab0870ec9bacd04097c39665837731b, type: 3}
       propertyPath: m_TagString
-      value: Gun
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
