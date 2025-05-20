@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b965f908b8a3db4f9b88ce33934cd9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasChosen: 0
 --- !u!114 &4441987844829460608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,9 +112,45 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3339170782044629363, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339170782044629363, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339170782044629363, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4441987844829460608}
+    - target: {fileID: 3339170782044629363, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7571912866070574383}
+    - target: {fileID: 3339170782044629363, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339170782044629363, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: GetChosenCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339170782044629363, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Chosen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339170782044629363, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5127681440606910379, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b1347f2c3cd4bd458c7540c86b7d1e7, type: 2}
+    - target: {fileID: 8520387763168724038, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b1347f2c3cd4bd458c7540c86b7d1e7, type: 2}
     - target: {fileID: 8621448293085065478, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
       propertyPath: m_Name
       value: DashCard
@@ -181,9 +216,45 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 629006275514749748, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006275514749748, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006275514749748, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4441987844829460608}
+    - target: {fileID: 629006275514749748, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7571912866070574383}
+    - target: {fileID: 629006275514749748, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006275514749748, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: GetChosenCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006275514749748, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Chosen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 629006275514749748, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 737960389839027167, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b1347f2c3cd4bd458c7540c86b7d1e7, type: 2}
+    - target: {fileID: 5824223570127994369, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b1347f2c3cd4bd458c7540c86b7d1e7, type: 2}
     - target: {fileID: 8724474780434943863, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
       propertyPath: m_Name
       value: RocketBoostersCard
@@ -248,14 +319,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2614845682021860976, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b1347f2c3cd4bd458c7540c86b7d1e7, type: 2}
     - target: {fileID: 3865540174476128927, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
       propertyPath: m_Name
       value: GorillaMovementCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841537740642927237, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b1347f2c3cd4bd458c7540c86b7d1e7, type: 2}
+    - target: {fileID: 8944340099064359749, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944340099064359749, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8944340099064359749, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4441987844829460608}
+    - target: {fileID: 8944340099064359749, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7571912866070574383}
+    - target: {fileID: 8944340099064359749, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944340099064359749, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: GetChosenCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944340099064359749, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Chosen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944340099064359749, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2323162361147806558, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
     m_RemovedGameObjects:

@@ -20,7 +20,6 @@ public class ChooseMovement : MonoBehaviour
         gorilla.SetActive(true);
         dash.SetActive(false);
         rockets.SetActive(false);
-        FindFirstObjectByType<Chosen>().HasChosen = true;
         this.gameObject.SetActive(false);
     }
 
@@ -29,7 +28,6 @@ public class ChooseMovement : MonoBehaviour
         gorilla.SetActive(false);
         dash.SetActive(true);
         rockets.SetActive(false);
-        FindFirstObjectByType<Chosen>().HasChosen = true;
         this.gameObject.SetActive(false);
     }
 
@@ -38,7 +36,6 @@ public class ChooseMovement : MonoBehaviour
         gorilla.SetActive(false);
         dash.SetActive(false);
         rockets.SetActive(true);
-        FindFirstObjectByType<Chosen>().HasChosen = true;
         this.gameObject.SetActive(false);
     }
 }
