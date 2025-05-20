@@ -7,7 +7,7 @@ public class RogueLikeManager : MonoBehaviour
 {
     public List<AllUpgrades> Upgrades;
     [HideInInspector] public List<GameObject> localUpgrades;
-    [HideInInspector] public List<int> localDropChance;
+     public List<int> localDropChance;
     [HideInInspector] public bool ChosenUpgradesFilled;
 
     private int RandValue;
@@ -48,7 +48,7 @@ public class RogueLikeManager : MonoBehaviour
             int cumulative = 0;
             for(int j = 0; j < localUpgrades.Count; j++)
             {
-                cumulative += Upgrades[j].DropChance;
+                cumulative += localDropChance[j];
                 if (RandValue <= cumulative)
                 {
                     droppingItem = localUpgrades[j];
