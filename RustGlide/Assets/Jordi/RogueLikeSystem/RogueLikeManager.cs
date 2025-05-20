@@ -7,7 +7,7 @@ public class RogueLikeManager : MonoBehaviour
 {
     public List<AllUpgrades> Upgrades;
     [HideInInspector] public List<GameObject> localUpgrades;
-     public List<int> localDropChance;
+    [HideInInspector] public List<int> localDropChance;
     [HideInInspector] public bool ChosenUpgradesFilled;
 
     private int RandValue;
