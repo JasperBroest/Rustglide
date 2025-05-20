@@ -9,7 +9,7 @@ public class StateController : MonoBehaviour
     public IdleState idleState = new IdleState();
     public PatrolState patrolState = new PatrolState();
     public ChaseState chaseState = new ChaseState();
-    public HurtState HurtState = new HurtState();
+    public HurtState hurtState = new HurtState();
     public AttackState attackState = new AttackState();
 
     // Other variables
@@ -20,13 +20,18 @@ public class StateController : MonoBehaviour
     public int AttackDamage;
     public GameObject Target;
     public NavMeshAgent agent;
-
+    public int CurrentHealth;
+    public int MaxHealth;
+    public int DamageTaken;
+    
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
 
         ChangeState(idleState);
+
+        CurrentHealth = MaxHealth;
     }
 
     void Update()
