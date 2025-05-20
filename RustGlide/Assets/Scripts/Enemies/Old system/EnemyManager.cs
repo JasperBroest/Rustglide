@@ -53,6 +53,7 @@ public class EnemyManager : MonoBehaviour
         else
         {
             gameDone = true;
+            GameObject.FindGameObjectWithTag("EndTrigger").GetComponent<BoxCollider>().enabled = true;
             GameObject.FindGameObjectWithTag("EndTrigger").GetComponent<EndRoom>().enabled = true;
         }
     }

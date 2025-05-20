@@ -6,9 +6,13 @@ public class HudManager : MonoBehaviour
 {
 
     public GameObject TextObject;
+
+
     public TextMeshPro Text;
 
     public float WaitBeforeBlink = 0.5f;
+
+    [SerializeField] private SOHudText[] hudText;
 
 
 

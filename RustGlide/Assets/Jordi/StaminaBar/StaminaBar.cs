@@ -10,12 +10,13 @@ public class StaminaBar : MonoBehaviour
     [SerializeField] private GameObject gunSpawn;
     [SerializeField] private float staminaLossSpeed;
 
+    public bool CanPlayerDie = true;
     public bool IsPlayerDead = false;
     [Range(0, 100)] public float stamina;
 
     private int staminaLoss;
     private Vector3 vectorVelocity;
-    private float velocity;
+    [SerializeField] private float velocity;
     private XROrigin XrOrigin;
     private Vector3 previousPosition;
     private AudioSource audioSource;
@@ -36,7 +37,7 @@ public class StaminaBar : MonoBehaviour
 
     private void Update()
     {
-        CheckVelocity();
+        //CheckVelocity();
         CalculateVelocity();
         CheckForDeath();
         staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
@@ -63,7 +64,15 @@ public class StaminaBar : MonoBehaviour
 
     private void CalculateVelocity()
     {
-        Vector3 currentPosition = XrOrigin.transform.position;
+        Vector3 currentPosition;
+        if (XrOrigin.name == "Gorilla Rig")
+        {
+            currentPosition = XrOrigin.transform.GetChild(2).position;
+        }
+        else
+        {
+            currentPosition = XrOrigin.transform.position;
+        }
         vectorVelocity = (currentPosition - previousPosition) / Time.deltaTime;
         previousPosition = currentPosition;
 
@@ -83,11 +92,11 @@ public class StaminaBar : MonoBehaviour
         gun.transform.position = gunSpawn.transform.position;
         if (!IsPlayerDead)
         {
-            GameObject.Find("Player").transform.position = GameObject.Find("EndSpawnPos").transform.position;
+            FindFirstObjectByType<XROrigin>().gameObject.transform.position = GameObject.Find("EndSpawnPos").transform.position;
             GameObject.Find("HUD manager").GetComponent<HudManager>().StartDeathSequence();
             StartCoroutine(finished());
 
-            audioSource.Play();
+            //audioSource.Play();
             stamina = 100;
             IsPlayerDead = true;
         }

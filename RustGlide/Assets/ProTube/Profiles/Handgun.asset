@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Handgun
   m_EditorClassIdentifier: 
   name: Handgun
-  kickPower: 59
+  kickPower: 138
   rumblePower: 156
   rumbleDuration: 0.202
   tempo: 0.5
