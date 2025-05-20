@@ -5,8 +5,9 @@ using System.Linq;
 
 public class RogueLikeManager : MonoBehaviour
 {
-    public AllUpgrades[] Upgrades;
+    public List<AllUpgrades> Upgrades;
     public List<GameObject> ChosenUpgrades;
+    public List<GameObject> localUpgrades;
 
     private int RandValue;
 
@@ -19,27 +20,37 @@ public class RogueLikeManager : MonoBehaviour
 
     private void Start()
     {
-        if(Upgrades.Length > 3)
+        if(Upgrades.Count > 3)
         {
             GenerateThree();
         }
     }
 
+    private void SetList()
+    {
+        foreach(var upgrade in Upgrades)
+        {
+            localUpgrades.Add(upgrade.Upgrade);
+        }
+    }
+
     private void GenerateThree()
     {
-        for(int i = 0; i < 3; i++)
+        SetList();
+        for (int i = 0; i < 3; i++)
         {
             GameObject droppingItem = null;
             int totalWeight = Upgrades.Sum(item => item.DropChance);
             RandValue = UnityEngine.Random.Range(1, totalWeight + 1);
             Debug.Log(RandValue);
             int cumulative = 0;
-            foreach (var item in Upgrades)
+            for(int j = 0; j < localUpgrades.Count; j++)
             {
-                cumulative += item.DropChance;
+                cumulative += Upgrades[j].DropChance;
                 if (RandValue <= cumulative)
                 {
-                    droppingItem = item.Upgrade;
+                    droppingItem = localUpgrades[j];
+                    localUpgrades.RemoveAt(j);
                     break;
                 }
             }

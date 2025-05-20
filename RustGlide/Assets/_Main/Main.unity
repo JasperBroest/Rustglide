@@ -1425,52 +1425,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2212009239438826721, guid: bbf79fa7522f0cc49a0407aad233e718, type: 3}
---- !u!1 &366214466
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 366214468}
-  - component: {fileID: 366214467}
-  m_Layer: 0
-  m_Name: RogueLikeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &366214467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366214466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab623d92c40385745954913cd73a5a9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Upgrades: []
-  ChosenUpgrades: []
---- !u!4 &366214468
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366214466}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.51, y: 0, z: -0.94059}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &376881129 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7515429101286732190, guid: bbf79fa7522f0cc49a0407aad233e718, type: 3}
@@ -9034,13 +8988,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Upgrades:
   - Upgrade: {fileID: 1663889904}
-    DropChance: 35
+    DropChance: 40
   - Upgrade: {fileID: 1998392099}
     DropChance: 25
   - Upgrade: {fileID: 137927913}
     DropChance: 20
   - Upgrade: {fileID: 463107029}
-    DropChance: 15
+    DropChance: 10
   - Upgrade: {fileID: 1424554628}
     DropChance: 5
   ChosenUpgrades: []
@@ -9053,7 +9007,7 @@ Transform:
   m_GameObject: {fileID: 2027717383}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.91681, y: 0, z: 3.59394}
+  m_LocalPosition: {x: -11.786, y: 0, z: 1.844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9599,6 +9553,5 @@ SceneRoots:
   - {fileID: 519416099}
   - {fileID: 1424554630}
   - {fileID: 4498201059868613568}
-  - {fileID: 366214468}
   - {fileID: 1805487914}
   - {fileID: 2027717385}

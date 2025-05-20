@@ -36,7 +36,7 @@ public class StateController : MonoBehaviour
             currentState.UpdateState(this);
         }
 
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
 
         if (Vector3.Distance(transform.position, Target.transform.position) <= 1.4f)
         {
