@@ -415,12 +415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a81da9245ec14947a301873f55ebdc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectDuration: 30
-  SetSpeed: 0
-  SetDamage: 0
-  SetSlowSpeed: 0
-  SetSlowDamage: 0
   yes: 0
+  SO: {fileID: 11400000, guid: f7eedf3c7196daa44b68e3d59774ccd4, type: 2}
 --- !u!1 &1507454826
 GameObject:
   m_ObjectHideFlags: 0

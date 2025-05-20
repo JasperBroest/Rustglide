@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class AbilityObject : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[CreateAssetMenu]
+public class AbilityObject : ScriptableObject
+{
+    [Header("Item Settings")]
+    public float EffectDuration;
+
+    public float SetSpeed;
+    public float SetDamage;
+
+    public float SetSlowSpeed;
+    public float SetSlowDamage;
+
+    [Header("Does Object Have a Duration")]
+    public bool DoesItemHaveDuration;
 }
