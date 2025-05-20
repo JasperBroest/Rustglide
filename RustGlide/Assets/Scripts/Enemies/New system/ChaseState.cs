@@ -11,6 +11,7 @@ public class ChaseState : IState
     {
         controller.agent.SetDestination(controller.Target.transform.position);
 
+        // If in attackrange -> attack
         if (Vector3.Distance(controller.transform.position, controller.Target.transform.position) <= 1.4f)
         {
             controller.ChangeState(controller.attackState);

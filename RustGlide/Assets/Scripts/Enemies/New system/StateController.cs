@@ -1,3 +1,4 @@
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,11 +24,15 @@ public class StateController : MonoBehaviour
     public int CurrentHealth;
     public int MaxHealth;
     public int DamageTaken;
+    public IState PreviousState;
+    public MeshRenderer meshRenderer;
+    public Color oldColor;
     
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
 
         ChangeState(idleState);
 
@@ -43,11 +48,11 @@ public class StateController : MonoBehaviour
 
         Debug.Log(currentState);
 
+        // If in attackrange stop moving
         if (Vector3.Distance(transform.position, Target.transform.position) <= 1.4f)
         {
             agent.ResetPath();
         }
-
     }
 
     public void ChangeState(IState newState)
@@ -56,6 +61,8 @@ public class StateController : MonoBehaviour
         {
             currentState.OnExit(this);
         }
+
+        PreviousState = currentState;
         currentState = newState;
         currentState.OnEnter(this);
     }

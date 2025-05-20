@@ -17,15 +17,12 @@ public class AttackState : IState
         RaycastHit hit;
         if (Physics.BoxCast(boxCenter, halfExtents, controller.transform.forward, out hit, controller.transform.rotation, controller.AttackRange))
         {
-            Debug.Log(hit.collider.name);
             if (hit.collider.CompareTag("Player"))
             {
-                Debug.Log("Hit player");
                 if (canAttack)
                 {
                     canAttack = false;
                     controller.StartCoroutine(AttackCooldown());
-
 
                     // Damage target
                     hit.collider.GetComponentInChildren<StaminaBar>().TakeDamage(controller.AttackDamage);

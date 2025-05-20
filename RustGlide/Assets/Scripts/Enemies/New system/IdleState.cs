@@ -18,10 +18,10 @@ public class IdleState : IState
         {
             GameObject potentialTarget = sphere[0].gameObject;
 
-            // Calculate the direction vector correctly
+            // Calculate the direction vector
             Vector3 direction = (potentialTarget.transform.position - controller.transform.position).normalized;
 
-            // Perform the raycast
+            // Perform raycast
             RaycastHit hit;
             if (Physics.Raycast(controller.transform.position, direction, out hit, controller.VisionRadius))
             {
@@ -32,7 +32,7 @@ public class IdleState : IState
                 }               
             }
 
-            // Visualize the raycast
+            // Visualize raycast
             Debug.DrawLine(controller.transform.position, controller.transform.position + direction * 10f, Color.red);
         }
         #endregion
