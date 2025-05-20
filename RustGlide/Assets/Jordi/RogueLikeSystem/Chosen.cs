@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class Chosen : MonoBehaviour
 {
-    public bool HasChosen;
-
-    private void Update()
-    {
-        if(HasChosen)
-        {
-            GetChosenCard();
-        }
-    }
-
-    private void GetChosenCard()
+    public void DeactivateCard()
     {
         StartCoroutine(Deactivate());
     }
