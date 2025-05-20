@@ -10,6 +10,10 @@ public class PlayerInputManager : InputSubject
         controls = new XRPlayerInputActions();
 
         controls.Player.TriggerR.performed += OnTriggerR;
+        controls.Player.TriggerR.canceled += OnTriggerR;
+
+        controls.Player.TriggerL.performed += OnTriggerL;
+        controls.Player.TriggerL.canceled += OnTriggerL;
     }
 
     private void OnEnable()
@@ -34,11 +38,8 @@ public class PlayerInputManager : InputSubject
         else if (context.canceled)
         {
             NotifyTriggerRValue(false);
-            Debug.Log("true");
+            Debug.Log("false");
         }
-
-
-
     }
 
     public void OnTriggerL(InputAction.CallbackContext context)

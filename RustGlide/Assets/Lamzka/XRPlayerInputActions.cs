@@ -97,7 +97,7 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""40983dce-cc1a-4e63-a019-c1d22fdf9589"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": true
                 },
                 {
@@ -106,7 +106,7 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""4670afcd-f8f3-4e10-9180-0d0667f9e43b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": true
                 }
             ],
@@ -114,7 +114,7 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""be4b917f-e98c-474f-a1eb-b8996ff8888b"",
-                    ""path"": ""<XRController>{RightHand}/{TriggerButton}"",
+                    ""path"": ""<XRInputV1::Oculus::MetaQuestTouchPlusControllerOpenXR>{RightHand}/triggerpressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -136,7 +136,7 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""97abf533-645a-40a9-b809-67faeed9c665"",
-                    ""path"": ""<XRController>{LeftHand}/{Trigger}"",
+                    ""path"": ""<XRInputV1::Oculus::MetaQuestTouchPlusControllerOpenXR>{LeftHand}/triggerpressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
