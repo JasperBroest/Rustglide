@@ -1,0 +1,65 @@
+{
+    "name": "XRPlayerInputActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "8cd7152a-f244-4e8d-a4e2-ca18e062547a",
+            "actions": [
+                {
+                    "name": "TriggerR",
+                    "type": "Button",
+                    "id": "40983dce-cc1a-4e63-a019-c1d22fdf9589",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TriggerL",
+                    "type": "Button",
+                    "id": "4670afcd-f8f3-4e10-9180-0d0667f9e43b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "be4b917f-e98c-474f-a1eb-b8996ff8888b",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d7d681fc-3c32-4c68-ba99-2002df257fef",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97abf533-645a-40a9-b809-67faeed9c665",
+                    "path": "<XRController>{LeftHand}/{Trigger}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerL",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

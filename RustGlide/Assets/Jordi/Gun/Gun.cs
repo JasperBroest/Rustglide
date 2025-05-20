@@ -1,10 +1,12 @@
 using System.Collections;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Gun : MonoBehaviour
+public class Gun : GunSubject
 {
+    public bool gunHeld = false;
+
+
     [SerializeField] private GameObject Bullethole;
     [SerializeField] private AudioClip GunShotAudio;
     [SerializeField] private AudioClip GunHitAudio;
@@ -21,8 +23,6 @@ public class Gun : MonoBehaviour
     private AudioSource gunHitSource;
     private ParticleSystem gunHitparticle;
     private ParticleSystem GunShotParticle;
-    private XROrigin UsedOrigin;
-    private bool gunHeld = false;
     private bool onCooldown = false;
 
     private void OnEnable()
@@ -30,17 +30,14 @@ public class Gun : MonoBehaviour
         Trigger.Enable();
     }
 
-    private void Awake()
-    {
-        UsedOrigin = FindFirstObjectByType<XROrigin>();
-    }
+
 
     private void Start()
     {
+
         gunShotSource = GetComponent<AudioSource>();
         GunShotParticle = GetComponentInChildren<ParticleSystem>();
         gunShotSource.clip = GunShotAudio;
-        CorrectHoldster();
     }
 
     private void Update()
@@ -65,7 +62,8 @@ public class Gun : MonoBehaviour
                 gunHitparticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
+                    StateController stateController = hit.collider.GetComponent<StateController>();
+                    stateController.ChangeState(stateController.HurtState);
                     gunHitSource.clip = EnemyHitAudio;
                 }
                 else
@@ -84,19 +82,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private void CorrectHoldster()
-    {
-        if(UsedOrigin.gameObject.CompareTag("GorillaPlayer"))
-        {
-            gorillaHoldster.SetActive(true);
-            holdster.SetActive(false);
-        }
-        else
-        {
-            gorillaHoldster.SetActive(false);
-            holdster.SetActive(true);
-        }
-    }
+
 
     public IEnumerator SetCooldown()
     {
@@ -113,10 +99,14 @@ public class Gun : MonoBehaviour
     public void OnGrab()
     {
         gunHeld = true;
+        GetComponent<Rigidbody>().isKinematic = false;
+        NotifyIsGrabbed(gunHeld);
     }
 
     public void OnRelease()
     {
         gunHeld = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        NotifyIsGrabbed(gunHeld);
     }
 }
