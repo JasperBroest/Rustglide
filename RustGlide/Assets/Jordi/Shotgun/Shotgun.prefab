@@ -24835,8 +24835,7 @@ MonoBehaviour:
   GunHitAudio: {fileID: 8300000, guid: 8a6b7ec067979e7499d63d3ebea6400a, type: 3}
   EnemyHitAudio: {fileID: 8300000, guid: 38296cd18abdcdb4da1b9feb340e3753, type: 3}
   hitAudioObject: {fileID: 2070650280826579499, guid: 80c92821996037e45bd2cace20ae55b7, type: 3}
-  spreadFactor: 0.05
-  numberOfProjectiles: 10
+  FireRate: 2
   Range: 1000
   Trigger:
     m_Name: Trigger
@@ -24856,6 +24855,8 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   gunHaptic: {fileID: 11400000, guid: abb9c96e0f7239b45a7e397569b6fe71, type: 2}
+  spreadFactor: 0.05
+  numberOfProjectiles: 10
 --- !u!54 &2684751193695958949
 Rigidbody:
   m_ObjectHideFlags: 0

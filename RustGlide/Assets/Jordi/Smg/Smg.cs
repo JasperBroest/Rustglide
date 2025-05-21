@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Smg : Weapon
 {
+    [SerializeField] private int FireRate;
+
     private void OnEnable()
     {
         Trigger.Enable();
@@ -11,7 +13,7 @@ public class Smg : Weapon
     {
         gunShotSource = GetComponent<AudioSource>();
         GunShotParticle = GetComponentInChildren<ParticleSystem>();
-        cooldown = 0.1f;
+        cooldown = 1f / FireRate;
     }
 
     private void Update()
