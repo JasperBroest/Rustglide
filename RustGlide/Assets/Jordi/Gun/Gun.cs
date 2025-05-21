@@ -33,20 +33,10 @@ public class Gun : Weapon, IPlayerInput
     private void Update()
     {
         Shoot();
-    }
-
-    public void OnGrab()
-    {
-        gunHeld = true;
-        GetComponent<Rigidbody>().isKinematic = false;
-        NotifyIsGrabbed(gunHeld);
-    }
-
-    public void OnRelease()
-    {
-        gunHeld = false;
-        GetComponent<Rigidbody>().isKinematic = true;
-        NotifyIsGrabbed(gunHeld);
+        if (Trigger.ReadValue<float>() == 0 && gunHeld)
+        {
+            onCooldown = false;
+        }
     }
 
     private void GetInput()

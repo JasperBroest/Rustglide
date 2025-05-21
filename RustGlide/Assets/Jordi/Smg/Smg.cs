@@ -11,25 +11,18 @@ public class Smg : Weapon
     {
         gunShotSource = GetComponent<AudioSource>();
         GunShotParticle = GetComponentInChildren<ParticleSystem>();
-        gunShotSource.clip = GunShotAudio;
+        cooldown = 0.1f;
     }
 
     private void Update()
     {
-        Shoot();
-    }
-
-    public void OnGrab()
-    {
-        gunHeld = true;
-        GetComponent<Rigidbody>().isKinematic = false;
-        NotifyIsGrabbed(gunHeld);
-    }
-
-    public void OnRelease()
-    {
-        gunHeld = false;
-        GetComponent<Rigidbody>().isKinematic = true;
-        NotifyIsGrabbed(gunHeld);
+        if (!onCooldown)
+        {
+            Shoot();
+        }
+        else if (!cooldownCoroutineRunning)
+        {
+            StartCoroutine(SetCooldown());
+        }
     }
 }

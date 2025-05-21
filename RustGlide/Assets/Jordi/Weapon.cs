@@ -11,24 +11,27 @@ public class Weapon : GunSubject
     [SerializeField] protected AudioClip GunHitAudio;
     [SerializeField] protected AudioClip EnemyHitAudio;
     [SerializeField] protected GameObject hitAudioObject;
-    [SerializeField] protected GameObject holdster;
 
     public InputAction Trigger;
     public ProTubeSettings gunHaptic;
 
+    protected bool cooldownCoroutineRunning = false;
+    protected int HandsHeld = 0;
     protected int dmg = 10;
     protected AudioSource gunShotSource;
     protected AudioSource gunHitSource;
     protected ParticleSystem gunHitparticle;
     protected ParticleSystem GunShotParticle;
+    protected float cooldown = 0f;
     protected bool onCooldown = false;
 
     protected void Shoot()
     {
         if (Trigger.ReadValue<float>() > 0.1f && gunHeld && !onCooldown)
         {
+            onCooldown = true;
             GunShotParticle.Play();
-            gunShotSource.PlayOneShot(gunShotSource.clip);
+            gunShotSource.PlayOneShot(GunShotAudio);
             ForceTubeVRInterface.Shoot(gunHaptic);
             RaycastHit hit;
             if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
@@ -52,23 +55,42 @@ public class Weapon : GunSubject
                 gunHitSource.PlayOneShot(gunHitSource.clip);
                 StartCoroutine(DeleteSource(SpawnedObject));
             }
-            onCooldown = true;
-        }
-        if (Trigger.ReadValue<float>() == 0 && gunHeld)
-        {
-            onCooldown = false;
         }
     }
 
     public IEnumerator SetCooldown()
     {
-        yield return new WaitForSeconds(0.5f);
+        cooldownCoroutineRunning = true;
+        yield return new WaitForSeconds(cooldown);
         onCooldown = false;
+        cooldownCoroutineRunning = false;
     }
 
     public IEnumerator DeleteSource(GameObject gameObject)
     {
         yield return new WaitForSeconds(3f);
         Destroy(gameObject.gameObject);
+    }
+
+    public void OnGrab()
+    {
+        HandsHeld++;
+        if(HandsHeld > 0)
+        {
+            gunHeld = true;
+            GetComponent<Rigidbody>().isKinematic = false;
+            NotifyIsGrabbed(gunHeld);
+        }
+    }
+
+    public void OnRelease()
+    {
+        HandsHeld--;
+        if (HandsHeld == 0)
+        {
+            gunHeld = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+            NotifyIsGrabbed(gunHeld);
+        }
     }
 }
