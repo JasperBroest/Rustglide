@@ -17,7 +17,6 @@ public class StaminaBar : MonoBehaviour
     [SerializeField] private float velocity;
     private XROrigin XrOrigin;
     private Vector3 previousPosition;
-    private AudioSource audioSource;
     private Volume volume;
 
     public void TakeDamage(int damage)
@@ -31,7 +30,6 @@ public class StaminaBar : MonoBehaviour
         stamina = 100;
         staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
         XrOrigin = FindFirstObjectByType<XROrigin>();
-        audioSource = GetComponent<AudioSource>();
         volume = FindFirstObjectByType<Volume>();
     }
 
@@ -57,9 +55,6 @@ public class StaminaBar : MonoBehaviour
             else if (velocity > 4.5)
             {
                 stamina += staminaLoss / 20f;
-                //{
-                //    stamina = 100f;
-                //}
             }
         }
     }
@@ -96,7 +91,6 @@ public class StaminaBar : MonoBehaviour
             GameObject.Find("HUD manager").GetComponent<HudManager>().StartDeathSequence();
             StartCoroutine(finished());
 
-            //audioSource.Play();
             stamina = 100;
             IsPlayerDead = true;
         }
