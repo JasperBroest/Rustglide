@@ -1,13 +1,11 @@
 using System.Collections;
 using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class StaminaBar : MonoBehaviour
 {
-    [SerializeField] private GameObject playerSpawn;
-    [SerializeField] private GameObject gun;
-    [SerializeField] private GameObject gunSpawn;
     [SerializeField] private float staminaLossSpeed;
 
     public bool CanPlayerDie = true;
@@ -20,6 +18,7 @@ public class StaminaBar : MonoBehaviour
     private XROrigin XrOrigin;
     private Vector3 previousPosition;
     private AudioSource audioSource;
+    private Volume volume;
 
     public void TakeDamage(int damage)
     {
@@ -33,14 +32,17 @@ public class StaminaBar : MonoBehaviour
         staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
         XrOrigin = FindFirstObjectByType<XROrigin>();
         audioSource = GetComponent<AudioSource>();
+        volume = FindFirstObjectByType<Volume>();
     }
 
     private void Update()
     {
-        //CheckVelocity();
+        staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
+        float normalizedStamina = Mathf.InverseLerp(0, 100, stamina);
+        volume.weight = 1f - normalizedStamina;
+        CheckVelocity();
         CalculateVelocity();
         CheckForDeath();
-        staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
     }
 
     private void CheckVelocity()
@@ -88,8 +90,6 @@ public class StaminaBar : MonoBehaviour
     }
     private void Die()
     {
-        XrOrigin.transform.position = playerSpawn.transform.position;
-        gun.transform.position = gunSpawn.transform.position;
         if (!IsPlayerDead)
         {
             FindFirstObjectByType<XROrigin>().gameObject.transform.position = GameObject.Find("EndSpawnPos").transform.position;
