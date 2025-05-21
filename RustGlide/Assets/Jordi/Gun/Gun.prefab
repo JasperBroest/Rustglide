@@ -447,8 +447,9 @@ MonoBehaviour:
   GunHitAudio: {fileID: 8300000, guid: 8a6b7ec067979e7499d63d3ebea6400a, type: 3}
   EnemyHitAudio: {fileID: 8300000, guid: 38296cd18abdcdb4da1b9feb340e3753, type: 3}
   hitAudioObject: {fileID: 2070650280826579499, guid: 80c92821996037e45bd2cace20ae55b7, type: 3}
-  holdster: {fileID: 1571421662760227905}
-  gorillaHoldster: {fileID: 5228404021511275233}
+  spreadFactor: 0.1
+  numberOfProjectiles: 10
+  Range: 3000
   Trigger:
     m_Name: Trigger
     m_Type: 1
