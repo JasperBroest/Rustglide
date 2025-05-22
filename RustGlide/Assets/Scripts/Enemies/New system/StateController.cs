@@ -1,6 +1,4 @@
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class StateController : MonoBehaviour
 {
@@ -14,25 +12,29 @@ public class StateController : MonoBehaviour
     public AttackState attackState = new AttackState();
 
     // Other variables
-    public bool FoundTarget;
-    public LayerMask PlayerMask;
+    [Header("Settings")]
     public float VisionRadius;
     public float AttackRange;
+    public float AttackSpeed;
     public int AttackDamage;
-    public GameObject Target;
-    public NavMeshAgent agent;
-    public int CurrentHealth;
     public int MaxHealth;
+    public int CurrentHealth;
+
+    [HideInInspector]
     public int DamageTaken;
+    public bool FoundTarget;
+    public GameObject Target;
+    public Rigidbody rb;
+    public Rigidbody TargetRigidbody;
+    public MeshRenderer MeshRenderer;
+    public LayerMask PlayerMask;
+    public Color OldColor;
     public IState PreviousState;
-    public MeshRenderer meshRenderer;
-    public Color oldColor;
-    
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
+        MeshRenderer = GetComponentInChildren<MeshRenderer>();
+        rb = GetComponent<Rigidbody>();
 
         ChangeState(idleState);
 
@@ -44,14 +46,6 @@ public class StateController : MonoBehaviour
         if (currentState != null)                                      
         {
             currentState.UpdateState(this);
-        }
-
-        Debug.Log(currentState);
-
-        // If in attackrange stop moving
-        if (Vector3.Distance(transform.position, Target.transform.position) <= 1.4f)
-        {
-            agent.ResetPath();
         }
     }
 
@@ -78,3 +72,4 @@ public interface IState
 
     public void OnExit(StateController controller);
 }
+

@@ -29,6 +29,7 @@ public class IdleState : IState
                 {
                     controller.FoundTarget = true;
                     controller.Target = hit.collider.gameObject;
+                    controller.TargetRigidbody = controller.Target.GetComponent<Rigidbody>();
                 }               
             }
 
