@@ -54,8 +54,9 @@ public class Shotgun : Weapon
                     gunHitparticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
                     if (hit.collider.CompareTag("Enemy"))
                     {
-                        StateController stateController = hit.collider.GetComponent<StateController>();
-                        stateController.ChangeState(stateController.HurtState);
+                        //StateController stateController = hit.collider.GetComponent<StateController>();
+                        //stateController.ChangeState(stateController.HurtState);
+                        hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
                         gunHitSource.clip = EnemyHitAudio;
                     }
                     else

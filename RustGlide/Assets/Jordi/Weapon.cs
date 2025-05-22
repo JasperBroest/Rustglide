@@ -49,8 +49,9 @@ public class Weapon : GunSubject
                 //if the thing you hit is an enemy do damage to it and play enemy hit sound
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    StateController stateController = hit.collider.GetComponent<StateController>();
-                    stateController.ChangeState(stateController.HurtState);
+                    //StateController stateController = hit.collider.GetComponent<StateController>();
+                    //stateController.ChangeState(stateController.HurtState);
+                    hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
                     gunHitSource.clip = EnemyHitAudio;
                 }
                 // if not then play normal hit sound
