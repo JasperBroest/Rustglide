@@ -87,7 +87,6 @@ public class StaminaBar : MonoBehaviour
     {
         if (!IsPlayerDead)
         {
-            FindFirstObjectByType<XROrigin>().gameObject.transform.position = GameObject.Find("EndSpawnPos").transform.position;
             GameObject.Find("HUD manager").GetComponent<HudManager>().StartDeathSequence();
             StartCoroutine(finished());
 

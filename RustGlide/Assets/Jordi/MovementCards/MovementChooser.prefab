@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b965f908b8a3db4f9b88ce33934cd9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasChosen: 0
 --- !u!114 &4441987844829460608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,9 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8035e7c5efd49ff4697a3a1c4aaac835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gorilla: {fileID: 0}
+  gorilla: {fileID: 430285557273465589, guid: ce5c2251d70caf148bbad13bb99ebf54, type: 3}
   dash: {fileID: 0}
-  rockets: {fileID: 0}
+  rockets: {fileID: 5104351194558270364, guid: 445f53302aafef240810daa323daf7cb, type: 3}
 --- !u!1001 &1049346774495133546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,7 +134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3339170782044629363, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GetChosenCard
+      value: DeactivateCard
       objectReference: {fileID: 0}
     - target: {fileID: 3339170782044629363, guid: 9af3de6d186908f499e25b48b2e3fe7c, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -237,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 629006275514749748, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GetChosenCard
+      value: DeactivateCard
       objectReference: {fileID: 0}
     - target: {fileID: 629006275514749748, guid: 4f29bbb77b6fe3945ba468bf420b65aa, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -353,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944340099064359749, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GetChosenCard
+      value: DeactivateCard
       objectReference: {fileID: 0}
     - target: {fileID: 8944340099064359749, guid: 388f41cb98d91f2449782c09723c2662, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName

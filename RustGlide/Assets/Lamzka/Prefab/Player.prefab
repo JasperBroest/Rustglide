@@ -1444,7 +1444,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -4113,7 +4113,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5104351194558270364}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a47e86b7c3c70b641bc8da37e31cca08, type: 3}
   m_Name: 
@@ -7785,18 +7785,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8374432687314140200}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb55de007b3abbe4195575ccf4541cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpawn: {fileID: 0}
-  gun: {fileID: 0}
-  gunSpawn: {fileID: 0}
   staminaLossSpeed: 0
   CanPlayerDie: 1
   IsPlayerDead: 0
   stamina: 100
+  velocity: 0
 --- !u!82 &4642828533875355151
 AudioSource:
   m_ObjectHideFlags: 0
