@@ -13,7 +13,19 @@ MonoBehaviour:
   m_Name: Beer
   m_EditorClassIdentifier: 
   EffectDuration: 30
-  SetSpeed: 10
-  SetDamage: 10
-  SetSlowSpeed: 3
-  SetSlowDamage: 3
+  DamageMultiplyer: 0
+  WeaponSpeedMultiplyer: 10
+  StandardSpeedMultiplyer: 10
+  CooldownTimeMultiplyer: 0
+  DashSpeedMultiplyer: 0
+  SetBoosterSpeedMultiplyer: 0
+  JumpMultiplyerMultiplyer: 0
+  MaxJumpSpeedMultiplyer: 0
+  DownsideDuration: 0
+  DownsideDamageMultiplyer: 5
+  DownsideStandardSpeedMultiplyer: 5
+  DownsideCooldownTimeMultiplyer: 0
+  DownsideDashSpeedMultiplyer: 0
+  DownsideSetBoosterSpeedMultiplyer: 0
+  DownsideJumpMultiplyerMultiplyer: 0
+  DownsideMaxJumpSpeedMultiplyer: 0
