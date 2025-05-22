@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Shotgun : Weapon
 {
-    [SerializeField] private float spreadFactor = 0.1f;
-    [SerializeField] private int numberOfProjectiles = 10;
+    [Range(0, 1)][SerializeField] private float spreadFactor = 0.1f;
+    [Range(0, 1000)] [SerializeField] private int numberOfProjectiles = 10;
     [SerializeField] private int FireRate;
 
     private void OnEnable()

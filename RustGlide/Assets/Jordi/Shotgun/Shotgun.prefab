@@ -24767,7 +24767,7 @@ MonoBehaviour:
     m_Flags: 0
   gunHaptic: {fileID: 11400000, guid: abb9c96e0f7239b45a7e397569b6fe71, type: 2}
   gunHeld: 0
-  spreadFactor: 0.05
+  spreadFactor: 0.2
   numberOfProjectiles: 10
   FireRate: 2
 --- !u!54 &2684751193695958949
