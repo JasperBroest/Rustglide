@@ -27,11 +27,4 @@ public class InstantiateAbility : MonoBehaviour
             ability.transform.parent = this.transform;
         }
     }
-
-    public void OnGrab()
-    {
-        HaveChosen = true;
-        this.transform.parent.gameObject.SetActive(false);
-        SceneManager.LoadScene(1);
-    }
 }
