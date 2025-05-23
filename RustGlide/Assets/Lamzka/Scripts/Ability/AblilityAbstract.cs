@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public abstract class AblilityAbstract : MonoBehaviour
 {
@@ -18,14 +19,17 @@ public abstract class AblilityAbstract : MonoBehaviour
     //Update for testing purposes
     private void Update()
     {
-        if (yes) ApplyAbility();
+        if (yes)
+        {
+            ApplyAbility();
+            yes = false;
+        }
     }
 
     //Check if ability has cooldown
-    void ApplyAbility()
+    public void ApplyAbility()
     {
-        EffectTimer();
-
+        StartCoroutine(EffectTimer());
     }
 
 
@@ -120,12 +124,12 @@ public abstract class AblilityAbstract : MonoBehaviour
 
             if (ShouldRemoveStats)
             {
-                AbilityManager.Instance.StandardSpeed -= affectedStats["StandardSpeed"];
+                GetComponent<DynamicMoveProvider>().moveSpeed -= affectedStats["StandardSpeed"];
                 affectedStats.Remove("StandardSpeed");
             }
 
             affectedAmount = CalculateProcentage(AbilityManager.Instance.StandardSpeed, SO.StandardSpeedMultiplyer);
-            AbilityManager.Instance.StandardSpeed += affectedAmount;
+            GetComponent<DynamicMoveProvider>().moveSpeed += affectedAmount;
 
             affectedAmount = affectedStats["StandardSpeed"];
 

@@ -43,9 +43,7 @@ public class AbilityManager : MonoBehaviour
         {
             Instance = this;
         }
+
+
     }
-
-
-
-
 }

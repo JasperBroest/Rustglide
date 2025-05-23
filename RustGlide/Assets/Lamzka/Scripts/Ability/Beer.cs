@@ -9,6 +9,8 @@ public class Beer : AblilityAbstract
     {
         if (other.gameObject.tag == TagOfCollider)
         {
+            ApplyAbility();
+            Destroy(this);
 
         }
     }

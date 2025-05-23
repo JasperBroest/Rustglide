@@ -191,11 +191,6 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 
 
         //my own part of the script lmao
-        private void Update()
-        {
-            moveSpeed = AbilityManager.Instance.StandardSpeed;
-        }
-
 
     }
 

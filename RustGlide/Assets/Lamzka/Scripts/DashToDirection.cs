@@ -25,7 +25,10 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     bool nospeed = false;
 
-
+    void FixedUpdates()
+    {
+        ThrustPower = AbilityManager.Instance.BoosterSpeed;
+    }
 
     public void NotifyGrab(bool IsGunGrabbed)
     {
