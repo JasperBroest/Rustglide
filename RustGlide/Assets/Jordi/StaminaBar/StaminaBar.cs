@@ -1,8 +1,12 @@
 using System.Collections;
+using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Rendering;
+
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+
 
 public class StaminaBar : MonoBehaviour
 {
@@ -14,10 +18,12 @@ public class StaminaBar : MonoBehaviour
 
     private int staminaLoss;
     private Vector3 vectorVelocity;
+    private float velocitySpeed;
     [SerializeField] private float velocity;
     private XROrigin XrOrigin;
     private Vector3 previousPosition;
     private Volume volume;
+    private Vignette vignette;
 
     public void TakeDamage(int damage)
     {
@@ -25,19 +31,35 @@ public class StaminaBar : MonoBehaviour
         CheckForDeath();
     }
 
+    private void Awake()
+    {
+        XrOrigin = FindFirstObjectByType<XROrigin>();
+        volume = FindFirstObjectByType<Volume>();
+    }
+
     private void Start()
     {
         stamina = 100;
-        staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
-        XrOrigin = FindFirstObjectByType<XROrigin>();
-        volume = FindFirstObjectByType<Volume>();
+        if (XrOrigin.name == "Gorilla Rig")
+        {
+            StoreStamina.instance.staminaLevelMultiplier = StoreStamina.instance.staminaLevelMultiplier - 0.3f;
+            staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
+            velocitySpeed = 4;
+        }
+        else
+        {
+            velocitySpeed = 4.5f;
+        }
     }
 
     private void Update()
     {
         staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
-        float normalizedStamina = Mathf.InverseLerp(0, 100, stamina);
-        volume.weight = 1f - normalizedStamina;
+        if (volume.profile.TryGet(out vignette))
+        {
+            float normalizedStamina = Mathf.InverseLerp(0, 100, stamina);
+            vignette.intensity.value = 1f - normalizedStamina;
+        }
         CheckVelocity();
         CalculateVelocity();
         CheckForDeath();
@@ -47,12 +69,12 @@ public class StaminaBar : MonoBehaviour
     {
         if (stamina >= 0)
         {
-            if (velocity < 5)
+            if (velocity < velocitySpeed)
             {
                 staminaLoss = 6 - Mathf.CeilToInt(velocity);
                 stamina -= (staminaLoss * staminaLossSpeed) / 20f;
             }
-            else if (velocity > 4.5)
+            else
             {
                 stamina += staminaLoss / 20f;
             }
@@ -73,7 +95,7 @@ public class StaminaBar : MonoBehaviour
         vectorVelocity = (currentPosition - previousPosition) / Time.deltaTime;
         previousPosition = currentPosition;
 
-        velocity = vectorVelocity.magnitude * 2;
+        velocity = vectorVelocity.magnitude * 2f;
     }
 
     private void CheckForDeath()
@@ -89,8 +111,7 @@ public class StaminaBar : MonoBehaviour
         {
             GameObject.Find("HUD manager").GetComponent<HudManager>().StartDeathSequence();
             StartCoroutine(finished());
-
-            stamina = 100;
+            vignette.center.value = new Vector2(-1, -1);
             IsPlayerDead = true;
         }
 
@@ -99,7 +120,7 @@ public class StaminaBar : MonoBehaviour
     //remove later
     public IEnumerator finished()
     {
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(0);
     }
 }
