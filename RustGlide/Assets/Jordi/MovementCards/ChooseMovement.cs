@@ -5,37 +5,36 @@ using System.Collections;
 public class ChooseMovement : MonoBehaviour
 {
     [SerializeField] private GameObject gorilla;
-    [SerializeField] private GameObject dash;
-    [SerializeField] private GameObject rockets;
+
+    GameObject XrOrigin;
 
     private void Awake()
     {
-        gorilla = GameObject.FindGameObjectWithTag("GorillaPlayer");
-        dash = GameObject.FindGameObjectWithTag("DashPlayer");
-        rockets = GameObject.FindGameObjectWithTag("RocketPlayer");
+        XrOrigin = FindFirstObjectByType<XROrigin>().gameObject;
     }
 
     public void ActivateGorilla()
     {
-        gorilla.SetActive(true);
-        dash.SetActive(false);
-        rockets.SetActive(false);
+        GameObject Player = Instantiate(gorilla, FindFirstObjectByType<XROrigin>().transform);
+        Player.transform.parent = null;
+        XrOrigin.SetActive(false);
         this.gameObject.SetActive(false);
+        GameObject.Find("ChooseGrab").gameObject.SetActive(false);
     }
 
     public void ActivateDash()
     {
-        gorilla.SetActive(false);
-        dash.SetActive(true);
-        rockets.SetActive(false);
+        XrOrigin.GetComponent<DashMovement>().enabled = true;
+        XrOrigin.GetComponentInChildren<StaminaBar>().enabled = true;
         this.gameObject.SetActive(false);
+        GameObject.Find("ChooseGrab").gameObject.SetActive(false);
     }
 
     public void ActivateRockets()
     {
-        gorilla.SetActive(false);
-        dash.SetActive(false);
-        rockets.SetActive(true);
+        XrOrigin.GetComponent<DashToDirection>().enabled = true;
+        XrOrigin.GetComponentInChildren<StaminaBar>().enabled = true;
         this.gameObject.SetActive(false);
+        GameObject.Find("ChooseGrab").gameObject.SetActive(false);
     }
 }

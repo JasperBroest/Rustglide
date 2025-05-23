@@ -22,7 +22,7 @@ public class PlayerDetection : MonoBehaviour
         return null;
     }
 
-    private GameObject DetectPlayerInSight(GameObject potentialPlayer)
+    private void DetectPlayerInSight(GameObject potentialPlayer)
     {
         // Calculate the direction vector correctly
         Vector3 direction = (potentialPlayer.transform.position - transform.position).normalized;
@@ -32,7 +32,7 @@ public class PlayerDetection : MonoBehaviour
         if (Physics.Raycast(transform.position, direction, out hit, 10f, playerMask))
         {
             enemyMovement.foundPlayer = true;
-            return hit.collider.gameObject;
+            Debug.Log(enemyMovement.foundPlayer);
         }
 
         // Visualize the raycast
@@ -41,13 +41,9 @@ public class PlayerDetection : MonoBehaviour
 
         if (enemyMovement.foundPlayer)
         {
-            //enemyMovement.MoveToPlayer();
+            Debug.Log("seen");
+            enemyMovement.MoveToPlayer();
         }
-        else
-        {
-        }
-
-            return null;
     }
 
     private void Awake()

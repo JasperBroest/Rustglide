@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class Chosen : MonoBehaviour
 {
-    public void DeactivateCard()
+    public static Chosen instance;
+
+    public bool hasChosen;
+
+    private void Awake()
     {
-        StartCoroutine(Deactivate());
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    IEnumerator Deactivate()
+    public void DeactivateCard()
     {
-        yield return new WaitForSeconds(0.5f);
-        this.gameObject.SetActive(false);
+        hasChosen = true;
     }
 }

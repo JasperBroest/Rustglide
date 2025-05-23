@@ -515,16 +515,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Upgrades:
-  - Upgrade: {fileID: 0}
+  - Upgrade: {fileID: 4458130646454935316, guid: c03b57fc14edd5747907952aa70fb302, type: 3}
     DropChance: 40
-  - Upgrade: {fileID: 0}
-    DropChance: 25
-  - Upgrade: {fileID: 0}
-    DropChance: 20
-  - Upgrade: {fileID: 5642525368980929122, guid: c0aa559b34760554a9d7000c2e3df009, type: 3}
-    DropChance: 10
-  - Upgrade: {fileID: 5267208821676531391, guid: dc920a747835b0644a95fdcbd79c1146, type: 3}
-    DropChance: 5
   localUpgrades: []
   localDropChance: 
   ChosenUpgradesFilled: 0

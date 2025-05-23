@@ -7,6 +7,10 @@ public class UpgradeGorilla : MonoBehaviour
     public void Upgrade()
     {
         XROrigin GorillaPlayer = FindFirstObjectByType<XROrigin>();
-        GorillaPlayer.GetComponentInChildren<Player>().jumpMultiplier++;
+        if(GorillaPlayer.GetComponentInChildren<Player>().jumpMultiplier < 20)
+        {
+            GorillaPlayer.GetComponentInChildren<Player>().jumpMultiplier++;
+        }
+        Chosen.instance.DeactivateCard();
     }
 }

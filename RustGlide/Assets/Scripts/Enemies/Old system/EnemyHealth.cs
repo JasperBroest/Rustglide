@@ -5,6 +5,8 @@ public class EnemyHealth : MonoBehaviour
 {
     public int Health;
 
+    private MeshRenderer mesh;
+
     [SerializeField] private int maxHealth;
     private Color oldColor;
 
@@ -24,6 +26,8 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         Health = maxHealth;
+        mesh = GetComponentInChildren<MeshRenderer>();
+        oldColor = mesh.material.color;
     }
     private void Die()
     {
@@ -35,8 +39,6 @@ public class EnemyHealth : MonoBehaviour
 
     private void HitFlash()
     {
-        MeshRenderer mesh = GetComponentInChildren<MeshRenderer>();
-        oldColor = mesh.material.color;
         mesh.material.color = new Color(255, 255, 255, 255);
         StartCoroutine(HitFlashEffect(mesh));
     }
