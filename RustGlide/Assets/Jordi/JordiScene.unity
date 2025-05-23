@@ -216,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 430285557273465591, guid: ce5c2251d70caf148bbad13bb99ebf54, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 430285557273465591, guid: ce5c2251d70caf148bbad13bb99ebf54, type: 3}
       propertyPath: m_LocalPosition.z
@@ -248,6 +248,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 430285557273465591, guid: ce5c2251d70caf148bbad13bb99ebf54, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430285557680239425, guid: ce5c2251d70caf148bbad13bb99ebf54, type: 3}
+      propertyPath: m_AnimateModel
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2456004981897382857, guid: ce5c2251d70caf148bbad13bb99ebf54, type: 3}
@@ -803,42 +807,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 703616757555688458, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
-      propertyPath: Upgrades.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 703616757555688458, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
-      propertyPath: Upgrades.Array.data[1].Upgrade
-      value: 
-      objectReference: {fileID: 4458130646454935316, guid: c03b57fc14edd5747907952aa70fb302, type: 3}
-    - target: {fileID: 703616757555688458, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
-      propertyPath: Upgrades.Array.data[2].Upgrade
-      value: 
-      objectReference: {fileID: 4458130646454935316, guid: c03b57fc14edd5747907952aa70fb302, type: 3}
-    - target: {fileID: 703616757555688458, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
-      propertyPath: Upgrades.Array.data[3].Upgrade
-      value: 
-      objectReference: {fileID: 4458130646454935316, guid: c03b57fc14edd5747907952aa70fb302, type: 3}
-    - target: {fileID: 703616757555688458, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
-      propertyPath: Upgrades.Array.data[4].Upgrade
-      value: 
-      objectReference: {fileID: 4458130646454935316, guid: c03b57fc14edd5747907952aa70fb302, type: 3}
-    - target: {fileID: 703616757555688458, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
-      propertyPath: Upgrades.Array.data[1].DropChance
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 703616757555688458, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
-      propertyPath: Upgrades.Array.data[2].DropChance
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 703616757555688458, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
-      propertyPath: Upgrades.Array.data[3].DropChance
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 703616757555688458, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
-      propertyPath: Upgrades.Array.data[4].DropChance
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 6847258819777275014, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.786

@@ -55,6 +55,7 @@ public class EnemyManager : MonoBehaviour
             gameDone = true;
             GameObject.FindGameObjectWithTag("EndTrigger").GetComponent<BoxCollider>().enabled = true;
             GameObject.FindGameObjectWithTag("EndTrigger").GetComponent<EndRoom>().enabled = true;
+            GameObject.Find("ChooseGun").SetActive(true);
         }
     }
 }

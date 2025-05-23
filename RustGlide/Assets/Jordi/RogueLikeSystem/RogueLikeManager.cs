@@ -21,7 +21,7 @@ public class RogueLikeManager : MonoBehaviour
 
     private void Start()
     {
-        if(Upgrades.Count > 3)
+        if(Upgrades.Count > 0)
         {
             GenerateThree();
         }

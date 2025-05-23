@@ -417,7 +417,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5904200532228996873}
-  - component: {fileID: 543669486265662432}
   - component: {fileID: 4804459299544184620}
   m_Layer: 0
   m_Name: AbilityChooser
@@ -435,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 7005638111774754315}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.18919, y: 0.942, z: -0.0040000677}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -444,18 +443,6 @@ Transform:
   - {fileID: 2492347487156502960}
   m_Father: {fileID: 6847258819777275014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &543669486265662432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7005638111774754315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b965f908b8a3db4f9b88ce33934cd9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4804459299544184620
 MonoBehaviour:
   m_ObjectHideFlags: 0

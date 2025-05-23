@@ -2,10 +2,12 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InstantiateAbility : MonoBehaviour
 {
     public List<GameObject> SpawnAbility;
+    public bool HaveChosen;
 
     private void Update()
     {
@@ -24,5 +26,12 @@ public class InstantiateAbility : MonoBehaviour
             ability.transform.localPosition = Vector3.zero;
             ability.transform.parent = this.transform;
         }
+    }
+
+    public void OnGrab()
+    {
+        HaveChosen = true;
+        this.transform.parent.gameObject.SetActive(false);
+        SceneManager.LoadScene(1);
     }
 }
