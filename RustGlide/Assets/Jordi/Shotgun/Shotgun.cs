@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Shotgun : Weapon
 {
-    [SerializeField] private float spreadFactor = 0.1f;
-    [SerializeField] private int numberOfProjectiles = 10;
+    [Range(0, 1)][SerializeField] private float spreadFactor = 0.1f;
+    [Range(0, 1000)] [SerializeField] private int numberOfProjectiles = 10;
     [SerializeField] private int FireRate;
 
     private void OnEnable()
@@ -54,8 +54,9 @@ public class Shotgun : Weapon
                     gunHitparticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
                     if (hit.collider.CompareTag("Enemy"))
                     {
-                        StateController stateController = hit.collider.GetComponent<StateController>();
-                        stateController.ChangeState(stateController.HurtState);
+                        //StateController stateController = hit.collider.GetComponent<StateController>();
+                        //stateController.ChangeState(stateController.HurtState);
+                        hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
                         gunHitSource.clip = EnemyHitAudio;
                     }
                     else

@@ -14,8 +14,10 @@ public class EnemyMovement : MonoBehaviour
 
     public void MoveToPlayer()
     {
+        Debug.Log("try move");
         if (!CheckForAttack())
         {
+            Debug.Log("move");
             agent.SetDestination(playerPosition);
         }
     }

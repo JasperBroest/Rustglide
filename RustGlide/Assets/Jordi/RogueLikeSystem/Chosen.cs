@@ -6,6 +6,8 @@ public class Chosen : MonoBehaviour
 {
     public static Chosen instance;
 
+    public bool hasChosen;
+
     private void Awake()
     {
         if (instance == null)
@@ -21,12 +23,6 @@ public class Chosen : MonoBehaviour
 
     public void DeactivateCard()
     {
-        StartCoroutine(Deactivate());
-    }
-
-    IEnumerator Deactivate()
-    {
-        yield return new WaitForSeconds(0.5f);
-        this.gameObject.SetActive(false);
+        hasChosen = true;
     }
 }
