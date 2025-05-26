@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -12,7 +11,7 @@ public class StaminaBar : MonoBehaviour
 {
     [SerializeField] private float staminaLossSpeed;
 
-    public bool CanPlayerDie = true;
+    /*public bool CanPlayerDie = true;*/
     public bool IsPlayerDead = false;
     [Range(0, 100)] public float stamina;
 
@@ -74,7 +73,7 @@ public class StaminaBar : MonoBehaviour
                 staminaLoss = 6 - Mathf.CeilToInt(velocity);
                 stamina -= (staminaLoss * staminaLossSpeed) / 20f;
             }
-            else
+            else if (stamina <= 100)
             {
                 stamina += staminaLoss / 20f;
             }

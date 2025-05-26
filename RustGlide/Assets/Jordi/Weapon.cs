@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit.Utilities;
 
 public class Weapon : GunSubject
 {
@@ -18,13 +17,19 @@ public class Weapon : GunSubject
 
     protected bool cooldownCoroutineRunning = false;
     protected int HandsHeld = 0;
-    protected int dmg = 10;
+    protected float dmg = 10;
     protected AudioSource gunShotSource;
     protected AudioSource gunHitSource;
     protected ParticleSystem gunHitparticle;
     protected ParticleSystem GunShotParticle;
     protected float cooldown = 0f;
     protected bool onCooldown = false;
+
+    private void FixedUpdate()
+    {
+        dmg = AbilityManager.Instance.WeaponDamage;
+        cooldown = AbilityManager.Instance.ShootingCooldown;
+    }
 
     protected void Shoot()
     {
@@ -88,7 +93,7 @@ public class Weapon : GunSubject
     public void OnGrab()
     {
         HandsHeld++;
-        if(HandsHeld > 0)
+        if (HandsHeld > 0)
         {
             gunHeld = true;
             GetComponent<Rigidbody>().isKinematic = false;
