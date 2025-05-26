@@ -505,9 +505,9 @@ MonoBehaviour:
   Upgrades:
   - Upgrade: {fileID: 5642525368980929122, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
     DropChance: 100
-  - Upgrade: {fileID: 8671191867452728747, guid: 78e23da75d2eaed4b986289001854e75, type: 3}
+  - Upgrade: {fileID: 8671191867452728747, guid: 0d5264e32bfa79449a4543aef9d32b85, type: 3}
     DropChance: 100
-  - Upgrade: {fileID: 4684586560005183887, guid: 7ec079261da70994a8b6314a8ac490a7, type: 3}
+  - Upgrade: {fileID: 4684586560005183887, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
     DropChance: 100
   localUpgrades: []
   localDropChance: 
