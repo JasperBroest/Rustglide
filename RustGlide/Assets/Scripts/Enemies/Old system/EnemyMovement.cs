@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyAttack = GetComponent<EnemyAttack>();
         agent = GetComponent<NavMeshAgent>();
-        player = FindFirstObjectByType<XROrigin>().gameObject;
+        player = FindFirstObjectByType<XROrigin>().gameObject.transform.GetChild(2).gameObject;
     }
 
     private void Update()
