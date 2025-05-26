@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -55,7 +56,8 @@ public class EnemyManager : MonoBehaviour
             gameDone = true;
             //GameObject.FindGameObjectWithTag("EndTrigger").GetComponent<BoxCollider>().enabled = true;
             //GameObject.FindGameObjectWithTag("EndTrigger").GetComponent<EndRoom>().enabled = true;
-            GameObject.Find("ChooseGun").SetActive(true);
+            //GameObject.Find("ChooseGun").SetActive(true);
+            SceneManager.LoadScene(1);
         }
     }
 }
