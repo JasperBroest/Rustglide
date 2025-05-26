@@ -6446,7 +6446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3936809159746242184, guid: 4dae411673a981e42b54e603106b749b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3936809159746242184, guid: 4dae411673a981e42b54e603106b749b, type: 3}
       propertyPath: HudManager

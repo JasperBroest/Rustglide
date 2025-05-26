@@ -48,7 +48,7 @@ public class EndRoom : MonoBehaviour
 
     public IEnumerator finished()
     {
-        HudManager.StartEndSequence();
+        /*HudManager.StartEndSequence();*/
         yield return new WaitForSeconds(7f);
         StoreStamina.instance.OnSceneLoaded();
         SceneManager.LoadScene(0);
