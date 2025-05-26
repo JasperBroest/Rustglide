@@ -8198,7 +8198,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5199418822013964880, guid: 4e50dbc32f72c2345b279fe9a9e3c641, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.62
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 5199418822013964880, guid: 4e50dbc32f72c2345b279fe9a9e3c641, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8241,7 +8241,8 @@ PrefabInstance:
       value: MovementChooser
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8853683732940940541, guid: 4e50dbc32f72c2345b279fe9a9e3c641, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e50dbc32f72c2345b279fe9a9e3c641, type: 3}
