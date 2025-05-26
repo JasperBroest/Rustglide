@@ -24705,7 +24705,7 @@ GameObject:
   - component: {fileID: 5007199248028701370}
   - component: {fileID: 4379987366176138750}
   m_Layer: 0
-  m_Name: Shotgun
+  m_Name: ChooseShotgun
   m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24848,6 +24848,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7546841755083853782}
         m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
+        m_MethodName: OnGrab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7183265000726330686, guid: 76890bf5c48b63f41ae53e50e8ce12b5, type: 3}
+        m_TargetAssemblyTypeName: RogueLikeManager, Assembly-CSharp
         m_MethodName: OnGrab
         m_Mode: 1
         m_Arguments:

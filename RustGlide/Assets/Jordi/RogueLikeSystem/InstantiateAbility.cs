@@ -2,10 +2,12 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InstantiateAbility : MonoBehaviour
 {
     public List<GameObject> SpawnAbility;
+    public bool HaveChosen;
 
     private void Update()
     {

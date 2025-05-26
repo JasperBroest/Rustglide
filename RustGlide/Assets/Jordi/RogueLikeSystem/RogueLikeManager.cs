@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class RogueLikeManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class RogueLikeManager : MonoBehaviour
 
     private void Start()
     {
-        if(Upgrades.Count > 3)
+        if(Upgrades.Count > 0)
         {
             GenerateThree();
         }
@@ -63,5 +64,11 @@ public class RogueLikeManager : MonoBehaviour
             }
         }
         ChosenUpgradesFilled = true;
+    }
+
+    public void OnGrab()
+    {
+        this.transform.parent.gameObject.SetActive(false);
+        SceneManager.LoadScene(1);
     }
 }
