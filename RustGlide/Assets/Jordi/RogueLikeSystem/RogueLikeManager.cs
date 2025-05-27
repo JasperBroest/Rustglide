@@ -72,8 +72,10 @@ public class RogueLikeManager : MonoBehaviour
 
     public void OnGrab()
     {
-        Stamina.gameObject.SetActive(true);
-        this.transform.parent.gameObject.SetActive(false);
+        /*Stamina.gameObject.SetActive(true);*/
+        /*this.transform.parent.gameObject.SetActive(false);*/
+        this.gameObject.SetActive(false);
+        Debug.Log("Test");
         /*SceneManager.LoadScene(1);*/
     }
 

@@ -98,6 +98,7 @@ public class Weapon : GunSubject
             gunHeld = true;
             GetComponent<Rigidbody>().isKinematic = false;
             NotifyIsGrabbed(gunHeld);
+            GameObject.FindGameObjectWithTag("ChooseWeapons").GetComponent<RogueLikeManager>().OnGrab();
         }
     }
 
@@ -107,6 +108,8 @@ public class Weapon : GunSubject
         HandsHeld--;
         if (HandsHeld == 0)
         {
+            GameObject.FindGameObjectWithTag("GunHolster").GetComponent<GunHolster>().GetGun();
+
             gunHeld = false;
             GetComponent<Rigidbody>().isKinematic = true;
             NotifyIsGrabbed(gunHeld);
