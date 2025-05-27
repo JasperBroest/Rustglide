@@ -5,6 +5,8 @@ using UnityEngine;
 public class AbilityObject : ScriptableObject
 {
     //what the heeeeeeeellll
+    //IM GOING TO FUCKING KILL MYSELF
+    //THIS SCRIPT FUCKING SUCKS BALLS
 
     /*public bool HasEffect2
     {
