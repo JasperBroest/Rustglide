@@ -24,7 +24,7 @@ public class GunHolster : MonoBehaviour, IGunGetState
     void Start()
     {
         /*GetGun();*/
-        SetGunToHolster();
+        /*SetGunToHolster();*/
     }
 
     void Update()
@@ -36,6 +36,7 @@ public class GunHolster : MonoBehaviour, IGunGetState
     {
         CurrentGun = GameObject.FindWithTag("Gun");
         CurrentGun.GetComponent<GunSubject>().AddObserver(this);
+        SetGunToHolster();
 
     }
 
