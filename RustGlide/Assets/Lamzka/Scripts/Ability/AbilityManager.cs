@@ -1,4 +1,6 @@
+using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class AbilityManager : MonoBehaviour
 
     [Space(20)]
 
+    [Header("===ChosenMovement===")]
+    public bool HasChosen;
+    public string ChosenMovement;
 
     [Header("===PlayerStats===")]
     public float Stamina;
@@ -32,6 +37,9 @@ public class AbilityManager : MonoBehaviour
 
     public bool TestBool;
 
+    [SerializeField] GameObject gorilla;
+    GameObject XrOrigin;
+
 
     private void Awake()
     {
@@ -44,6 +52,26 @@ public class AbilityManager : MonoBehaviour
             Instance = this;
         }
 
+        XrOrigin = FindFirstObjectByType<XROrigin>().gameObject;
 
+        DontDestroyOnLoad(this);
+    }
+
+    private void Update()
+    {
+        if (HasChosen)
+        {
+            if (ChosenMovement == "XrOrigin")
+            {
+                XrOrigin = FindFirstObjectByType<XROrigin>().gameObject;
+                XrOrigin.GetComponent<DashToDirection>().enabled = true;
+            }
+            else if (ChosenMovement == "gorilla")
+            {
+                GameObject Player = Instantiate(gorilla, FindFirstObjectByType<XROrigin>().transform);
+                Player.transform.parent = null;
+                XrOrigin.SetActive(false);
+            }
+        }
     }
 }

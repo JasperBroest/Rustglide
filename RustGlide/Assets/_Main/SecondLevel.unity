@@ -578,61 +578,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3120995661545156223, guid: bbf79fa7522f0cc49a0407aad233e718, type: 3}
---- !u!1 &131306145
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 131306146}
-  - component: {fileID: 131306147}
-  m_Layer: 0
-  m_Name: Abilityman
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &131306146
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 131306145}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.8, y: 17.94201, z: -17.97347}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &131306147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 131306145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9663f7d89cf0fd04c8c0722bd9556caf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponDamage: 5
-  ShootingCooldown: 5
-  Stamina: 5
-  StandardSpeed: 5
-  DashSpeed: 5
-  CooldownTime: 5
-  BoosterSpeed: 5
-  BoosterCooldown: 5
-  MonkeyJump: 5
-  MonkeyMaxJumpSpeed: 5
-  TestBool: 0
 --- !u!1001 &137494024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9629,4 +9574,3 @@ SceneRoots:
   - {fileID: 4498201059868613568}
   - {fileID: 1805487914}
   - {fileID: 563394008}
-  - {fileID: 131306146}
