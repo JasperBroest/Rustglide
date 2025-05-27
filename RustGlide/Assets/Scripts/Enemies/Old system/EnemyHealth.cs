@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int Health;
+    public float Health;
 
     private MeshRenderer mesh;
 
-    [SerializeField] private int maxHealth;
+    [SerializeField] private float maxHealth;
     private Color oldColor;
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         Health -= damage;
         if (Health <= 0)

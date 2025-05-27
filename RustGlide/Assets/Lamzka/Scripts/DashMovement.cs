@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DashMovement : MonoBehaviour, IPlayerInput
 {
-    [Header("dependencys")]
+    [Header("Dependencys")]
     public GameObject CubeRight;
     public GameObject CubeLeft;
     public Rigidbody PlayerRigidbody;

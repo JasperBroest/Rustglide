@@ -32,7 +32,6 @@ public class PlayerDetection : MonoBehaviour
         if (Physics.Raycast(transform.position, direction, out hit, 10f, playerMask))
         {
             enemyMovement.foundPlayer = true;
-            Debug.Log(enemyMovement.foundPlayer);
         }
 
         // Visualize the raycast
@@ -41,7 +40,6 @@ public class PlayerDetection : MonoBehaviour
 
         if (enemyMovement.foundPlayer)
         {
-            Debug.Log("seen");
             enemyMovement.MoveToPlayer();
         }
     }

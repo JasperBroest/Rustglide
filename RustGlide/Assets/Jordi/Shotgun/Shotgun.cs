@@ -3,7 +3,7 @@ using UnityEngine;
 public class Shotgun : Weapon
 {
     [Range(0, 1)][SerializeField] private float spreadFactor = 0.1f;
-    [Range(0, 1000)] [SerializeField] private int numberOfProjectiles = 10;
+    [Range(0, 1000)][SerializeField] private int numberOfProjectiles = 10;
     [SerializeField] private int FireRate;
 
     private void OnEnable()
@@ -13,6 +13,7 @@ public class Shotgun : Weapon
 
     private void Start()
     {
+
         gunShotSource = GetComponent<AudioSource>();
         GunShotParticle = GetComponentInChildren<ParticleSystem>();
         cooldown = 1f / FireRate;

@@ -1,7 +1,7 @@
 using System;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class RogueLikeManager : MonoBehaviour
 {
@@ -9,6 +9,8 @@ public class RogueLikeManager : MonoBehaviour
     [HideInInspector] public List<GameObject> localUpgrades;
     [HideInInspector] public List<int> localDropChance;
     [HideInInspector] public bool ChosenUpgradesFilled;
+
+    private GameObject Stamina;
 
     private int RandValue;
 
@@ -21,7 +23,9 @@ public class RogueLikeManager : MonoBehaviour
 
     private void Start()
     {
-        if(Upgrades.Count > 3)
+
+        GetStaminaComponent();
+        if (Upgrades.Count > 0)
         {
             GenerateThree();
         }
@@ -29,7 +33,7 @@ public class RogueLikeManager : MonoBehaviour
 
     private void SetList()
     {
-        foreach(var upgrade in Upgrades)
+        foreach (var upgrade in Upgrades)
         {
             localUpgrades.Add(upgrade.Upgrade);
             localDropChance.Add(upgrade.DropChance);
@@ -38,6 +42,7 @@ public class RogueLikeManager : MonoBehaviour
 
     private void GenerateThree()
     {
+        Stamina.gameObject.SetActive(false);
         SetList();
         for (int i = 0; i < 3; i++)
         {
@@ -46,7 +51,7 @@ public class RogueLikeManager : MonoBehaviour
             RandValue = UnityEngine.Random.Range(1, totalWeight + 1);
             Debug.Log(RandValue);
             int cumulative = 0;
-            for(int j = 0; j < localUpgrades.Count; j++)
+            for (int j = 0; j < localUpgrades.Count; j++)
             {
                 cumulative += localDropChance[j];
                 if (RandValue <= cumulative)
@@ -57,11 +62,25 @@ public class RogueLikeManager : MonoBehaviour
                     break;
                 }
             }
-            if(droppingItem != null)
+            if (droppingItem != null)
             {
                 GetComponentInChildren<InstantiateAbility>().SpawnAbility.Add(droppingItem);
             }
         }
         ChosenUpgradesFilled = true;
+    }
+
+    public void OnGrab()
+    {
+        /*Stamina.gameObject.SetActive(true);*/
+        /*this.transform.parent.gameObject.SetActive(false);*/
+        this.gameObject.SetActive(false);
+        Debug.Log("Test");
+        /*SceneManager.LoadScene(1);*/
+    }
+
+    public void GetStaminaComponent()
+    {
+        Stamina = GameObject.FindWithTag("Stamina");
     }
 }
