@@ -1,10 +1,15 @@
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ChooseMovement : MonoBehaviour
 {
     [SerializeField] private GameObject gorilla;
+
+    private bool HasChosen;
+    private string ChosenMovement;
 
     GameObject XrOrigin;
 
@@ -13,28 +18,36 @@ public class ChooseMovement : MonoBehaviour
         XrOrigin = FindFirstObjectByType<XROrigin>().gameObject;
     }
 
+    private void Update()
+    {
+        if (HasChosen)
+        {
+            AbilityManager.Instance.HasChosen = true;
+            AbilityManager.Instance.ChosenMovement = ChosenMovement;
+            XrOrigin.GetComponentInChildren<StaminaBar>().enabled = true;
+            this.gameObject.SetActive(false);
+            GameObject.Find("ChooseGrab").gameObject.SetActive(false);
+        }
+    }
+
     public void ActivateGorilla()
     {
         GameObject Player = Instantiate(gorilla, FindFirstObjectByType<XROrigin>().transform);
         Player.transform.parent = null;
         XrOrigin.SetActive(false);
-        this.gameObject.SetActive(false);
-        GameObject.Find("ChooseGrab").gameObject.SetActive(false);
+        ChosenMovement = "gorilla";
+        HasChosen = true;
     }
 
     public void ActivateDash()
     {
-        XrOrigin.GetComponent<DashMovement>().enabled = true;
-        XrOrigin.GetComponentInChildren<StaminaBar>().enabled = true;
-        this.gameObject.SetActive(false);
-        GameObject.Find("ChooseGrab").gameObject.SetActive(false);
+        HasChosen = true;
     }
 
     public void ActivateRockets()
     {
         XrOrigin.GetComponent<DashToDirection>().enabled = true;
-        XrOrigin.GetComponentInChildren<StaminaBar>().enabled = true;
-        this.gameObject.SetActive(false);
-        GameObject.Find("ChooseGrab").gameObject.SetActive(false);
+        ChosenMovement = "XrOrigin";
+        HasChosen = true;
     }
 }
