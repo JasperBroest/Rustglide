@@ -1,6 +1,6 @@
 using Unity.XR.CoreUtils;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -73,5 +73,9 @@ public class AbilityManager : MonoBehaviour
                 XrOrigin.SetActive(false);
             }
         }
+
+        GetComponent<DynamicMoveProvider>().moveSpeed = StandardSpeed;
+
+
     }
 }
