@@ -53,4 +53,9 @@ public class AttackState : IState
         yield return new WaitForSeconds(1.5f);
         canAttack = true;
     }
+
+    public void FixedUpdateState(StateController controller)
+    {
+        return;
+    }
 }

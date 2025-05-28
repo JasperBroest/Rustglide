@@ -6,11 +6,10 @@ public class ChaseState : IState
 {
     public float maxSpeed = 5f;
     public float minSpeed = 3f;
-    public float maxForce = 2f;
+    public float maxForce = 1.5f;
     private Vector3 currentPosition;
     private Vector3 previousPosition;
-    private Vector3 velocity;
-    bool foundOpen = false;
+    private Vector3 targetVelocity;
 
     private float predictionTime = 0.5f;
 
@@ -25,7 +24,6 @@ public class ChaseState : IState
         // Update positions and calculate velocity
         previousPosition = currentPosition;
         currentPosition = controller.Target.transform.position;
-        velocity = (currentPosition - previousPosition) / Time.deltaTime;
 
         // If in attack range, switch state
         if (Vector3.Distance(controller.transform.position, controller.Target.transform.position) <= controller.AttackRange)
@@ -34,18 +32,16 @@ public class ChaseState : IState
             return;
         }
 
-        // Try to avoid terrain, otherwise pursue
-        Vector3 avoidance = AvoidTerrain(controller);
+        // 1. get player velocity and get predicted position of player = target position
+        Vector3 desiredVelocity = Pursue(controller, Vector3.zero);
 
-        // Only use avoidance if a clear path is found, otherwise always pursue
-        if (foundOpen)
-        {
-            controller.rb.AddForce(avoidance);
-        }
-        else
-        {
-            controller.rb.AddForce(Pursue(controller, velocity));
-        }
+        // 2. shoot rays to target position and in circle around yourself
+        // 3. Either (1) take average of rays that did not hit and go there OR
+        //           (2) take first ray that did not hit anything (and maybe check rays around it just to be sure) and go there.
+        Vector3 avoidanceVector = GetAvoidanceVector(controller);
+
+        targetVelocity = avoidanceVector.normalized * maxForce;
+        controller.rb.linearVelocity = targetVelocity;
     }
 
     public void OnHurt(StateController controller) { }
@@ -90,58 +86,45 @@ public class ChaseState : IState
         return force;
     }
 
-    private Vector3 AvoidTerrain(StateController controller)
+    private Vector3 GetAvoidanceVector(StateController controller)
     {
-        int rayCount = 21;
-        float spreadAngle = 240f;
-        float rayDistance = 1f;
-        Vector3 toTarget = (controller.Target.transform.position - controller.transform.position).normalized;
+        int rayCount = 20;
+        float rayDistance = 2f;
+        float minimalRayWeight = 0.5f;
 
-        // Always start with pursuit as the default direction
-        Vector3 bestDirection = toTarget;
-        float bestAlignment = float.MinValue;
-        bool openFound = false;
+        Vector3 weightedAverageFreeRay = Vector3.zero;
 
+        // Direction to target
+        Vector3 startVector = (controller.Target.transform.position - controller.transform.position);
+        startVector.y += 0.5f;
+        startVector.Normalize();
 
         for (int i = 0; i < rayCount; i++)
         {
-            float angle = -spreadAngle / 2 + (spreadAngle / (rayCount - 1)) * i;
-            Vector3 direction = Quaternion.Euler(0, angle, 0) * controller.transform.forward;
+            float angle = i * (360f / rayCount);
+            // 0 = 1
+            // 180 = 0.5
+            // 360 = 1
+            float weight = minimalRayWeight +                 // Elke ray telt een beetje mee!
+                           Mathf.Abs(angle - 180f) / 180f;   // Hoever zit de ray qua graden van onze "main" ray af? (getal tussen 0 en 1)
+                            
+            Vector3 direction = Quaternion.Euler(0, angle, 0) * startVector;
 
             RaycastHit hit;
             bool blocked = Physics.Raycast(controller.transform.position, direction, out hit, rayDistance);
-            if (hit.collider != null)
-            {
-                if (!hit.collider.CompareTag("player"))
-                {
-                    if (blocked)
-                    {
-                        float alignment = Vector3.Dot(direction, toTarget);
-                        if (alignment > bestAlignment)
-                        {
-                            bestAlignment = alignment;
-                            bestDirection = direction;
-                            return -direction;
-                        }
-                    }
-                    else
-                    {
-                        openFound = true;
-                        return direction.normalized;
-                    }
-                }
-                else
-                {
-                    Pursue(controller, velocity);
-                }
-            }
-
             Debug.DrawRay(controller.transform.position, direction * (blocked ? (hit.distance) : rayDistance), blocked ? Color.red : Color.green);
+            if (blocked) continue;
+
+            weightedAverageFreeRay += direction * weight;
         }
 
-        foundOpen = openFound;
+        weightedAverageFreeRay = weightedAverageFreeRay.normalized;
+        Debug.DrawRay(controller.transform.position, weightedAverageFreeRay * 5f, Color.blue);
+        return weightedAverageFreeRay; 
+    }
 
-        // If no open direction found, just keep pursuing the player (don't stop)
-        return bestDirection.normalized * maxForce;
+    public void FixedUpdateState(StateController controller)
+    {
+        
     }
 }

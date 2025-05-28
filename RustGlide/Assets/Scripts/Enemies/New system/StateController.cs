@@ -51,6 +51,14 @@ public class StateController : MonoBehaviour
         Debug.Log(currentState);
     }
 
+    private void FixedUpdate()
+    {
+        if (currentState != null)
+        {
+            currentState.FixedUpdateState(this);
+        }
+    }
+
     public void ChangeState(IState newState)
     {
         if (currentState != null)
@@ -69,6 +77,8 @@ public interface IState
     public void OnEnter(StateController controller);
 
     public void UpdateState(StateController controller);
+
+    public void FixedUpdateState(StateController controller);
 
     public void OnHurt(StateController controller);
 

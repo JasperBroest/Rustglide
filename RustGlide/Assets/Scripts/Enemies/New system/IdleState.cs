@@ -57,4 +57,9 @@ public class IdleState : IState
     {
         yield return new WaitForSeconds(5f);
     }
+
+    public void FixedUpdateState(StateController controller)
+    {
+        return;
+    }
 }

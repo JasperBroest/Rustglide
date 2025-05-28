@@ -21,4 +21,9 @@ public class PatrolState : IState
     {
         // "Must've been the wind"
     }
+
+    public void FixedUpdateState(StateController controller)
+    {
+        return;
+    }
 }
