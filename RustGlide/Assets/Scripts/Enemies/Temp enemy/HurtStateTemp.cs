@@ -7,14 +7,14 @@ using UnityEngine;
 // NEED TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // NEED TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // NEED TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-public class HurtState : IState
+public class HurtStateTemp : IStateTemp
 {
-    public void OnEnter(StateController controller)
+    public void OnEnter(StateControllerTemp controller)
     {
         controller.CurrentHealth -= controller.DamageTaken;
     }
 
-    public void UpdateState(StateController controller)
+    public void UpdateState(StateControllerTemp controller)
     {
         // Spaghetti
         controller.OldColor = controller.MeshRenderer.material.color;
@@ -23,17 +23,17 @@ public class HurtState : IState
         //controller.ChangeState(controller.PreviousState);
     }
 
-    public void OnHurt(StateController controller)
+    public void OnHurt(StateControllerTemp controller)
     {
         // Transition to Hurt State
     }
 
-    public void OnExit(StateController controller)
+    public void OnExit(StateControllerTemp controller)
     {
         // "Must've been the wind"
     }
 
-    private IEnumerator HitFlashEffect(MeshRenderer mesh, StateController controller)
+    private IEnumerator HitFlashEffect(MeshRenderer mesh, StateControllerTemp controller)
     {
         yield return new WaitForSeconds(0.1f);
         mesh.material.color = controller.OldColor;
