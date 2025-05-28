@@ -46,7 +46,7 @@ public class DashMovement : MonoBehaviour, IPlayerInput
     private void Start()
     {
         AudioSource.clip = ThrusterSound;
-        /*  GetGun();*/
+        /* GetGun();*/
         GetInput();
     }
 
@@ -131,10 +131,10 @@ public class DashMovement : MonoBehaviour, IPlayerInput
         }
     }
 
-    /*private void GetGun()
-    {
-        GameObject.FindWithTag("Gun").GetComponent<GunSubject>().AddObserver(this);
-    }*/
+    /* private void GetGun()
+     {
+         GameObject.FindWithTag("Gun").GetComponent<GunSubject>().AddObserver(this);
+     }*/
 
     private void GetInput()
     {

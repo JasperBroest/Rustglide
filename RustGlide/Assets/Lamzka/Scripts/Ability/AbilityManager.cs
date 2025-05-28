@@ -74,7 +74,7 @@ public class AbilityManager : MonoBehaviour
             }
         }
 
-        GetComponent<DynamicMoveProvider>().moveSpeed = StandardSpeed;
+        GameObject.FindGameObjectWithTag("PlayerMoveObject").GetComponent<DynamicMoveProvider>().moveSpeed = StandardSpeed;
 
 
     }
