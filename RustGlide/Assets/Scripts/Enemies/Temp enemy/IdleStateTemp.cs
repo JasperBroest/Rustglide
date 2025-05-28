@@ -1,14 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
-public class IdleState : IState
+public class IdleStateTemp : IStateTemp
 {
-    public void OnEnter(StateController controller)
+    public void OnEnter(StateControllerTemp controller)
     {
         // Play idle animation
     }
 
-    public void UpdateState(StateController controller)
+    public void UpdateState(StateControllerTemp controller)
     {
         #region Player Detection
         Collider[] sphere = Physics.OverlapSphere(controller.transform.position, controller.VisionRadius, controller.PlayerMask);
@@ -31,24 +31,21 @@ public class IdleState : IState
                     controller.TargetRigidbody = controller.Target.GetComponent<Rigidbody>();
                 }               
             }
-
-            // Visualize raycast
-            //Debug.DrawLine(controller.transform.position, controller.transform.position + direction * 10f, Color.red);
         }
         #endregion
 
         if (controller.FoundTarget)
         {
-            controller.ChangeState(controller.chaseState);
+            controller.ChangeState(controller.chaseStateTemp);
         }
     }
 
-    public void OnHurt(StateController controller)
+    public void OnHurt(StateControllerTemp controller)
     {
         // Transition to Hurt State
     }
 
-    public void OnExit(StateController controller)
+    public void OnExit(StateControllerTemp controller)
     {
         // "Must've been the wind"
     }
