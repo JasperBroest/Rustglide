@@ -2863,7 +2863,7 @@ GameObject:
   - component: {fileID: 4390336117943382001}
   m_Layer: 3
   m_Name: Gunholder
-  m_TagString: Untagged
+  m_TagString: GunHolster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7791,7 +7791,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staminaLossSpeed: 0
-  CanPlayerDie: 1
   IsPlayerDead: 0
   stamina: 100
   velocity: 0

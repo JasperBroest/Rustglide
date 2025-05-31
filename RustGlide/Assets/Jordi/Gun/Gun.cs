@@ -24,7 +24,7 @@ public class Gun : Weapon, IPlayerInput
 
     private void Start()
     {
-        GetInput();
+        //GetInput();
         gunShotSource = GetComponent<AudioSource>();
         GunShotParticle = GetComponentInChildren<ParticleSystem>();
         gunShotSource.clip = GunShotAudio;

@@ -9,6 +9,7 @@ public class Weapon : GunSubject
     [SerializeField] protected AudioClip GunHitAudio;
     [SerializeField] protected AudioClip EnemyHitAudio;
     [SerializeField] protected GameObject hitAudioObject;
+    [SerializeField] protected Animator Animator;
     [SerializeField] protected int Range;
 
     public InputAction Trigger;
@@ -27,16 +28,17 @@ public class Weapon : GunSubject
 
     private void FixedUpdate()
     {
-        dmg = AbilityManager.Instance.WeaponDamage;
-        cooldown = AbilityManager.Instance.ShootingCooldown;
+        //dmg = AbilityManager.Instance.WeaponDamage;
+        //cooldown = AbilityManager.Instance.ShootingCooldown;
     }
 
     protected void Shoot()
     {
         //if you click the trigger, hold the gun and it isn't on cooldown plays particle, sound and haptic feedback
-        if (Trigger.ReadValue<float>() > 0.1f && gunHeld && !onCooldown)
+        if (Trigger.ReadValue<float>() > 0.1 && gunHeld && !onCooldown)
         {
             onCooldown = true;
+            if (Animator != null) Animator.SetBool("shooting", true);
             GunShotParticle.Play();
             gunShotSource.PlayOneShot(GunShotAudio);
             ForceTubeVRInterface.Shoot(gunHaptic);
@@ -98,7 +100,10 @@ public class Weapon : GunSubject
             gunHeld = true;
             GetComponent<Rigidbody>().isKinematic = false;
             NotifyIsGrabbed(gunHeld);
-            GameObject.FindGameObjectWithTag("ChooseWeapons").GetComponent<RogueLikeManager>().OnGrab();
+            if(GameObject.FindGameObjectWithTag("ChooseWeapons") != null)
+            {
+                GameObject.FindGameObjectWithTag("ChooseWeapons").GetComponent<RogueLikeManager>().OnGrab();
+            }    
         }
     }
 

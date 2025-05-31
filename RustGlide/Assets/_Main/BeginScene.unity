@@ -4131,6 +4131,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4090245000974685933, guid: 445f53302aafef240810daa323daf7cb, type: 3}
+      propertyPath: m_TagString
+      value: GunHolster
+      objectReference: {fileID: 0}
     - target: {fileID: 4518321363079795204, guid: 445f53302aafef240810daa323daf7cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.193
