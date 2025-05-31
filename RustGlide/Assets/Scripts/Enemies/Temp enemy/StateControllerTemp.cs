@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-public class StateController : MonoBehaviour
+public class StateControllerTemp : MonoBehaviour
 {
     // State Machine
-    IState currentState;
+    IStateTemp currentState;
 
-    public IdleState idleState = new IdleState();
-    public PatrolState patrolState = new PatrolState();
-    public ChaseState chaseState = new ChaseState();
-    public HurtState hurtState = new HurtState();
-    public AttackState attackState = new AttackState();
+    public IdleStateTemp idleStateTemp = new IdleStateTemp();
+    public PatrolStateTemp patrolStateTemp = new PatrolStateTemp();
+    public ChaseStateTemp chaseStateTemp = new ChaseStateTemp();
+    public HurtStateTemp hurtStateTemp = new HurtStateTemp();
+    public AttackStateTemp attackStateTemp = new AttackStateTemp();
 
     // Other variables
     [Header("Settings")]
@@ -27,16 +28,18 @@ public class StateController : MonoBehaviour
     public Rigidbody rb;
     public Rigidbody TargetRigidbody;
     public MeshRenderer MeshRenderer;
+    public NavMeshAgent Agent;
     public LayerMask PlayerMask;
     public Color OldColor;
-    public IState PreviousState;
+    public IStateTemp PreviousState;
 
     private void Start()
     {
         MeshRenderer = GetComponentInChildren<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
+        Agent = GetComponent<NavMeshAgent>();
 
-        ChangeState(idleState);
+        ChangeState(idleStateTemp);
 
         CurrentHealth = MaxHealth;
     }
@@ -51,7 +54,7 @@ public class StateController : MonoBehaviour
         Debug.Log(currentState);
     }
 
-    public void ChangeState(IState newState)
+    public void ChangeState(IStateTemp newState)
     {
         if (currentState != null)
         {
@@ -64,14 +67,14 @@ public class StateController : MonoBehaviour
     }
 }
 
-public interface IState
+public interface IStateTemp
 {
-    public void OnEnter(StateController controller);
+    public void OnEnter(StateControllerTemp controller);
 
-    public void UpdateState(StateController controller);
+    public void UpdateState(StateControllerTemp controller);
 
-    public void OnHurt(StateController controller);
+    public void OnHurt(StateControllerTemp controller);
 
-    public void OnExit(StateController controller);
+    public void OnExit(StateControllerTemp controller);
 }
 
