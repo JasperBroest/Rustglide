@@ -82,6 +82,7 @@ public class Weapon : GunSubject
     public IEnumerator SetCooldown()
     {
         cooldownCoroutineRunning = true;
+        Animator.SetBool("Shooting", false);
         yield return new WaitForSeconds(cooldown);
         onCooldown = false;
         cooldownCoroutineRunning = false;

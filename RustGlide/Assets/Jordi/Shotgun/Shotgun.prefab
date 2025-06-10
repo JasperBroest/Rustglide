@@ -24747,6 +24747,7 @@ MonoBehaviour:
   GunHitAudio: {fileID: 8300000, guid: 8a6b7ec067979e7499d63d3ebea6400a, type: 3}
   EnemyHitAudio: {fileID: 8300000, guid: 38296cd18abdcdb4da1b9feb340e3753, type: 3}
   hitAudioObject: {fileID: 2070650280826579499, guid: 80c92821996037e45bd2cace20ae55b7, type: 3}
+  Animator: {fileID: 8350763050629083536}
   Range: 1000
   Trigger:
     m_Name: Trigger
@@ -25138,5 +25139,10 @@ PrefabInstance:
 --- !u!4 &3905517513954442632 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3494540041794284802, guid: 7f7ee0acd04383341ac84f1de3c0bb73, type: 3}
+  m_PrefabInstance: {fileID: 453797979499057290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8350763050629083536 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8480251829041553690, guid: 7f7ee0acd04383341ac84f1de3c0bb73, type: 3}
   m_PrefabInstance: {fileID: 453797979499057290}
   m_PrefabAsset: {fileID: 0}
