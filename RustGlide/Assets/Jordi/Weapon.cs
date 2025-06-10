@@ -38,7 +38,10 @@ public class Weapon : GunSubject
         if (Trigger.ReadValue<float>() > 0.1 && gunHeld && !onCooldown)
         {
             onCooldown = true;
-            if (Animator != null) Animator.SetBool("shooting", true);
+            if (Animator != null)
+            {
+                Animator.SetBool("Shooting", true);
+            }
             GunShotParticle.Play();
             gunShotSource.PlayOneShot(GunShotAudio);
             ForceTubeVRInterface.Shoot(gunHaptic);

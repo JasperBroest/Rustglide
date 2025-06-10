@@ -35,6 +35,7 @@ public class Gun : Weapon, IPlayerInput
         Shoot();
         if (Trigger.ReadValue<float>() == 0 && gunHeld)
         {
+            Animator.SetBool("Shooting", false);
             onCooldown = false;
         }
     }
