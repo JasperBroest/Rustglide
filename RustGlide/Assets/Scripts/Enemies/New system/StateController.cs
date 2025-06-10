@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class StateController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class StateController : MonoBehaviour
     public LayerMask PlayerMask;
     public Color OldColor;
     public IState PreviousState;
+    public NavMeshAgent agent;
 
     private void Start()
     {

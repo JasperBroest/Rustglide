@@ -6,7 +6,7 @@ public class ChaseState : IState
 {
     public float maxSpeed = 5f;
     public float minSpeed = 3f;
-    public float maxForce = 1.5f;
+    public float maxForce = 4f;
     private Vector3 currentPosition;
     private Vector3 previousPosition;
     private Vector3 targetVelocity;
@@ -21,10 +21,6 @@ public class ChaseState : IState
 
     public void UpdateState(StateController controller)
     {
-        // Update positions and calculate velocity
-        previousPosition = currentPosition;
-        currentPosition = controller.Target.transform.position;
-
         // If in attack range, switch state
         if (Vector3.Distance(controller.transform.position, controller.Target.transform.position) <= controller.AttackRange)
         {
@@ -32,15 +28,27 @@ public class ChaseState : IState
             return;
         }
 
+        // Stores last position
+        previousPosition = currentPosition;
+        currentPosition = controller.transform.position;
+
+        Debug.Log(Vector3.Distance(previousPosition, currentPosition));
+        if (Vector3.Distance(previousPosition, currentPosition) < 0.01f)
+        {
+            Debug.Log("STUCK!!!!!!");
+        }
+
         // 1. get player velocity and get predicted position of player = target position
         Vector3 desiredVelocity = Pursue(controller, Vector3.zero);
 
         // 2. shoot rays to target position and in circle around yourself
-        // 3. Either (1) take average of rays that did not hit and go there OR
-        //           (2) take first ray that did not hit anything (and maybe check rays around it just to be sure) and go there.
-        Vector3 avoidanceVector = GetAvoidanceVector(controller);
+        // 3. Either (1) take average of rays that did not hit and go there
 
+        // Calculate wanted velocity
+        Vector3 avoidanceVector = GetAvoidanceVector(controller);
         targetVelocity = avoidanceVector.normalized * maxForce;
+
+        // Set velocity of enemy
         controller.rb.linearVelocity = targetVelocity;
     }
 
@@ -88,7 +96,7 @@ public class ChaseState : IState
 
     private Vector3 GetAvoidanceVector(StateController controller)
     {
-        int rayCount = 20;
+        int rayCount = 17;
         float rayDistance = 2f;
         float minimalRayWeight = 0.5f;
 
@@ -99,6 +107,7 @@ public class ChaseState : IState
         startVector.y += 0.5f;
         startVector.Normalize();
 
+        // Shoots rays around enemy and when it hits an object returns force in opposite direction
         for (int i = 0; i < rayCount; i++)
         {
             float angle = i * (360f / rayCount);
