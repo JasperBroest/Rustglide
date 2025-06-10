@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7513063694362473160}
   - component: {fileID: 4892934512933040625}
   - component: {fileID: 3318285447117927648}
-  - component: {fileID: 5232139800154272714}
+  - component: {fileID: 8740423924161766}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -194,7 +194,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &5232139800154272714
+--- !u!114 &8740423924161766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5267208821676531391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd231e2517ea4d947831fdaebcbb38d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 105fc4f80776c07489b929ac7b84be2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   VisionRadius: 15
@@ -218,6 +218,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   TargetRigidbody: {fileID: 0}
   MeshRenderer: {fileID: 0}
+  Agent: {fileID: 0}
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8

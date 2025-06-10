@@ -32,7 +32,6 @@ public class ChaseState : IState
         previousPosition = currentPosition;
         currentPosition = controller.transform.position;
 
-        Debug.Log(Vector3.Distance(previousPosition, currentPosition));
         if (Vector3.Distance(previousPosition, currentPosition) < 0.01f)
         {
             Debug.Log("STUCK!!!!!!");
