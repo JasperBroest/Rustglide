@@ -5,12 +5,12 @@ public class Beer : AblilityAbstract
     public string TagOfCollider;
 
     //if Beer touches player collider, apply Item to player
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == TagOfCollider)
+        if (other.CompareTag(TagOfCollider))
         {
             ApplyAbility();
-            Destroy(this);
+            Destroy(this.gameObject);
 
         }
     }

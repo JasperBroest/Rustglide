@@ -362,8 +362,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 598486254}
-  - component: {fileID: 598486253}
   - component: {fileID: 598486252}
+  - component: {fileID: 598486257}
   - component: {fileID: 598486251}
   - component: {fileID: 598486255}
   - component: {fileID: 598486256}
@@ -420,31 +420,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9999998, y: 2.4187112, z: 1.0501229}
-  m_Center: {x: 0, y: -0.7585846, z: 0.025062818}
---- !u!136 &598486253
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598486250}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.86091596
-  m_Height: 2.3423882
-  m_Direction: 1
-  m_Center: {x: -0.009580577, y: -0.7606235, z: 0}
+  m_Size: {x: 0.59029317, y: 2.6040854, z: 0.54098856}
+  m_Center: {x: 0.07752364, y: -0.76258093, z: 0.07213977}
 --- !u!4 &598486254
 Transform:
   m_ObjectHideFlags: 0
@@ -475,7 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yes: 0
   SO: {fileID: 11400000, guid: f7eedf3c7196daa44b68e3d59774ccd4, type: 2}
-  TagOfCollider: MainCamera
+  TagOfCollider: RocketPlayer
 --- !u!114 &598486256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +575,27 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
+--- !u!135 &598486257
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598486250}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.6859703
+  m_Center: {x: 0, y: -0.7989916, z: 0}
 --- !u!1 &652382066 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2261143736452731581, guid: 445f53302aafef240810daa323daf7cb, type: 3}
@@ -831,6 +829,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 473625922940315273, guid: 445f53302aafef240810daa323daf7cb, type: 3}
+      propertyPath: m_TagString
+      value: PlayerMoveObject
+      objectReference: {fileID: 0}
     - target: {fileID: 516897326969620565, guid: 445f53302aafef240810daa323daf7cb, type: 3}
       propertyPath: m_BackGroundColor.a
       value: 1
@@ -942,6 +944,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponDamage: 2
   ShootingCooldown: 2
+  HasChosen: 0
+  ChosenMovement: 
   Stamina: 100
   StandardSpeed: 5
   DashSpeed: 0
@@ -951,6 +955,7 @@ MonoBehaviour:
   MonkeyJump: 0
   MonkeyMaxJumpSpeed: 0
   TestBool: 0
+  gorilla: {fileID: 0}
 --- !u!4 &1989200158
 Transform:
   m_ObjectHideFlags: 0

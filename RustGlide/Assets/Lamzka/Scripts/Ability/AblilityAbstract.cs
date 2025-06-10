@@ -34,7 +34,7 @@ public abstract class AblilityAbstract : MonoBehaviour
 
 
     //IM GONNA FUCKING KILL MYSELF
-    private IEnumerator EffectTimer()
+    public IEnumerator EffectTimer()
     {
         if (SO.HasEffectDuration)
         {
