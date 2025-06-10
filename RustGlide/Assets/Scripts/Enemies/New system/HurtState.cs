@@ -38,4 +38,9 @@ public class HurtState : IState
         yield return new WaitForSeconds(0.1f);
         mesh.material.color = controller.OldColor;
     }
+
+    public void FixedUpdateState(StateController controller)
+    {
+        throw new System.NotImplementedException();
+    }
 }
