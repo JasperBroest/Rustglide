@@ -7709,8 +7709,8 @@ MonoBehaviour:
   CooldownTime: 0
   BoosterSpeed: 0
   BoosterCooldown: 0
-  MonkeyJump: 0
-  MonkeyMaxJumpSpeed: 0
+  MonkeyJump: 6.94
+  MonkeyMaxJumpSpeed: 45.72
   TestBool: 0
   gorilla: {fileID: 430285557273465589, guid: ce5c2251d70caf148bbad13bb99ebf54, type: 3}
 --- !u!4 &2132246253
