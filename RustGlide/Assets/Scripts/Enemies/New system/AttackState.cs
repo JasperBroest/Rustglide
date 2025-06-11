@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AttackState : IState
 {
-    private bool canAttack = true;
     private StateController controller;
     private bool didAttack = false;
     private Coroutine attackCoroutine;

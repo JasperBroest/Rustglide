@@ -5134,6 +5134,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8497698071874029702, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
+      propertyPath: waves.Array.data[0].enemy
+      value: 
+      objectReference: {fileID: 5813853337301803443, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
+    - target: {fileID: 8497698071874029702, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
+      propertyPath: waves.Array.data[1].enemy
+      value: 
+      objectReference: {fileID: 5813853337301803443, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
+    - target: {fileID: 8497698071874029702, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
+      propertyPath: waves.Array.data[2].enemy
+      value: 
+      objectReference: {fileID: 5813853337301803443, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
+    - target: {fileID: 8497698071874029702, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
       propertyPath: waves.Array.data[0].enemyAmount
       value: 2
       objectReference: {fileID: 0}
@@ -7707,7 +7719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9663f7d89cf0fd04c8c0722bd9556caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponDamage: 216.87
+  WeaponDamage: 10
   ShootingCooldown: 0
   HasChosen: 0
   ChosenMovement: 
@@ -7717,8 +7729,8 @@ MonoBehaviour:
   CooldownTime: 0
   BoosterSpeed: 0
   BoosterCooldown: 0
-  MonkeyJump: 0
-  MonkeyMaxJumpSpeed: 0
+  MonkeyJump: 5
+  MonkeyMaxJumpSpeed: 6
   TestBool: 0
   gorilla: {fileID: 430285557273465589, guid: ce5c2251d70caf148bbad13bb99ebf54, type: 3}
 --- !u!4 &2132246253
@@ -7730,7 +7742,7 @@ Transform:
   m_GameObject: {fileID: 2132246251}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.86817, y: 1.27, z: 14.21389}
+  m_LocalPosition: {x: -16.62, y: 2.87, z: 2.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

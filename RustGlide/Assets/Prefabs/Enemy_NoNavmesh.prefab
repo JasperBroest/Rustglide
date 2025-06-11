@@ -152,10 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd231e2517ea4d947831fdaebcbb38d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionRadius: 15
+  VisionRadius: 25
   AttackRange: 8
   AttackSpeed: 1.5
-  AttackDamage: 0
+  AttackDamage: 20
   MaxHealth: 40
   CurrentHealth: 0
   maxSpeed: 2
@@ -170,7 +170,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   OldColor: {r: 0, g: 0, b: 0, a: 0}
-  agent: {fileID: 0}
   graphics: {fileID: 1701633289919133722}
 --- !u!1 &7182445497166036866
 GameObject:

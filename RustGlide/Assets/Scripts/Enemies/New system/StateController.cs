@@ -33,7 +33,6 @@ public class StateController : MonoBehaviour
     public LayerMask PlayerMask;
     public Color OldColor;
     public IState PreviousState;
-    public NavMeshAgent agent;
     public GameObject graphics;
 
     private void Start()
@@ -74,6 +73,14 @@ public class StateController : MonoBehaviour
         PreviousState = currentState;
         currentState = newState;
         currentState.OnEnter(this);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 3)
+        {
+            collision.gameObject.GetComponentInChildren<StaminaBar>().TakeDamage(AttackDamage);
+        }
     }
 }
 
