@@ -4,36 +4,18 @@ using UnityEngine.InputSystem;
 
 public class Gun : Weapon, IPlayerInput
 {
-    private bool TriggerPressed;
-
-    private void OnEnable()
-    {
-        Trigger.Enable();
-    }
-
-    public void RightTrigger(bool RState)
-    {
-        TriggerPressed = RState;
-    }
-
-    public void LeftTrigger(bool LState)
-    {
-
-    }
-
-
     private void Start()
     {
-        //GetInput();
+        GetInput();
         gunShotSource = GetComponent<AudioSource>();
-        GunShotParticle = GetComponentInChildren<ParticleSystem>();
+        gunShotParticle = GetComponentInChildren<ParticleSystem>();
         gunShotSource.clip = GunShotAudio;
     }
 
     private void Update()
     {
         Shoot();
-        if (Trigger.ReadValue<float>() == 0 && gunHeld)
+        if (LGripPressed && !LTriggerPressed || RGripPressed && !RTriggerPressed)
         {
             Animator.SetBool("Shooting", false);
             onCooldown = false;
@@ -42,10 +24,7 @@ public class Gun : Weapon, IPlayerInput
 
     private void GetInput()
     {
-        GameObject CurrentInput;
-
-        CurrentInput = GameObject.FindWithTag("PlayerInput");
+        GameObject CurrentInput = GameObject.FindWithTag("PlayerInput");
         CurrentInput.GetComponent<InputSubject>().AddObserver(this);
-
     }
 }

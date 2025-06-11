@@ -1,18 +1,14 @@
 using UnityEngine;
 
-public class Smg : Weapon
+public class Smg : Weapon, IPlayerInput
 {
     [SerializeField] private int FireRate;
 
-    private void OnEnable()
-    {
-        Trigger.Enable();
-    }
-
     private void Start()
     {
+        GetInput();
         gunShotSource = GetComponent<AudioSource>();
-        GunShotParticle = GetComponentInChildren<ParticleSystem>();
+        gunShotParticle = GetComponentInChildren<ParticleSystem>();
         cooldown = 1f / FireRate;
     }
 
@@ -26,5 +22,11 @@ public class Smg : Weapon
         {
             StartCoroutine(SetCooldown());
         }
+    }
+
+    private void GetInput()
+    {
+        GameObject CurrentInput = GameObject.FindWithTag("PlayerInput");
+        CurrentInput.GetComponent<InputSubject>().AddObserver(this);
     }
 }
