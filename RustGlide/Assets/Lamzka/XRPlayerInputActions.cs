@@ -108,6 +108,24 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""GripR"",
+                    ""type"": ""Button"",
+                    ""id"": ""2dd6e906-985a-49ac-961f-c0da75588350"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""GripL"",
+                    ""type"": ""Button"",
+                    ""id"": ""71741703-7e1d-4d6b-b132-af4d39b22a70"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -143,6 +161,28 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""TriggerL"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd5fa54d-de95-4395-9101-e554bcc0c8f7"",
+                    ""path"": ""<XRInputV1::Oculus::MetaQuestTouchPlusControllerOpenXR>{RightHand}/grippressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GripR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b778003b-2580-4dea-943d-893dc61ada3e"",
+                    ""path"": ""<XRInputV1::Oculus::MetaQuestTouchPlusControllerOpenXR>{LeftHand}/grippressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GripL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -153,6 +193,8 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_TriggerR = m_Player.FindAction("TriggerR", throwIfNotFound: true);
         m_Player_TriggerL = m_Player.FindAction("TriggerL", throwIfNotFound: true);
+        m_Player_GripR = m_Player.FindAction("GripR", throwIfNotFound: true);
+        m_Player_GripL = m_Player.FindAction("GripL", throwIfNotFound: true);
     }
 
     ~@XRPlayerInputActions()
@@ -235,6 +277,8 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_TriggerR;
     private readonly InputAction m_Player_TriggerL;
+    private readonly InputAction m_Player_GripR;
+    private readonly InputAction m_Player_GripL;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -254,6 +298,14 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/TriggerL".
         /// </summary>
         public InputAction @TriggerL => m_Wrapper.m_Player_TriggerL;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/GripR".
+        /// </summary>
+        public InputAction @GripR => m_Wrapper.m_Player_GripR;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/GripL".
+        /// </summary>
+        public InputAction @GripL => m_Wrapper.m_Player_GripL;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -286,6 +338,12 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
             @TriggerL.started += instance.OnTriggerL;
             @TriggerL.performed += instance.OnTriggerL;
             @TriggerL.canceled += instance.OnTriggerL;
+            @GripR.started += instance.OnGripR;
+            @GripR.performed += instance.OnGripR;
+            @GripR.canceled += instance.OnGripR;
+            @GripL.started += instance.OnGripL;
+            @GripL.performed += instance.OnGripL;
+            @GripL.canceled += instance.OnGripL;
         }
 
         /// <summary>
@@ -303,6 +361,12 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
             @TriggerL.started -= instance.OnTriggerL;
             @TriggerL.performed -= instance.OnTriggerL;
             @TriggerL.canceled -= instance.OnTriggerL;
+            @GripR.started -= instance.OnGripR;
+            @GripR.performed -= instance.OnGripR;
+            @GripR.canceled -= instance.OnGripR;
+            @GripL.started -= instance.OnGripL;
+            @GripL.performed -= instance.OnGripL;
+            @GripL.canceled -= instance.OnGripL;
         }
 
         /// <summary>
@@ -357,5 +421,19 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTriggerL(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "GripR" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGripR(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "GripL" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGripL(InputAction.CallbackContext context);
     }
 }
