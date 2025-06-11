@@ -61,7 +61,7 @@ public class Weapon : GunSubject
                 {
                     //StateController stateController = hit.collider.GetComponent<StateController>();
                     //stateController.ChangeState(stateController.HurtState);
-                    hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
+                    //hit.collider.GetComponent<StateControllerTemp>().ChangeState(hurtStateTemp();
                     gunHitSource.clip = EnemyHitAudio;
                 }
                 // if not then play normal hit sound

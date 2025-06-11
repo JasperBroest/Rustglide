@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class ChaseState : IState
 {
-    public float maxSpeed = 5f;
-    public float minSpeed = 3f;
+    
     public float maxForce = 4f;
     private Vector3 currentPosition;
     private Vector3 previousPosition;
     private Vector3 targetVelocity;
-
+    private float rotationSpeed = 160;
     private float predictionTime = 0.5f;
 
     public void OnEnter(StateController controller)
@@ -21,8 +20,9 @@ public class ChaseState : IState
 
     public void UpdateState(StateController controller)
     {
-        // If in attack range, switch state
-        if (Vector3.Distance(controller.transform.position, controller.Target.transform.position) <= controller.AttackRange)
+        // If in attack range AND we can see the player, switch state
+        bool distanceCheck = Vector3.Distance(controller.transform.position, controller.Target.transform.position) <= controller.AttackRange;
+        if (distanceCheck && CanSeeTarget(controller))
         {
             controller.ChangeState(controller.attackState);
             return;
@@ -32,11 +32,6 @@ public class ChaseState : IState
         previousPosition = currentPosition;
         currentPosition = controller.transform.position;
 
-        if (Vector3.Distance(previousPosition, currentPosition) < 0.01f)
-        {
-            Debug.Log("STUCK!!!!!!");
-        }
-
         // 1. get player velocity and get predicted position of player = target position
         Vector3 desiredVelocity = Pursue(controller, Vector3.zero);
 
@@ -45,10 +40,19 @@ public class ChaseState : IState
 
         // Calculate wanted velocity
         Vector3 avoidanceVector = GetAvoidanceVector(controller);
-        targetVelocity = avoidanceVector.normalized * maxForce;
 
         // Set velocity of enemy
-        controller.rb.linearVelocity = targetVelocity;
+        float rotationAmount = rotationSpeed * Time.deltaTime * Mathf.Deg2Rad;
+        targetVelocity = Vector3.RotateTowards(controller.rb.linearVelocity, avoidanceVector.normalized * maxForce, rotationAmount, 1000f);
+        
+    }
+
+    private bool CanSeeTarget(StateController controller)
+    {
+        Vector3 direction = (controller.Target.transform.position - controller.transform.position);
+        bool blocked = Physics.Raycast(controller.transform.position, direction, out var hit, controller.VisionRadius);
+        if (blocked && hit.collider.gameObject == controller.Target) return true;
+        return false ;
     }
 
     public void OnHurt(StateController controller) { }
@@ -68,11 +72,11 @@ public class ChaseState : IState
         float speed = desired.magnitude;
         
         // Caps speed when bigger than maxSpeed
-        if (speed > maxSpeed)
-            desired = desired.normalized * maxSpeed;
+        if (speed > controller.maxSpeed)
+            desired = desired.normalized * controller.maxSpeed;
 
-        if (speed < minSpeed)
-            desired = desired.normalized * maxSpeed * 2;
+        if (speed < controller.minSpeed)
+            desired = desired.normalized * controller.maxSpeed * 2;
 
         // Calculate steeringforce
         Vector3 steering = desired - controller.rb.linearVelocity;
@@ -83,8 +87,8 @@ public class ChaseState : IState
         if (desired.sqrMagnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(desired, Vector3.up);
-            controller.transform.rotation = Quaternion.Slerp(
-                controller.transform.rotation,
+            controller.graphics.transform.rotation = Quaternion.Slerp(
+                controller.graphics.transform.rotation,
                 targetRotation,
                 Time.deltaTime * 10f
             );
@@ -95,16 +99,25 @@ public class ChaseState : IState
 
     private Vector3 GetAvoidanceVector(StateController controller)
     {
-        int rayCount = 17;
-        float rayDistance = 2f;
-        float minimalRayWeight = 0.5f;
 
         Vector3 weightedAverageFreeRay = Vector3.zero;
 
         // Direction to target
         Vector3 startVector = (controller.Target.transform.position - controller.transform.position);
-        startVector.y += 0.5f;
-        startVector.Normalize();
+        weightedAverageFreeRay += RaysOnPlane(controller, weightedAverageFreeRay, new Vector3(startVector.x, 0f, startVector.z).normalized, Vector3.up);
+        weightedAverageFreeRay += RaysOnPlane(controller, weightedAverageFreeRay, new Vector3(0f, startVector.y, startVector.z).normalized, Vector3.right);
+        weightedAverageFreeRay += RaysOnPlane(controller, weightedAverageFreeRay, new Vector3(startVector.x, startVector.y, 0f).normalized, Vector3.forward);
+
+        weightedAverageFreeRay = weightedAverageFreeRay.normalized;
+        Debug.DrawRay(controller.transform.position, weightedAverageFreeRay * 5f, Color.blue);
+        return weightedAverageFreeRay;
+    }
+
+    private Vector3 RaysOnPlane(StateController controller, Vector3 weightedAverageFreeRay, Vector3 startVector, Vector3 rotationAxis)
+    {
+        int rayCount = 8;
+        float rayDistance = 3f;
+        float minimalRayWeight = 0.5f;
 
         // Shoots rays around enemy and when it hits an object returns force in opposite direction
         for (int i = 0; i < rayCount; i++)
@@ -114,25 +127,32 @@ public class ChaseState : IState
             // 180 = 0.5
             // 360 = 1
             float weight = minimalRayWeight +                 // Elke ray telt een beetje mee!
-                           Mathf.Abs(angle - 180f) / 180f;   // Hoever zit de ray qua graden van onze "main" ray af? (getal tussen 0 en 1)
-                            
-            Vector3 direction = Quaternion.Euler(0, angle, 0) * startVector;
+                           Mathf.Abs(180f - angle) / 180f;   // Hoever zit de ray qua graden van onze "main" ray af? (getal tussen 0 en 1)
+
+            // Rotation on the correct axis (up, right or forward) * the start vector, rotates the start vector the angle along the axis.
+            Vector3 direction = Quaternion.Euler(angle * rotationAxis) * startVector;
 
             RaycastHit hit;
             bool blocked = Physics.Raycast(controller.transform.position, direction, out hit, rayDistance);
             Debug.DrawRay(controller.transform.position, direction * (blocked ? (hit.distance) : rayDistance), blocked ? Color.red : Color.green);
-            if (blocked) continue;
-
-            weightedAverageFreeRay += direction * weight;
+            if (blocked)
+            {
+                // The higher the distance, the lower the weight should be because we are still far away from collision
+                // The lower the distance, the higher the weight because we are almost hitting something.
+                float distanceWeight = 1.0f - hit.distance / (float)rayDistance;
+                weightedAverageFreeRay -= direction * weight * distanceWeight;
+            }
+            else
+            {
+                weightedAverageFreeRay += direction * weight;
+            }
         }
 
-        weightedAverageFreeRay = weightedAverageFreeRay.normalized;
-        Debug.DrawRay(controller.transform.position, weightedAverageFreeRay * 5f, Color.blue);
-        return weightedAverageFreeRay; 
+        return weightedAverageFreeRay;
     }
 
     public void FixedUpdateState(StateController controller)
     {
-        
+        controller.rb.linearVelocity = targetVelocity;
     }
 }

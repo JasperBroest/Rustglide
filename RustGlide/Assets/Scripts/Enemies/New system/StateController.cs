@@ -20,6 +20,8 @@ public class StateController : MonoBehaviour
     public int AttackDamage;
     public int MaxHealth;
     public int CurrentHealth;
+    public float maxSpeed = 5f;
+    public float minSpeed = 3f;
 
     [HideInInspector]
     public int DamageTaken;
@@ -32,6 +34,7 @@ public class StateController : MonoBehaviour
     public Color OldColor;
     public IState PreviousState;
     public NavMeshAgent agent;
+    public GameObject graphics;
 
     private void Start()
     {
