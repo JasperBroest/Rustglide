@@ -12,7 +12,6 @@ public class Weapon : GunSubject
     [SerializeField] protected Animator Animator;
     [SerializeField] protected int Range;
 
-    public InputAction Trigger;
     public ProTubeSettings gunHaptic;
     public bool gunHeld = false;
 
@@ -21,10 +20,34 @@ public class Weapon : GunSubject
     protected float dmg = 10;
     protected AudioSource gunShotSource;
     protected AudioSource gunHitSource;
-    protected ParticleSystem gunHitparticle;
-    protected ParticleSystem GunShotParticle;
+    protected ParticleSystem gunHitParticle;
+    protected ParticleSystem gunShotParticle;
     protected float cooldown = 0f;
     protected bool onCooldown = false;
+    protected bool RTriggerPressed;
+    protected bool LTriggerPressed;
+    protected bool RGripPressed;
+    protected bool LGripPressed;
+
+    public void RightTrigger(bool RState)
+    {
+        RTriggerPressed = RState;
+    }
+
+    public void LeftTrigger(bool LState)
+    {
+        LTriggerPressed = LState;
+    }
+
+    public void RightGrip(bool RGState)
+    {
+        RGripPressed = RGState;
+    }
+
+    public void LeftGrip(bool LGState)
+    {
+        LGripPressed = LGState;
+    }
 
     private void FixedUpdate()
     {
@@ -35,14 +58,14 @@ public class Weapon : GunSubject
     protected void Shoot()
     {
         //if you click the trigger, hold the gun and it isn't on cooldown plays particle, sound and haptic feedback
-        if (Trigger.ReadValue<float>() > 0.1 && gunHeld && !onCooldown)
+        if(LGripPressed && LTriggerPressed && gunHeld && !onCooldown || RGripPressed && RTriggerPressed && gunHeld && !onCooldown)
         {
             onCooldown = true;
             if (Animator != null)
             {
                 Animator.SetBool("Shooting", true);
             }
-            GunShotParticle.Play();
+            gunShotParticle.Play();
             gunShotSource.PlayOneShot(GunShotAudio);
             ForceTubeVRInterface.Shoot(gunHaptic);
 
@@ -54,7 +77,7 @@ public class Weapon : GunSubject
                 SpawnedObject.transform.parent = null;
                 SpawnedObject.transform.position = hit.point;
                 gunHitSource = SpawnedObject.GetComponent<AudioSource>();
-                gunHitparticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
+                gunHitParticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
 
                 //if the thing you hit is an enemy do damage to it and play enemy hit sound
                 if (hit.collider.CompareTag("Enemy"))
@@ -69,7 +92,7 @@ public class Weapon : GunSubject
                 {
                     gunHitSource.clip = GunHitAudio;
                 }
-                gunHitparticle.Play();
+                gunHitParticle.Play();
                 gunHitSource.PlayOneShot(gunHitSource.clip);
 
                 //delete the spawned object with the audio and hit sound after a couple seconds
@@ -92,7 +115,7 @@ public class Weapon : GunSubject
     //delete the spawned object with the audio and hit sound after a couple seconds
     public IEnumerator DeleteSource(GameObject gameObject)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject.gameObject);
     }
 
