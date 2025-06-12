@@ -28,6 +28,7 @@ public class ChooseMovement : MonoBehaviour
             AbilityManager.Instance.ChosenMovement = ChosenMovement;
             XrOrigin.GetComponentInChildren<StaminaBar>().enabled = true;
             this.gameObject.SetActive(false);
+            if(GameObject.Find("ChooseGrab").gameObject != null)
             GameObject.Find("ChooseGrab").gameObject.SetActive(false);
         }
     }
