@@ -1,4 +1,16 @@
-﻿public partial class AblilityAbstract //Ability_Monkey
+﻿using UnityEngine;
+
+public partial class AbilityObject
+{
+    [Space(15)] [Header("Monkey Movement")] [Range(0, 10)]
+    public float JumpMultiplyerMultiplyer;
+
+    [Range(0, 10)] public float MaxJumpSpeedMultiplyer;
+    public bool DoesEffectMonkey => JumpMultiplyerMultiplyer > 0 || JumpMultiplyerMultiplyer > 0;
+}
+
+
+public partial class AblilityAbstract //Ability_Monkey
 {
     void ApplyMonkeyAbility()
     {
@@ -10,7 +22,16 @@
         AbilityManager.Instance.MonkeyMaxJumpSpeed += MaxJumpSpeedMultiplyer;
 
 
-        affectedStats["JumpMultiplyerMultiplyer"] = JumpMultiplyerMultiplyer;
-        affectedStats["MaxJumpSpeedMultiplyer"] = MaxJumpSpeedMultiplyer;
+        _affectedStats["JumpMultiplyerMultiplyer"] = JumpMultiplyerMultiplyer;
+        _affectedStats["MaxJumpSpeedMultiplyer"] = MaxJumpSpeedMultiplyer;
+    }
+
+    public void RemoveMonkeyAbility()
+    {
+        AbilityManager.Instance.MonkeyJump -= _affectedStats["JumpMultiplyerMultiplyer"];
+        AbilityManager.Instance.MonkeyMaxJumpSpeed -= _affectedStats["MaxJumpSpeedMultiplyer"];
+
+        _affectedStats.Remove("JumpMultiplyerMultiplyer");
+        _affectedStats.Remove("MaxJumpSpeedMultiplyer");
     }
 }

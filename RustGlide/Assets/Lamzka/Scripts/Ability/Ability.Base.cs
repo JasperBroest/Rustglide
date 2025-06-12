@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public abstract partial class AblilityAbstract : MonoBehaviour
 
     [Header("Scriptable Object")] public AbilityObject SO;
 
-    private Dictionary<string, float> affectedStats = new Dictionary<string, float>();
+    private Dictionary<string, float> _affectedStats = new Dictionary<string, float>();
 
 
     //Update for testing purposes
@@ -41,166 +42,53 @@ public abstract partial class AblilityAbstract : MonoBehaviour
 
         if (!SO.HasEffectDuration)
         {
-            ApplyOrRemoveStatBoost(false);
+            Debug.Log("NoEffectDuration");
+            ApplyStatBoost(false);
             yield break;
         }
 
-        ApplyOrRemoveStatBoost(false);
+        Debug.Log("applied ability");
+        
+        ApplyStatBoost(false);
+        
+        Debug.Log(SO.EffectDuration);
+        
+       
         yield return new WaitForSeconds(SO.EffectDuration);
-        ApplyOrRemoveStatBoost(true);
+        
+        
+        Debug.Log("removed ability");
+        ApplyStatBoost(true);
 
-        if (SO.HasDownside &&
-            !SO.DoesDownsideHaveDuration)
-        {
-            yield return new WaitForSeconds(SO.EffectDuration);
-        }
+        // if (SO.HasDownside &&
+        //     !SO.DoesDownsideHaveDuration)
+        // {
+        //     yield return new WaitForSeconds(SO.EffectDuration);
+        // }
     }
 
-    private void ApplyStatBoost()
+    private void ApplyStatBoost(bool Remove)
     {
-        if (SO.HasStaminaEffect)
-            ApplyStaminaEffect();
+        ApplyOrRemove(Remove, SO.HasStaminaEffect, ApplyStaminaEffect, RemoveSpeedBoost);
 
-        if (SO.HasWeaponMultipliers)
-            ApplyWeaponEffect();
+        ApplyOrRemove(Remove, SO.HasWeaponMultipliers, ApplyWeaponEffect, RemoveWeaponEffect);
 
-        if (SO.DoesEffectStandard)
-            ApplyStandardSpeed();
+        ApplyOrRemove(Remove, SO.DoesEffectStandard, ApplyStandardSpeed, RemoveWeaponEffect);
 
-        if (SO.DoesEffectDash)
-            ApplyDashAbility();
+        // ApplyOrRemove(Remove, SO.DoesEffectDash, ApplyDashAbility, null); // Uncomment if needed
 
-        if (SO.DoesEffectBoost)
-            ApplyBoosterAbility();
+        ApplyOrRemove(Remove, SO.DoesEffectBoost, ApplyBoosterAbility, RemoveBoosterAbility);
 
-        if (SO.DoesEffectMonkey)
-            ApplyMonkeyAbility();
+        ApplyOrRemove(Remove, SO.DoesEffectMonkey, ApplyMonkeyAbility, RemoveMonkeyAbility);
     }
 
-    private void ApplyOrRemoveStatBoost(bool ShouldRemoveStats)
+
+    private void ApplyOrRemove(bool remove, bool hasEffect, Action apply, Action removeAction)
     {
-        if (SO.HasStaminaEffect)
-        {
-            float affectedAmount;
-
-            if (ShouldRemoveStats)
-            {
-            }
-            else
-            {
-            }
-        }
-
-
-        if (SO.HasWeaponMultipliers)
-        {
-            float DamageMultiplyer;
-            float WeaponSpeedMultiplyer;
-
-            if (ShouldRemoveStats)
-            {
-            }
-            else
-            {
-            }
-        }
-
-        if (SO.DoesEffectStandard)
-        {
-            float affectedAmount;
-
-
-            if (ShouldRemoveStats)
-            {
-            }
-            else
-            {
-            }
-        }
-
-        if (SO.DoesEffectDash)
-        {
-            float CooldownTimeMultiplyer;
-            float DashSpeedMultiplyer;
-
-            if (ShouldRemoveStats)
-            {
-                AbilityManager.Instance.StandardSpeed -= affectedStats["CooldownTimeMultiplyer"];
-                AbilityManager.Instance.StandardSpeed -= affectedStats["CooldownTimeMultiplyer"];
-
-                affectedStats.Remove("CooldownTimeMultiplyer");
-                affectedStats.Remove("DashSpeedMultiplyer");
-            }
-            else
-            {
-            }
-        }
-
-        if (SO.DoesEffectBoost)
-        {
-            float affectedAmount;
-
-            if (ShouldRemoveStats)
-            {
-                AbilityManager.Instance.BoosterSpeed -= affectedStats["affectedAmount"];
-
-                affectedStats.Remove("affectedAmount");
-            }
-            else
-            {
-            }
-        }
-
-        if (SO.DoesEffectMonkey)
-        {
-            float JumpMultiplyerMultiplyer;
-            float MaxJumpSpeedMultiplyer;
-
-            if (ShouldRemoveStats)
-            {
-                AbilityManager.Instance.MonkeyJump -= affectedStats["JumpMultiplyerMultiplyer"];
-                AbilityManager.Instance.MonkeyMaxJumpSpeed -= affectedStats["MaxJumpSpeedMultiplyer"];
-
-                affectedStats.Remove("JumpMultiplyerMultiplyer");
-                affectedStats.Remove("MaxJumpSpeedMultiplyer");
-            }
-            else
-            {
-            }
-        }
-    }
-
-    private void ApplyOrRemoveDownsides()
-    {
-        if (SO.DownsideHasStaminaEffect)
-        {
-            float affectedAmount;
-        }
-
-        if (SO.DoesDamageHaveDownside)
-        {
-            float affectedAmount;
-        }
-
-        if (SO.DoesStandardHaveDownside)
-        {
-            float affectedAmount;
-        }
-
-        if (SO.DoesDashHaveDownside)
-        {
-            float affectedAmount;
-        }
-
-        if (SO.DoesBoosterHaveDownside)
-        {
-            float affectedAmount;
-        }
-
-        if (SO.DoesMonkeyMovementHaveDownside)
-        {
-            float affectedAmount;
-        }
+        if (!remove && hasEffect)
+            apply();
+        else if (remove)
+            removeAction?.Invoke(); // handles potential null remove actions
     }
 
     private float CalculateProcentage(float CurrentAmount, float MultiplyAmount)

@@ -7,6 +7,8 @@ public partial class AbilityObject
 
     [Space(15)] [Range(0, 10)] public float WeaponSpeedMultiplyer;
     public bool HasWeaponMultipliers => DamageMultiplyer > 0 || WeaponSpeedMultiplyer > 0;
+    
+    
 }
 
 
@@ -25,16 +27,16 @@ public partial class AblilityAbstract // Weapon
         AbilityManager.Instance.WeaponDamage += weaponSpeedMultiplier;
 
 
-        affectedStats[damageMultiplierKey] = damageMultiplier;
-        affectedStats[speedMultiplierKey] = weaponSpeedMultiplier;
+        _affectedStats["DamageMultiplyer"] = damageMultiplier;
+        _affectedStats["WeaponSpeedMultiplyer"] = weaponSpeedMultiplier;
     }
 
     private void RemoveWeaponEffect()
     {
-        AbilityManager.Instance.WeaponDamage -= affectedStats["DamageMultiplyer"];
-        AbilityManager.Instance.ShootingCooldown -= affectedStats["WeaponSpeedMultiplyer"];
+        AbilityManager.Instance.WeaponDamage -= _affectedStats["DamageMultiplyer"];
+        AbilityManager.Instance.ShootingCooldown -= _affectedStats["WeaponSpeedMultiplyer"];
 
-        affectedStats.Remove("DamageMultiplyer");
-        affectedStats.Remove("WeaponSpeedMultiplyer");
+        _affectedStats.Remove("DamageMultiplyer");
+        _affectedStats.Remove("WeaponSpeedMultiplyer");
     }
 }

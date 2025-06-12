@@ -15,12 +15,14 @@ public partial class AblilityAbstract //Ability_StandardSpeed
         float affectedAmount = CalculateProcentage(AbilityManager.Instance.StandardSpeed, SO.StandardSpeedMultiplyer);
         AbilityManager.Instance.StandardSpeed += affectedAmount;
 
-        affectedStats["StandardSpeed"] = affectedAmount;
+        _affectedStats["StandardSpeed"] = affectedAmount;
+        Debug.Log("Applyed sped");
     }
 
     private void  RemoveSpeedBoost()
     {
-        AbilityManager.Instance.StandardSpeed -= affectedStats["StandardSpeed"];
-        affectedStats.Remove("StandardSpeed");
+        AbilityManager.Instance.StandardSpeed -= _affectedStats["StandardSpeed"];
+        _affectedStats.Remove("StandardSpeed");
+        Debug.Log("removed sped");
     }
 }

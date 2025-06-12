@@ -12,12 +12,17 @@ public partial class AblilityAbstract // Stamina
     {
         float affectedAmount = CalculateProcentage(AbilityManager.Instance.Stamina, SO.StaminaMultiplyer);
         AbilityManager.Instance.Stamina += affectedAmount;
-        affectedStats["Stamina"] = affectedAmount;
+        _affectedStats["Stamina"] = affectedAmount;
+        
     }
 
     private void RemoveStaminaEffect()
     {
-        AbilityManager.Instance.Stamina -= affectedStats["Stamina"];
-        affectedStats.Remove("Stamina"); // Clean up entry
+        AbilityManager.Instance.Stamina -= _affectedStats["Stamina"];
+        _affectedStats.Remove("Stamina"); // Clean up entry
+        
+        
     }
+    
+    
 }

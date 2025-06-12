@@ -2,6 +2,9 @@
 
 public partial class AbilityObject
 {
+    [Space(15)] [Header("Dash Movement")] [Range(0, 10)]
+    public float CooldownTimeMultiplyer;
+
     [Range(0, 10)] public float DashSpeedMultiplyer;
     public bool DoesEffectDash => CooldownTimeMultiplyer > 0 || DashSpeedMultiplyer > 0;
 }
@@ -17,10 +20,8 @@ public partial class AblilityAbstract //Ability_Dash
         float dashSpeedMultiplyer = CalculateProcentage(AbilityManager.Instance.DashSpeed, SO.DashSpeedMultiplyer);
         AbilityManager.Instance.DashSpeed += dashSpeedMultiplyer;
 
-        affectedStats["CooldownTimeMultiplyer"] = cooldownTimeMultiplyer;
+        _affectedStats["CooldownTimeMultiplyer"] = cooldownTimeMultiplyer;
 
-        affectedStats["CooldownTimeMultiplyer"] = dashSpeedMultiplyer;
-        
-        
+        _affectedStats["CooldownTimeMultiplyer"] = dashSpeedMultiplyer;
     }
 }

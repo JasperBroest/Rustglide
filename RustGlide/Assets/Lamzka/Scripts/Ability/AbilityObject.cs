@@ -4,36 +4,11 @@ using UnityEngine;
 [CreateAssetMenu]
 public partial class AbilityObject : ScriptableObject
 {
-    //what the heeeeeeeellll
-    //IM GOING TO FUCKING KILL MYSELF
-    //THIS SCRIPT FUCKING SUCKS BALLS
-
-    /*public bool HasEffect2
-    {
-        get
-        {
-            return Mathf.Approximately(EffectDuration, 0);
-        }
-    }*/
-
     [Header("===Normal Item Settings===")] [Range(0, 70)]
     public float EffectDuration;
 
     public bool HasEffectDuration => EffectDuration > 0;
 
-    [Space(15)] [Header("Dash Movement")] [Range(0, 10)]
-    public float CooldownTimeMultiplyer;
-
-    
-
-    
-    public bool DoesEffectBoost => SetBoosterSpeedMultiplyer > 0;
-
-    [Space(15)] [Header("Monkey Movement")] [Range(0, 10)]
-    public float JumpMultiplyerMultiplyer;
-
-    [Range(0, 10)] public float MaxJumpSpeedMultiplyer;
-    public bool DoesEffectMonkey => JumpMultiplyerMultiplyer > 0 || JumpMultiplyerMultiplyer > 0;
 
     [Space(50)] [Header("===Downside Settings===")]
     public bool HasDownside;
