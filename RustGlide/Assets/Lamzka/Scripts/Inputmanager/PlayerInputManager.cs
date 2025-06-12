@@ -14,6 +14,12 @@ public class PlayerInputManager : InputSubject
 
         controls.Player.TriggerL.performed += OnTriggerL;
         controls.Player.TriggerL.canceled += OnTriggerL;
+
+        controls.Player.GripR.performed += OnGripR;
+        controls.Player.GripR.canceled += OnGripR;
+
+        controls.Player.GripL.performed += OnGripL;
+        controls.Player.GripL.canceled += OnGripL;
     }
 
     private void OnEnable()
@@ -32,13 +38,10 @@ public class PlayerInputManager : InputSubject
         if (context.performed)
         {
             NotifyTriggerRValue(true);
-            Debug.Log("true");
-
         }
         else if (context.canceled)
         {
             NotifyTriggerRValue(false);
-            Debug.Log("false");
         }
     }
 
@@ -51,6 +54,30 @@ public class PlayerInputManager : InputSubject
         else if (context.canceled)
         {
             NotifyTriggerLValue(false);
+        }
+    }
+
+    public void OnGripR(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            NotifyGripRValue(true);
+        }
+        else if (context.canceled)
+        {
+            NotifyGripRValue(false);
+        }
+    }
+
+    public void OnGripL(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            NotifyGripLValue(true);
+        }
+        else if (context.canceled)
+        {
+            NotifyGripLValue(false);
         }
     }
 }

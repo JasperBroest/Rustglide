@@ -9,24 +9,40 @@ public class StateController : MonoBehaviour
     public IdleState idleState = new IdleState();
     public PatrolState patrolState = new PatrolState();
     public ChaseState chaseState = new ChaseState();
-    public HurtState HurtState = new HurtState();
+    public HurtState hurtState = new HurtState();
     public AttackState attackState = new AttackState();
 
     // Other variables
-    public bool FoundTarget;
-    public LayerMask PlayerMask;
+    [Header("Settings")]
     public float VisionRadius;
     public float AttackRange;
+    public float AttackSpeed;
     public int AttackDamage;
-    public GameObject Target;
-    public NavMeshAgent agent;
+    public int MaxHealth;
+    public int CurrentHealth;
+    public float maxSpeed = 5f;
+    public float minSpeed = 3f;
 
+    [HideInInspector]
+    public int DamageTaken;
+    public bool FoundTarget;
+    public GameObject Target;
+    public Rigidbody rb;
+    public Rigidbody TargetRigidbody;
+    public MeshRenderer MeshRenderer;
+    public LayerMask PlayerMask;
+    public Color OldColor;
+    public IState PreviousState;
+    public GameObject graphics;
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        MeshRenderer = GetComponentInChildren<MeshRenderer>();
+        rb = GetComponent<Rigidbody>();
 
         ChangeState(idleState);
+
+        CurrentHealth = MaxHealth;
     }
 
     void Update()
@@ -36,13 +52,15 @@ public class StateController : MonoBehaviour
             currentState.UpdateState(this);
         }
 
-        //Debug.Log(currentState);
+        Debug.Log(currentState);
+    }
 
-        if (Vector3.Distance(transform.position, Target.transform.position) <= 1.4f)
+    private void FixedUpdate()
+    {
+        if (currentState != null)
         {
-            agent.ResetPath();
+            currentState.FixedUpdateState(this);
         }
-
     }
 
     public void ChangeState(IState newState)
@@ -51,8 +69,18 @@ public class StateController : MonoBehaviour
         {
             currentState.OnExit(this);
         }
+
+        PreviousState = currentState;
         currentState = newState;
         currentState.OnEnter(this);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 3)
+        {
+            collision.gameObject.GetComponentInChildren<StaminaBar>().TakeDamage(AttackDamage);
+        }
     }
 }
 
@@ -62,7 +90,10 @@ public interface IState
 
     public void UpdateState(StateController controller);
 
+    public void FixedUpdateState(StateController controller);
+
     public void OnHurt(StateController controller);
 
     public void OnExit(StateController controller);
 }
+

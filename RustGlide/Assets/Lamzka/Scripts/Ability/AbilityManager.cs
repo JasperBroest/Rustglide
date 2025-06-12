@@ -1,6 +1,7 @@
 using Unity.XR.CoreUtils;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -57,7 +58,17 @@ public class AbilityManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private void Update()
+    private void OnEnable() // Or Awake, Start, etc.
+    {
+        SceneManager.activeSceneChanged += OnSceneChanged;
+    }
+
+    private void OnDisable() // To prevent memory leaks, unsubscribe when disabled
+    {
+        SceneManager.activeSceneChanged -= OnSceneChanged;
+    }
+
+    private void OnSceneChanged(Scene currentScene, Scene nextScene)
     {
         if (HasChosen)
         {
@@ -73,9 +84,5 @@ public class AbilityManager : MonoBehaviour
                 XrOrigin.SetActive(false);
             }
         }
-
-        GameObject.FindGameObjectWithTag("PlayerMoveObject").GetComponent<DynamicMoveProvider>().moveSpeed = StandardSpeed;
-
-
     }
 }

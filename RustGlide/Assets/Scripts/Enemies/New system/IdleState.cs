@@ -6,7 +6,6 @@ public class IdleState : IState
     public void OnEnter(StateController controller)
     {
         // Play idle animation
-
     }
 
     public void UpdateState(StateController controller)
@@ -18,10 +17,10 @@ public class IdleState : IState
         {
             GameObject potentialTarget = sphere[0].gameObject;
 
-            // Calculate the direction vector correctly
+            // Calculate the direction vector
             Vector3 direction = (potentialTarget.transform.position - controller.transform.position).normalized;
 
-            // Perform the raycast
+            // Perform raycast
             RaycastHit hit;
             if (Physics.Raycast(controller.transform.position, direction, out hit, controller.VisionRadius))
             {
@@ -29,11 +28,12 @@ public class IdleState : IState
                 {
                     controller.FoundTarget = true;
                     controller.Target = hit.collider.gameObject;
+                    controller.TargetRigidbody = controller.Target.GetComponent<Rigidbody>();
                 }               
             }
 
-            // Visualize the raycast
-            Debug.DrawLine(controller.transform.position, controller.transform.position + direction * 10f, Color.red);
+            // Visualize raycast
+            //Debug.DrawLine(controller.transform.position, controller.transform.position + direction * 10f, Color.red);
         }
         #endregion
 
@@ -56,5 +56,10 @@ public class IdleState : IState
     private IEnumerator PatrolCooldown()
     {
         yield return new WaitForSeconds(5f);
+    }
+
+    public void FixedUpdateState(StateController controller)
+    {
+        return;
     }
 }

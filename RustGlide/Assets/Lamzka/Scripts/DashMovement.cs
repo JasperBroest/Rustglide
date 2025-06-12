@@ -1,15 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class DashMovement : MonoBehaviour, IPlayerInput
+public class DashMovement : MonoBehaviour/*, IPlayerInput*/
 {
-    [Header("Coolcown")]
-    public float CoolDownDuration;
-    public bool IsOnCooldown;
-
-
     [Header("Dependencys")]
     public GameObject CubeRight;
     public GameObject CubeLeft;
@@ -43,45 +35,64 @@ public class DashMovement : MonoBehaviour, IPlayerInput
     public void RightTrigger(bool RState)
     {
         IsRightTriggerPressed = RState;
-        Debug.Log(RState + "Right");
     }
     public void LeftTrigger(bool LState)
     {
         IsLeftTriggerPressed = LState;
-        Debug.Log(LState + "Left");
+    }
+    public void RightGrip(bool RGState)
+    {
+        
+    }
+
+    public void LeftGrip(bool LGState)
+    {
+        
     }
 
     private void Start()
     {
         AudioSource.clip = ThrusterSound;
-        /* GetGun();*/
-        GetInput();
+        /*  GetGun();*/
+        //GetInput();
     }
 
     void Update()
     {
         if (IsRightTriggerPressed)
         {
-            
             AddForceToCubeRightDirection();
         }
-       
+        else if (!IsRightTriggerPressed && AudioSource.isPlaying)
+        {
+            StopNoise();
+        }
 
         if (IsLeftTriggerPressed)
         {
             AddForceToCubeLeftDirection();
 
         }
-        
+        else if (!IsLeftTriggerPressed && AudioSource.isPlaying)
+        {
+            StopNoise();
+        }
+        if (!IsLeftTriggerPressed && isGrounded)
+        {
+            CheckForSlow();
+        }
     }
 
     void AddForceToCubeRightDirection()
     {
-       
+        if (!isGunHeld)
+        {
             if (!AudioSource.isPlaying)
                 AudioSource.PlayOneShot(ThrusterSound);
-        if (!IsOnCooldown)
+
             PlayerRigidbody.AddForce(CubeRight.transform.forward * ThrustPower);
+        }
+
     }
     void AddForceToCubeLeftDirection()
     {
@@ -90,8 +101,7 @@ public class DashMovement : MonoBehaviour, IPlayerInput
         {
             if (!AudioSource.isPlaying)
                 AudioSource.PlayOneShot(ThrusterSound);
-            if (!IsOnCooldown)
-                PlayerRigidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
+            PlayerRigidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
         }
 
     }
@@ -101,20 +111,44 @@ public class DashMovement : MonoBehaviour, IPlayerInput
         AudioSource.Stop();
     }
 
-   
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            CheckForSlow();
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+
+    private void CheckForSlow()
+    {
+        if (PlayerRigidbody.linearVelocity.x >= 3 || PlayerRigidbody.linearVelocity.x <= -3 || PlayerRigidbody.linearVelocity.z >= 3 || PlayerRigidbody.linearVelocity.z <= -3 && isGrounded)
+        {
+            PlayerRigidbody.AddForce(-PlayerRigidbody.linearVelocity.x, 0, -PlayerRigidbody.linearVelocity.z);
+            PlayerRigidbody.linearVelocity = PlayerRigidbody.linearVelocity / 2;
+
+        }
+    }
+
+    /*private void GetGun()
+    {
+        GameObject.FindWithTag("Gun").GetComponent<GunSubject>().AddObserver(this);
+    }*/
 
     private void GetInput()
     {
         GameObject CurrentInput;
 
         CurrentInput = GameObject.FindWithTag("PlayerInput");
-        CurrentInput.GetComponent<InputSubject>().AddObserver(this);
+        //CurrentInput.GetComponent<InputSubject>().AddObserver(this);
 
-    }
-
-    public IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(CoolDownDuration);
-        IsOnCooldown = true;
     }
 }
