@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb55de007b3abbe4195575ccf4541cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaLossSpeed: 0
+  characterVelocityMult: 0.5
+  IsPlayerDead: 0
   stamina: 0
   velocity: 0
-  staminaLossSpeed: 0

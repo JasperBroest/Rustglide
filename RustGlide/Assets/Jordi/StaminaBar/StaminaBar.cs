@@ -17,7 +17,7 @@ public class StaminaBar : MonoBehaviour
 
     private int staminaLoss;
     private Vector3 vectorVelocity;
-    private float velocitySpeed;
+    [SerializeField][Range(0, 10)] private float velocitySpeed;
     [SerializeField] private float velocity;
     private XROrigin XrOrigin;
     private Vector3 previousPosition;
@@ -39,16 +39,6 @@ public class StaminaBar : MonoBehaviour
     private void Start()
     {
         stamina = 100;
-        if (XrOrigin.name == "Gorilla Rig")
-        {
-            StoreStamina.instance.staminaLevelMultiplier = StoreStamina.instance.staminaLevelMultiplier - 0.3f;
-            staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
-            velocitySpeed = 4;
-        }
-        else
-        {
-            velocitySpeed = 4.5f;
-        }
     }
 
     private void Update()
@@ -71,7 +61,8 @@ public class StaminaBar : MonoBehaviour
             if (velocity < velocitySpeed)
             {
                 staminaLoss = 6 - Mathf.CeilToInt(velocity);
-                stamina -= (staminaLoss * staminaLossSpeed) / 20f;
+                float lossSpeed = (staminaLoss * staminaLossSpeed) / 20f;
+                stamina -= lossSpeed;
             }
             else if (stamina <= 100)
             {
