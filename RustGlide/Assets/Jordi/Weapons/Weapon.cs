@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class Weapon : GunSubject
 {
@@ -21,7 +22,7 @@ public class Weapon : GunSubject
     protected AudioSource gunShotSource;
     protected AudioSource gunHitSource;
     protected ParticleSystem gunHitParticle;
-    protected ParticleSystem gunShotParticle;
+    protected VisualEffect gunShotParticle;
     protected float cooldown = 0f;
     protected bool onCooldown = false;
     protected bool RTriggerPressed;
