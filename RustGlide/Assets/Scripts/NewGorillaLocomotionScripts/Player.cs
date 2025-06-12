@@ -104,8 +104,10 @@
             return transformToModify.position + transformToModify.rotation * offsetVector;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
+            float dt = Time.fixedDeltaTime;
+
             bool leftHandColliding = false;
             bool rightHandColliding = false;
             Vector3 finalPosition;
@@ -118,7 +120,7 @@
 
             //left hand
 
-            Vector3 distanceTraveled = CurrentLeftHandPosition() - lastLeftHandPosition + Vector3.down * 2f * 9.8f * Time.deltaTime * Time.deltaTime;
+            Vector3 distanceTraveled = CurrentLeftHandPosition() - lastLeftHandPosition + Vector3.down * 2f * 9.8f * dt * dt;
 
             if (IterativeCollisionSphereCast(lastLeftHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true))
             {
@@ -138,7 +140,7 @@
 
             //right hand
 
-            distanceTraveled = CurrentRightHandPosition() - lastRightHandPosition + Vector3.down * 2f * 9.8f * Time.deltaTime * Time.deltaTime;
+            distanceTraveled = CurrentRightHandPosition() - lastRightHandPosition + Vector3.down * 2f * 9.8f * dt * dt;
 
             if (IterativeCollisionSphereCast(lastRightHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true))
             {
@@ -253,7 +255,9 @@
 
             wasLeftHandTouching = leftHandColliding;
             wasRightHandTouching = rightHandColliding;
+
         }
+
 
         private bool IterativeCollisionSphereCast(Vector3 startPosition, float sphereRadius, Vector3 movementVector, float precision, out Vector3 endPosition, bool singleHand)
         {
@@ -367,7 +371,7 @@
         {
             velocityIndex = (velocityIndex + 1) % velocityHistorySize;
             Vector3 oldestVelocity = velocityHistory[velocityIndex];
-            currentVelocity = (transform.position - lastPosition) / Time.deltaTime;
+            currentVelocity = (transform.position - lastPosition) / Time.fixedDeltaTime;
             denormalizedVelocityAverage += (currentVelocity - oldestVelocity) / (float)velocityHistorySize;
             velocityHistory[velocityIndex] = currentVelocity;
             lastPosition = transform.position;
