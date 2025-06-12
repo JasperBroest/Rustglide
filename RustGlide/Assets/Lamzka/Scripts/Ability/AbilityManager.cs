@@ -58,12 +58,12 @@ public class AbilityManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private void OnEnable() // Or Awake, Start, etc.
+    private void OnEnable()
     {
         SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
-    private void OnDisable() // To prevent memory leaks, unsubscribe when disabled
+    private void OnDisable()
     {
         SceneManager.activeSceneChanged -= OnSceneChanged;
     }

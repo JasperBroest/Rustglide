@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class Gun : Weapon, IPlayerInput
 {
@@ -8,7 +9,7 @@ public class Gun : Weapon, IPlayerInput
     {
         GetInput();
         gunShotSource = GetComponent<AudioSource>();
-        gunShotParticle = GetComponentInChildren<ParticleSystem>();
+        gunShotParticle = GetComponentInChildren<VisualEffect>();
         gunShotSource.clip = GunShotAudio;
     }
 

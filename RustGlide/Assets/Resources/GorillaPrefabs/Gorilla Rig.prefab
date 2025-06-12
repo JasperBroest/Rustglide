@@ -1256,6 +1256,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 430285557519011102}
     m_Modifications:
+    - target: {fileID: 1733846745988359746, guid: 448d6d24ddfc72f4182cc0c7dda896bc, type: 3}
+      propertyPath: YModify
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733846745988359746, guid: 448d6d24ddfc72f4182cc0c7dda896bc, type: 3}
+      propertyPath: HeadRotation
+      value: 
+      objectReference: {fileID: 430285556866155478}
     - target: {fileID: 6011097543857852871, guid: 448d6d24ddfc72f4182cc0c7dda896bc, type: 3}
       propertyPath: m_Name
       value: Holster Offset
@@ -1361,6 +1369,14 @@ PrefabInstance:
     - target: {fileID: 5713768421848799006, guid: fea60e7457f16bb46955f9aa0d5e5e75, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909276889739390753, guid: fea60e7457f16bb46955f9aa0d5e5e75, type: 3}
+      propertyPath: velocitySpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909276889739390753, guid: fea60e7457f16bb46955f9aa0d5e5e75, type: 3}
+      propertyPath: characterVelocityMult
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
