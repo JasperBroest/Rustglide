@@ -16,7 +16,7 @@ public class Gun : Weapon, IPlayerInput
     private void Update()
     {
         Shoot();
-        if (LGripPressed && !LTriggerPressed || RGripPressed && !RTriggerPressed)
+        if (gunHoldingHand == Hand.Left && !LTriggerPressed && onCooldown || gunHoldingHand == Hand.Right && !RTriggerPressed && onCooldown)
         {
             Animator.SetBool("Shooting", false);
             onCooldown = false;

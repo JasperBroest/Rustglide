@@ -1277,6 +1277,10 @@ PrefabInstance:
       propertyPath: HeadRotation
       value: 
       objectReference: {fileID: 430285556866155478}
+    - target: {fileID: 3506362677744640982, guid: 448d6d24ddfc72f4182cc0c7dda896bc, type: 3}
+      propertyPath: m_TagString
+      value: GunHolster
+      objectReference: {fileID: 0}
     - target: {fileID: 6011097543857852871, guid: 448d6d24ddfc72f4182cc0c7dda896bc, type: 3}
       propertyPath: m_Name
       value: Holster Offset

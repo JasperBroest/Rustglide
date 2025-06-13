@@ -2,6 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+
+public enum Hand { Left, Right, None }
 
 public class Weapon : GunSubject
 {
@@ -15,6 +20,7 @@ public class Weapon : GunSubject
 
     public ProTubeSettings gunHaptic;
     public bool gunHeld = false;
+    public Hand gunHoldingHand = Hand.None;
 
     protected bool cooldownCoroutineRunning = false;
     protected int HandsHeld = 0;
@@ -27,8 +33,24 @@ public class Weapon : GunSubject
     protected bool onCooldown = false;
     protected bool RTriggerPressed;
     protected bool LTriggerPressed;
-    protected bool RGripPressed;
-    protected bool LGripPressed;
+    protected XRBaseInteractor currentInteractor;
+    private XRGrabInteractable grab;
+
+    private void Awake()
+    {
+        grab = GetComponent<XRGrabInteractable>();
+        grab.selectEntered.AddListener(OnSelectEntered);
+        grab.selectExited.AddListener(OnSelectExited);
+    }
+
+    private void OnDestroy()
+    {
+        if (grab != null)
+        {
+            grab.selectEntered.RemoveListener(OnSelectEntered);
+            grab.selectExited.RemoveListener(OnSelectExited);
+        }
+    }
 
     public void RightTrigger(bool RState)
     {
@@ -40,65 +62,93 @@ public class Weapon : GunSubject
         LTriggerPressed = LState;
     }
 
-    public void RightGrip(bool RGState)
-    {
-        RGripPressed = RGState;
-    }
-
-    public void LeftGrip(bool LGState)
-    {
-        LGripPressed = LGState;
-    }
-
     private void FixedUpdate()
     {
-        //dmg = AbilityManager.Instance.WeaponDamage;
-        //cooldown = AbilityManager.Instance.ShootingCooldown;
+        dmg = AbilityManager.Instance.WeaponDamage;
+        cooldown = AbilityManager.Instance.ShootingCooldown;
+    }
+
+    private void OnSelectEntered(SelectEnterEventArgs args)
+    {
+        XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
+        if (interactor != null)
+        {
+            Debug.Log($"Picked up by: {interactor.name}");
+            gunHoldingHand = DetermineHand(interactor);
+        }
+    }
+
+    private void OnSelectExited(SelectExitEventArgs args)
+    {
+        XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
+        if (interactor != null)
+        {
+            gunHoldingHand = Hand.None;
+        }
+    }
+
+    private Hand DetermineHand(XRBaseInteractor interactor)
+    {
+        if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand")) return Hand.Left;
+        if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand")) return Hand.Right;
+        return Hand.None;
     }
 
     protected void Shoot()
     {
-        //if you click the trigger, hold the gun and it isn't on cooldown plays particle, sound and haptic feedback
-        if(LGripPressed && LTriggerPressed && gunHeld && !onCooldown || RGripPressed && RTriggerPressed && gunHeld && !onCooldown)
+        if (!gunHeld) return;
+
+        if (gunHoldingHand == Hand.Left && LTriggerPressed && !onCooldown)
         {
             onCooldown = true;
-            if (Animator != null)
+            FireGun();
+        }
+        else if (gunHoldingHand == Hand.Right && RTriggerPressed && !onCooldown)
+        {
+            onCooldown = true;
+            FireGun();
+        }
+    }
+
+
+    private void FireGun()
+    {
+        if (Animator != null)
+        {
+            Animator.SetBool("Shooting", true);
+        }
+        gunShotParticle.Play();
+        gunShotSource.PlayOneShot(GunShotAudio);
+        ForceTubeVRInterface.Shoot(gunHaptic);
+
+        //shoots a raycast out of the bullethole of the gun and spawns a particle and sound effect on the place you hit
+        RaycastHit hit;
+        if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.TransformDirection(Vector3.forward), out hit, Range))
+        {
+            GameObject SpawnedObject = Instantiate(hitAudioObject);
+            SpawnedObject.transform.parent = null;
+            SpawnedObject.transform.position = hit.point;
+            gunHitSource = SpawnedObject.GetComponent<AudioSource>();
+            gunHitParticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
+
+            //if the thing you hit is an enemy do damage to it and play enemy hit sound
+            if (hit.collider.CompareTag("Enemy"))
             {
-                Animator.SetBool("Shooting", true);
+                //StateController stateController = hit.collider.GetComponent<StateController>();
+                //stateController.ChangeState(stateController.HurtState);
+                //hit.collider.GetComponent<StateControllerTemp>().ChangeState(hurtStateTemp();
+                gunHitSource.clip = EnemyHitAudio;
             }
-            gunShotParticle.Play();
-            gunShotSource.PlayOneShot(GunShotAudio);
-            ForceTubeVRInterface.Shoot(gunHaptic);
-
-            //shoots a raycast out of the bullethole of the gun and spawns a particle and sound effect on the place you hit
-            RaycastHit hit;
-            if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.TransformDirection(Vector3.forward), out hit, Range))
+            // if not then play normal hit sound
+            else
             {
-                GameObject SpawnedObject = Instantiate(hitAudioObject);
-                SpawnedObject.transform.parent = null;
-                SpawnedObject.transform.position = hit.point;
-                gunHitSource = SpawnedObject.GetComponent<AudioSource>();
-                gunHitParticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
-
-                //if the thing you hit is an enemy do damage to it and play enemy hit sound
-                if (hit.collider.CompareTag("Enemy"))
-                {
-                    //StateController stateController = hit.collider.GetComponent<StateController>();
-                    //stateController.ChangeState(stateController.HurtState);
-                    //hit.collider.GetComponent<StateControllerTemp>().ChangeState(hurtStateTemp();
-                    gunHitSource.clip = EnemyHitAudio;
-                }
-                // if not then play normal hit sound
-                else
-                {
-                    gunHitSource.clip = GunHitAudio;
-                }
-                gunHitParticle.Play();
-                gunHitSource.PlayOneShot(gunHitSource.clip);
-
-                //delete the spawned object with the audio and hit sound after a couple seconds
-                StartCoroutine(DeleteSource(SpawnedObject));
+                gunHitSource.clip = GunHitAudio;
             }
+            gunHitParticle.Play();
+            gunHitSource.PlayOneShot(gunHitSource.clip);
+
+            //delete the spawned object with the audio and hit sound after a couple seconds
+            StartCoroutine(DeleteSource(SpawnedObject));
         }
     }
 
