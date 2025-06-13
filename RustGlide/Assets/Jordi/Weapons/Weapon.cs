@@ -89,8 +89,11 @@ public class Weapon : GunSubject
 
     private Hand DetermineHand(XRBaseInteractor interactor)
     {
-        if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand")) return Hand.Left;
-        if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand")) return Hand.Right;
+        if(HandsHeld <= 1)
+        {
+            if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand")) return Hand.Left;
+            if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand")) return Hand.Right;
+        }
         return Hand.None;
     }
 
@@ -134,9 +137,9 @@ public class Weapon : GunSubject
             //if the thing you hit is an enemy do damage to it and play enemy hit sound
             if (hit.collider.CompareTag("Enemy"))
             {
-                //StateController stateController = hit.collider.GetComponent<StateController>();
-                //stateController.ChangeState(stateController.HurtState);
-                //hit.collider.GetComponent<StateControllerTemp>().ChangeState(hurtStateTemp();
+                StateController stateController = hit.collider.GetComponent<StateController>();
+                stateController.ChangeState(stateController.hurtState);
+                //hit.collider.GetComponent<StateControllerTemp>().ChangeState(stateController.hurtState);
                 gunHitSource.clip = EnemyHitAudio;
             }
             // if not then play normal hit sound

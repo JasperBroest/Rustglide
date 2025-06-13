@@ -604,6 +604,7 @@ MonoBehaviour:
   Range: 3000
   gunHaptic: {fileID: 11400000, guid: b6df3fcce1df1e34ea737c5840ad9520, type: 2}
   gunHeld: 0
+  gunHoldingHand: 2
 --- !u!54 &6731655114814330523
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -623,7 +624,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
