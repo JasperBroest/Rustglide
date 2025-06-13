@@ -44,16 +44,6 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
         IsLeftTriggerPressed = LState;
     }
 
-    public void RightGrip(bool RGState)
-    {
-
-    }
-
-    public void LeftGrip(bool LGState)
-    {
-
-    }
-
     private void Start()
     {
         AudioSource.clip = ThrusterSound;

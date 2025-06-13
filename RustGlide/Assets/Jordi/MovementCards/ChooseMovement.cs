@@ -28,7 +28,6 @@ public class ChooseMovement : MonoBehaviour
             AbilityManager.Instance.ChosenMovement = ChosenMovement;
             XrOrigin.GetComponentInChildren<StaminaBar>().enabled = true;
             this.gameObject.SetActive(false);
-            if(GameObject.Find("ChooseGrab").gameObject != null)
             GameObject.Find("ChooseGrab").gameObject.SetActive(false);
         }
     }
@@ -38,6 +37,7 @@ public class ChooseMovement : MonoBehaviour
         GameObject Player = Instantiate(gorilla, FindFirstObjectByType<XROrigin>().transform);
         Player.transform.parent = null;
         XrOrigin.SetActive(false);
+        Player.GetComponentInChildren<StaminaBar>().enabled = true;
         ChosenMovement = "gorilla";
         HasChosen = true;
     }

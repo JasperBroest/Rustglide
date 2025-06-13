@@ -29,7 +29,7 @@ public class Shotgun : Weapon, IPlayerInput
 
     private void ShotgunShoot()
     {
-        if (LGripPressed && LTriggerPressed && gunHeld && !onCooldown || RGripPressed && RTriggerPressed && gunHeld && !onCooldown)
+        if (LTriggerPressed && gunHeld && !onCooldown || RTriggerPressed && gunHeld && !onCooldown)
         {
             onCooldown = true;
             if (Animator != null)
@@ -57,7 +57,7 @@ public class Shotgun : Weapon, IPlayerInput
                     {
                         //StateController stateController = hit.collider.GetComponent<StateController>();
                         //stateController.ChangeState(stateController.HurtState);
-                        hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
+                        //hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
                         gunHitSource.clip = EnemyHitAudio;
                     }
                     else

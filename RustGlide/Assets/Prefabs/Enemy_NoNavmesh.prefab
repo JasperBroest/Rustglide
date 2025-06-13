@@ -158,7 +158,7 @@ MonoBehaviour:
   AttackDamage: 20
   MaxHealth: 40
   CurrentHealth: 0
-  maxSpeed: 2
+  maxSpeed: 138.44
   minSpeed: 1
   DamageTaken: 0
   FoundTarget: 0

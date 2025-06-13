@@ -104,6 +104,160 @@
             return transformToModify.position + transformToModify.rotation * offsetVector;
         }
 
+        //private void FixedUpdate()
+        //{
+        //    float dt = Time.fixedDeltaTime;
+
+        //    bool leftHandColliding = false;
+        //    bool rightHandColliding = false;
+        //    Vector3 finalPosition;
+        //    Vector3 rigidBodyMovement = Vector3.zero;
+        //    Vector3 firstIterationLeftHand = Vector3.zero;
+        //    Vector3 firstIterationRightHand = Vector3.zero;
+        //    RaycastHit hitInfo;
+
+        //    bodyCollider.transform.eulerAngles = new Vector3(0, headCollider.transform.eulerAngles.y, 0);
+
+        //    //left hand
+
+        //    Vector3 distanceTraveled = CurrentLeftHandPosition() - lastLeftHandPosition + Vector3.down * 2f * 9.8f * dt * dt;
+
+        //    if (IterativeCollisionSphereCast(lastLeftHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true))
+        //    {
+        //        //this lets you stick to the position you touch, as long as you keep touching the surface this will be the zero point for that hand
+        //        if (wasLeftHandTouching)
+        //        {
+        //            firstIterationLeftHand = lastLeftHandPosition - CurrentLeftHandPosition();
+        //        }
+        //        else
+        //        {
+        //            firstIterationLeftHand = finalPosition - CurrentLeftHandPosition();
+        //        }
+        //        playerRigidBody.linearVelocity = Vector3.zero;
+
+        //        leftHandColliding = true;
+        //    }
+
+        //    //right hand
+
+        //    distanceTraveled = CurrentRightHandPosition() - lastRightHandPosition + Vector3.down * 2f * 9.8f * dt * dt;
+
+        //    if (IterativeCollisionSphereCast(lastRightHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true))
+        //    {
+        //        if (wasRightHandTouching)
+        //        {
+        //            firstIterationRightHand = lastRightHandPosition - CurrentRightHandPosition();
+        //        }
+        //        else
+        //        {
+        //            firstIterationRightHand = finalPosition - CurrentRightHandPosition();
+        //        }
+
+        //        playerRigidBody.linearVelocity = Vector3.zero;
+
+        //        rightHandColliding = true;
+        //    }
+
+        //    //average or add
+
+        //    if ((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching))
+        //    {
+        //        //this lets you grab stuff with both hands at the same time
+        //        rigidBodyMovement = (firstIterationLeftHand + firstIterationRightHand) / 2;
+        //    }
+        //    else
+        //    {
+        //        rigidBodyMovement = firstIterationLeftHand + firstIterationRightHand;
+        //    }
+
+        //    //check valid head movement
+
+        //    if (IterativeCollisionSphereCast(lastHeadPosition, headCollider.radius, headCollider.transform.position + rigidBodyMovement - lastHeadPosition, defaultPrecision, out finalPosition, false))
+        //    {
+        //        rigidBodyMovement = finalPosition - lastHeadPosition;
+        //        //last check to make sure the head won't phase through geometry
+        //        if (Physics.Raycast(lastHeadPosition, headCollider.transform.position - lastHeadPosition + rigidBodyMovement, out hitInfo, (headCollider.transform.position - lastHeadPosition + rigidBodyMovement).magnitude + headCollider.radius * defaultPrecision * 0.999f, locomotionEnabledLayers.value))
+        //        {
+        //            rigidBodyMovement = lastHeadPosition - headCollider.transform.position;
+        //        }
+        //    }
+
+        //    if (rigidBodyMovement != Vector3.zero)
+        //    {
+        //        transform.position = transform.position + rigidBodyMovement;
+        //    }
+
+        //    lastHeadPosition = headCollider.transform.position;
+
+        //    //do final left hand position
+
+        //    distanceTraveled = CurrentLeftHandPosition() - lastLeftHandPosition;
+
+        //    if (IterativeCollisionSphereCast(lastLeftHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, !((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching))))
+        //    {
+        //        lastLeftHandPosition = finalPosition;
+        //        leftHandColliding = true;
+        //    }
+        //    else
+        //    {
+        //        lastLeftHandPosition = CurrentLeftHandPosition();
+        //    }
+
+        //    //do final right hand position
+
+        //    distanceTraveled = CurrentRightHandPosition() - lastRightHandPosition;
+
+        //    if (IterativeCollisionSphereCast(lastRightHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, !((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching))))
+        //    {
+        //        lastRightHandPosition = finalPosition;
+        //        rightHandColliding = true;
+        //    }
+        //    else
+        //    {
+        //        lastRightHandPosition = CurrentRightHandPosition();
+        //    }
+
+        //    StoreVelocities();
+
+        //    if ((rightHandColliding || leftHandColliding) && !disableMovement)
+        //    {
+        //        if (denormalizedVelocityAverage.magnitude > velocityLimit)
+        //        {
+        //            if (denormalizedVelocityAverage.magnitude * jumpMultiplier > maxJumpSpeed)
+        //            {
+        //                playerRigidBody.linearVelocity = denormalizedVelocityAverage.normalized * maxJumpSpeed;
+        //            }
+        //            else
+        //            {
+        //                playerRigidBody.linearVelocity = jumpMultiplier * denormalizedVelocityAverage;
+        //            }
+        //        }
+        //    }
+
+        //    //check to see if left hand is stuck and we should unstick it
+
+        //    if (leftHandColliding && (CurrentLeftHandPosition() - lastLeftHandPosition).magnitude > unStickDistance && !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentLeftHandPosition() - headCollider.transform.position, out hitInfo, (CurrentLeftHandPosition() - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value))
+        //    {
+        //        lastLeftHandPosition = CurrentLeftHandPosition();
+        //        leftHandColliding = false;
+        //    }
+
+        //    //check to see if right hand is stuck and we should unstick it
+
+        //    if (rightHandColliding && (CurrentRightHandPosition() - lastRightHandPosition).magnitude > unStickDistance && !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentRightHandPosition() - headCollider.transform.position, out hitInfo, (CurrentRightHandPosition() - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value))
+        //    {
+        //        lastRightHandPosition = CurrentRightHandPosition();
+        //        rightHandColliding = false;
+        //    }
+
+        //    leftHandFollower.position = lastLeftHandPosition;
+        //    rightHandFollower.position = lastRightHandPosition;
+
+        //    wasLeftHandTouching = leftHandColliding;
+        //    wasRightHandTouching = rightHandColliding;
+
+        //}
+
         private void FixedUpdate()
         {
             float dt = Time.fixedDeltaTime;
@@ -119,12 +273,10 @@
             bodyCollider.transform.eulerAngles = new Vector3(0, headCollider.transform.eulerAngles.y, 0);
 
             //left hand
-
             Vector3 distanceTraveled = CurrentLeftHandPosition() - lastLeftHandPosition + Vector3.down * 2f * 9.8f * dt * dt;
 
             if (IterativeCollisionSphereCast(lastLeftHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true))
             {
-                //this lets you stick to the position you touch, as long as you keep touching the surface this will be the zero point for that hand
                 if (wasLeftHandTouching)
                 {
                     firstIterationLeftHand = lastLeftHandPosition - CurrentLeftHandPosition();
@@ -134,12 +286,10 @@
                     firstIterationLeftHand = finalPosition - CurrentLeftHandPosition();
                 }
                 playerRigidBody.linearVelocity = Vector3.zero;
-
                 leftHandColliding = true;
             }
 
             //right hand
-
             distanceTraveled = CurrentRightHandPosition() - lastRightHandPosition + Vector3.down * 2f * 9.8f * dt * dt;
 
             if (IterativeCollisionSphereCast(lastRightHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, true))
@@ -152,17 +302,13 @@
                 {
                     firstIterationRightHand = finalPosition - CurrentRightHandPosition();
                 }
-
                 playerRigidBody.linearVelocity = Vector3.zero;
-
                 rightHandColliding = true;
             }
 
             //average or add
-
             if ((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching))
             {
-                //this lets you grab stuff with both hands at the same time
                 rigidBodyMovement = (firstIterationLeftHand + firstIterationRightHand) / 2;
             }
             else
@@ -171,11 +317,10 @@
             }
 
             //check valid head movement
-
             if (IterativeCollisionSphereCast(lastHeadPosition, headCollider.radius, headCollider.transform.position + rigidBodyMovement - lastHeadPosition, defaultPrecision, out finalPosition, false))
             {
                 rigidBodyMovement = finalPosition - lastHeadPosition;
-                //last check to make sure the head won't phase through geometry
+
                 if (Physics.Raycast(lastHeadPosition, headCollider.transform.position - lastHeadPosition + rigidBodyMovement, out hitInfo, (headCollider.transform.position - lastHeadPosition + rigidBodyMovement).magnitude + headCollider.radius * defaultPrecision * 0.999f, locomotionEnabledLayers.value))
                 {
                     rigidBodyMovement = lastHeadPosition - headCollider.transform.position;
@@ -189,8 +334,7 @@
 
             lastHeadPosition = headCollider.transform.position;
 
-            //do final left hand position
-
+            //final left hand position
             distanceTraveled = CurrentLeftHandPosition() - lastLeftHandPosition;
 
             if (IterativeCollisionSphereCast(lastLeftHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, !((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching))))
@@ -203,8 +347,7 @@
                 lastLeftHandPosition = CurrentLeftHandPosition();
             }
 
-            //do final right hand position
-
+            //final right hand position
             distanceTraveled = CurrentRightHandPosition() - lastRightHandPosition;
 
             if (IterativeCollisionSphereCast(lastRightHandPosition, minimumRaycastDistance, distanceTraveled, defaultPrecision, out finalPosition, !((leftHandColliding || wasLeftHandTouching) && (rightHandColliding || wasRightHandTouching))))
@@ -234,29 +377,33 @@
                 }
             }
 
-            //check to see if left hand is stuck and we should unstick it
-
-            if (leftHandColliding && (CurrentLeftHandPosition() - lastLeftHandPosition).magnitude > unStickDistance && !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentLeftHandPosition() - headCollider.transform.position, out hitInfo, (CurrentLeftHandPosition() - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value))
+            //unstick left hand
+            if (leftHandColliding && (CurrentLeftHandPosition() - lastLeftHandPosition).magnitude > unStickDistance &&
+                !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentLeftHandPosition() - headCollider.transform.position, out hitInfo, (CurrentLeftHandPosition() - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value))
             {
                 lastLeftHandPosition = CurrentLeftHandPosition();
                 leftHandColliding = false;
             }
 
-            //check to see if right hand is stuck and we should unstick it
-
-            if (rightHandColliding && (CurrentRightHandPosition() - lastRightHandPosition).magnitude > unStickDistance && !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentRightHandPosition() - headCollider.transform.position, out hitInfo, (CurrentRightHandPosition() - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value))
+            //unstick right hand
+            if (rightHandColliding && (CurrentRightHandPosition() - lastRightHandPosition).magnitude > unStickDistance &&
+                !Physics.SphereCast(headCollider.transform.position, minimumRaycastDistance * defaultPrecision, CurrentRightHandPosition() - headCollider.transform.position, out hitInfo, (CurrentRightHandPosition() - headCollider.transform.position).magnitude - minimumRaycastDistance, locomotionEnabledLayers.value))
             {
                 lastRightHandPosition = CurrentRightHandPosition();
                 rightHandColliding = false;
             }
 
+            // ✅ Update both position and rotation here:
             leftHandFollower.position = lastLeftHandPosition;
             rightHandFollower.position = lastRightHandPosition;
 
+            leftHandFollower.rotation = leftHandTransform.rotation;
+            rightHandFollower.rotation = rightHandTransform.rotation;
+
             wasLeftHandTouching = leftHandColliding;
             wasRightHandTouching = rightHandColliding;
-
         }
+
 
 
         private bool IterativeCollisionSphereCast(Vector3 startPosition, float sphereRadius, Vector3 movementVector, float precision, out Vector3 endPosition, bool singleHand)
