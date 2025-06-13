@@ -27,51 +27,65 @@ public class Shotgun : Weapon, IPlayerInput
         }
     }
 
-    private void ShotgunShoot()
+    protected void ShotgunShoot()
     {
-        if (LTriggerPressed && gunHeld && !onCooldown || RTriggerPressed && gunHeld && !onCooldown)
+        if (!gunHeld) return;
+
+        if (gunHoldingHand == Hand.Left && LTriggerPressed && !onCooldown)
         {
             onCooldown = true;
-            if (Animator != null)
-            {
-                Animator.SetBool("Shooting", true);
-            }
-            gunShotParticle.Play();
-            gunShotSource.PlayOneShot(GunShotAudio);
-            ForceTubeVRInterface.Shoot(gunHaptic);
-            for (int i = 0; i < numberOfProjectiles; i++)
-            {
-                Vector3 direction = Bullethole.transform.forward;
-                direction += Bullethole.transform.up * Random.Range(-spreadFactor, spreadFactor);
-                direction += Bullethole.transform.right * Random.Range(-spreadFactor, spreadFactor);
-
-                RaycastHit hit;
-                if (Physics.Raycast(Bullethole.transform.position, direction.normalized, out hit, Range))
-                {
-                    GameObject SpawnedObject = Instantiate(hitAudioObject);
-                    SpawnedObject.transform.parent = null;
-                    SpawnedObject.transform.position = hit.point;
-                    gunHitSource = SpawnedObject.GetComponent<AudioSource>();
-                    gunHitParticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
-                    if (hit.collider.CompareTag("Enemy"))
-                    {
-                        //StateController stateController = hit.collider.GetComponent<StateController>();
-                        //stateController.ChangeState(stateController.HurtState);
-                        //hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
-                        gunHitSource.clip = EnemyHitAudio;
-                    }
-                    else
-                    {
-                        gunHitSource.clip = GunHitAudio;
-                    }
-                    gunHitParticle.Play();
-                    gunHitSource.PlayOneShot(gunHitSource.clip);
-                    StartCoroutine(DeleteSource(SpawnedObject));
-                }
-            }
+            FireGun();
+        }
+        else if (gunHoldingHand == Hand.Right && RTriggerPressed && !onCooldown)
+        {
+            onCooldown = true;
+            FireGun();
         }
     }
 
+
+    private void FireGun()
+    {
+        if (Animator != null)
+        {
+            Animator.SetBool("Shooting", true);
+        }
+        gunShotParticle.Play();
+        gunShotSource.PlayOneShot(GunShotAudio);
+        ForceTubeVRInterface.Shoot(gunHaptic);
+
+        //shoots a raycast out of the bullethole of the gun and spawns a particle and sound effect on the place you hit
+        for (int i = 0; i < numberOfProjectiles; i++)
+        {
+            Vector3 direction = Bullethole.transform.forward;
+            direction += Bullethole.transform.up * Random.Range(-spreadFactor, spreadFactor);
+            direction += Bullethole.transform.right * Random.Range(-spreadFactor, spreadFactor);
+
+            RaycastHit hit;
+            if (Physics.Raycast(Bullethole.transform.position, direction.normalized, out hit, Range))
+            {
+                GameObject SpawnedObject = Instantiate(hitAudioObject);
+                SpawnedObject.transform.parent = null;
+                SpawnedObject.transform.position = hit.point;
+                gunHitSource = SpawnedObject.GetComponent<AudioSource>();
+                gunHitParticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    //StateController stateController = hit.collider.GetComponent<StateController>();
+                    //stateController.ChangeState(stateController.HurtState);
+                    //hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
+                    gunHitSource.clip = EnemyHitAudio;
+                }
+                else
+                {
+                    gunHitSource.clip = GunHitAudio;
+                }
+                gunHitParticle.Play();
+                gunHitSource.PlayOneShot(gunHitSource.clip);
+                StartCoroutine(DeleteSource(SpawnedObject));
+            }
+        }
+    }
     private void GetInput()
     {
         GameObject CurrentInput = GameObject.FindWithTag("PlayerInput");
