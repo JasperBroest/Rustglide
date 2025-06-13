@@ -20,7 +20,7 @@ public class HurtState : IState
         controller.OldColor = controller.MeshRenderer.material.color;
         controller.MeshRenderer.material.color = new Color(255, 255, 255, 255);
         controller.StartCoroutine(HitFlashEffect(controller.MeshRenderer, controller));
-        //controller.ChangeState(controller.PreviousState);
+        controller.ChangeState(controller.PreviousState);
     }
 
     public void OnHurt(StateController controller)

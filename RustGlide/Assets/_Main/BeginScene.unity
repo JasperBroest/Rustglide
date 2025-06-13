@@ -3995,6 +3995,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8374432687314140200, guid: 445f53302aafef240810daa323daf7cb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7744,7 +7748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9663f7d89cf0fd04c8c0722bd9556caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponDamage: 216.87
+  WeaponDamage: 10
   ShootingCooldown: 0
   HasChosen: 0
   ChosenMovement: 
@@ -7767,7 +7771,7 @@ Transform:
   m_GameObject: {fileID: 2132246251}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.86817, y: 1.27, z: 14.21389}
+  m_LocalPosition: {x: -16.62, y: 2.87, z: 2.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
