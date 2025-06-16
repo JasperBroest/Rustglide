@@ -5,6 +5,7 @@ using UnityEngine.VFX;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using System;
 
 public enum Hand { Left, Right, None }
 
@@ -89,11 +90,8 @@ public class Weapon : GunSubject
 
     private Hand DetermineHand(XRBaseInteractor interactor)
     {
-        if(HandsHeld <= 1)
-        {
-            if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand")) return Hand.Left;
-            if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand")) return Hand.Right;
-        }
+        if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand")) return Hand.Left;
+        if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand")) return Hand.Right;
         return Hand.None;
     }
 
@@ -138,8 +136,9 @@ public class Weapon : GunSubject
             if (hit.collider.CompareTag("Enemy"))
             {
                 StateController stateController = hit.collider.GetComponent<StateController>();
+                stateController.DamageTaken = dmg;
                 stateController.ChangeState(stateController.hurtState);
-                //hit.collider.GetComponent<StateControllerTemp>().ChangeState(stateController.hurtState);
+                hit.collider.GetComponent<StateController>().ChangeState(stateController.hurtState);
                 gunHitSource.clip = EnemyHitAudio;
             }
             // if not then play normal hit sound
