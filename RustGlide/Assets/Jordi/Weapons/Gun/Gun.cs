@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class Gun : Weapon, IPlayerInput
 {
@@ -8,14 +9,14 @@ public class Gun : Weapon, IPlayerInput
     {
         GetInput();
         gunShotSource = GetComponent<AudioSource>();
-        gunShotParticle = GetComponentInChildren<ParticleSystem>();
+        gunShotParticle = GetComponentInChildren<VisualEffect>();
         gunShotSource.clip = GunShotAudio;
     }
 
     private void Update()
     {
         Shoot();
-        if (LGripPressed && !LTriggerPressed || RGripPressed && !RTriggerPressed)
+        if (gunHoldingHand == Hand.Left && !LTriggerPressed && onCooldown || gunHoldingHand == Hand.Right && !RTriggerPressed && onCooldown)
         {
             Animator.SetBool("Shooting", false);
             onCooldown = false;

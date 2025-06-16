@@ -37,6 +37,7 @@ public class ChooseMovement : MonoBehaviour
         GameObject Player = Instantiate(gorilla, FindFirstObjectByType<XROrigin>().transform);
         Player.transform.parent = null;
         XrOrigin.SetActive(false);
+        Player.GetComponentInChildren<StaminaBar>().enabled = true;
         ChosenMovement = "gorilla";
         HasChosen = true;
     }

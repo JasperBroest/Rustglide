@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Smg : Weapon, IPlayerInput
 {
@@ -8,7 +9,7 @@ public class Smg : Weapon, IPlayerInput
     {
         GetInput();
         gunShotSource = GetComponent<AudioSource>();
-        gunShotParticle = GetComponentInChildren<ParticleSystem>();
+        gunShotParticle = GetComponentInChildren<VisualEffect>();
         cooldown = 1f / FireRate;
     }
 

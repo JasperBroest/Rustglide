@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DashToDirection : MonoBehaviour, /*IPlayerInput,*/ IGunGetState
+public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 {
     [Header("dependencys")]
     public GameObject CubeRight;
@@ -25,7 +25,7 @@ public class DashToDirection : MonoBehaviour, /*IPlayerInput,*/ IGunGetState
 
     bool nospeed = false;
 
-    void FixedUpdates()
+    void FixedUpdate()
     {
         ThrustPower = AbilityManager.Instance.BoosterSpeed;
     }
@@ -42,16 +42,6 @@ public class DashToDirection : MonoBehaviour, /*IPlayerInput,*/ IGunGetState
     public void LeftTrigger(bool LState)
     {
         IsLeftTriggerPressed = LState;
-    }
-
-    public void RightGrip(bool RGState)
-    {
-
-    }
-
-    public void LeftGrip(bool LGState)
-    {
-
     }
 
     private void Start()
@@ -152,7 +142,7 @@ public class DashToDirection : MonoBehaviour, /*IPlayerInput,*/ IGunGetState
         GameObject CurrentInput;
 
         CurrentInput = GameObject.FindWithTag("PlayerInput");
-        //CurrentInput.GetComponent<InputSubject>().AddObserver(this);
+        CurrentInput.GetComponent<InputSubject>().AddObserver(this);
 
     }
 }

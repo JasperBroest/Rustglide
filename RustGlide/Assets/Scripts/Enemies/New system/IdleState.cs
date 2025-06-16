@@ -24,7 +24,7 @@ public class IdleState : IState
             RaycastHit hit;
             if (Physics.Raycast(controller.transform.position, direction, out hit, controller.VisionRadius))
             {
-                if (hit.collider.CompareTag("Player"))
+                if (hit.collider.gameObject.layer == 3)
                 {
                     controller.FoundTarget = true;
                     controller.Target = hit.collider.gameObject;
