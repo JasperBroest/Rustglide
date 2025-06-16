@@ -19,12 +19,12 @@ public class StateController : MonoBehaviour
     public float AttackSpeed;
     public int AttackDamage;
     public int MaxHealth;
-    public int CurrentHealth;
+    public float CurrentHealth;
     public float maxSpeed = 5f;
     public float minSpeed = 3f;
 
     [HideInInspector]
-    public int DamageTaken;
+    public float DamageTaken;
     public bool FoundTarget;
     public GameObject Target;
     public Rigidbody rb;
@@ -43,6 +43,8 @@ public class StateController : MonoBehaviour
         ChangeState(idleState);
 
         CurrentHealth = MaxHealth;
+
+        DamageTaken = AbilityManager.Instance.WeaponDamage;
     }
 
     void Update()
