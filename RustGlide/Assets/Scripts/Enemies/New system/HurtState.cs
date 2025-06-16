@@ -12,6 +12,10 @@ public class HurtState : IState
     public void OnEnter(StateController controller)
     {
         controller.CurrentHealth -= controller.DamageTaken;
+        if(controller.CurrentHealth < 0 )
+        {
+            GameObject.Destroy( controller.gameObject );
+        }
     }
 
     public void UpdateState(StateController controller)
@@ -20,7 +24,10 @@ public class HurtState : IState
         controller.OldColor = controller.MeshRenderer.material.color;
         controller.MeshRenderer.material.color = new Color(255, 255, 255, 255);
         controller.StartCoroutine(HitFlashEffect(controller.MeshRenderer, controller));
-        controller.ChangeState(controller.PreviousState);
+        if (controller.PreviousState != controller.hurtState)
+        {
+            controller.ChangeState(controller.PreviousState);
+        }
     }
 
     public void OnHurt(StateController controller)

@@ -7538,6 +7538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChooseGun
       objectReference: {fileID: 0}
+    - target: {fileID: 6731655114814330523, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 392
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -7748,7 +7752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9663f7d89cf0fd04c8c0722bd9556caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponDamage: 10
+  WeaponDamage: 61.6
   ShootingCooldown: 0
   HasChosen: 0
   ChosenMovement: 
