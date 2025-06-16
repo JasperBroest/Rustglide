@@ -41,6 +41,6 @@ public class HurtState : IState
 
     public void FixedUpdateState(StateController controller)
     {
-        throw new System.NotImplementedException();
+        
     }
 }

@@ -18,14 +18,14 @@ public class StateController : MonoBehaviour
     public float AttackRange;
     public float AttackSpeed;
     public int AttackDamage;
-    public int MaxHealth;
+    public float MaxHealth;
     public float CurrentHealth;
     public float maxSpeed = 5f;
     public float minSpeed = 3f;
 
     [HideInInspector]
-    public float DamageTaken;
     public bool FoundTarget;
+    public float DamageTaken;
     public GameObject Target;
     public Rigidbody rb;
     public Rigidbody TargetRigidbody;
