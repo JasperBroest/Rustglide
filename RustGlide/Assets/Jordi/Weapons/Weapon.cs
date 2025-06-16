@@ -5,6 +5,7 @@ using UnityEngine.VFX;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using System;
 
 public enum Hand { Left, Right, None }
 
@@ -134,9 +135,10 @@ public class Weapon : GunSubject
             //if the thing you hit is an enemy do damage to it and play enemy hit sound
             if (hit.collider.CompareTag("Enemy"))
             {
-                //StateController stateController = hit.collider.GetComponent<StateController>();
-                //stateController.ChangeState(stateController.HurtState);
-                //hit.collider.GetComponent<StateControllerTemp>().ChangeState(hurtStateTemp();
+                StateController stateController = hit.collider.GetComponent<StateController>();
+                stateController.DamageTaken = dmg;
+                stateController.ChangeState(stateController.hurtState);
+                hit.collider.GetComponent<StateController>().ChangeState(stateController.hurtState);
                 gunHitSource.clip = EnemyHitAudio;
             }
             // if not then play normal hit sound
