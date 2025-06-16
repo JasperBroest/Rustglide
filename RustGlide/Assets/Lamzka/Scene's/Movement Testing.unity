@@ -431,8 +431,8 @@ Transform:
   m_GameObject: {fileID: 598486250}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 2.281, z: 9.67}
-  m_LocalScale: {x: 0.20451, y: 0.20451, z: 0.20451}
+  m_LocalPosition: {x: -0.2, y: 2.1626, z: 9.67}
+  m_LocalScale: {x: 0.0562832, y: 0.0562832, z: 0.0562832}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 498289007}
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yes: 0
   SO: {fileID: 11400000, guid: f7eedf3c7196daa44b68e3d59774ccd4, type: 2}
-  TagOfCollider: RocketPlayer
+  TagOfCollider: MainCamera
 --- !u!114 &598486256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,8 +620,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0.3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.406185, y: 0.3, z: 0.6380444}
+  m_Center: {x: -0.03016141, y: 0, z: 0.1690222}
 --- !u!1 &1181234417
 GameObject:
   m_ObjectHideFlags: 0

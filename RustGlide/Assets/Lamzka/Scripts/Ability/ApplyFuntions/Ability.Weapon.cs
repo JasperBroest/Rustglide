@@ -15,7 +15,7 @@ public partial class AbilityObject
 public partial class AblilityAbstract // Weapon
 {
     private const string damageMultiplierKey = "DamageMultiplier";
-    private const string speedMultiplierKey = "DamageMultiplier";
+    private const string speedMultiplierKey = "WeaponSpeedMultiplyer";
 
     private void ApplyWeaponEffect()
     {
@@ -24,7 +24,7 @@ public partial class AblilityAbstract // Weapon
 
         float weaponSpeedMultiplier =
             CalculateProcentage(AbilityManager.Instance.ShootingCooldown, SO.WeaponSpeedMultiplyer);
-        AbilityManager.Instance.WeaponDamage += weaponSpeedMultiplier;
+        AbilityManager.Instance.ShootingCooldown += weaponSpeedMultiplier;
 
 
         _affectedStats["DamageMultiplyer"] = damageMultiplier;
@@ -33,10 +33,16 @@ public partial class AblilityAbstract // Weapon
 
     private void RemoveWeaponEffect()
     {
-        AbilityManager.Instance.WeaponDamage -= _affectedStats["DamageMultiplyer"];
-        AbilityManager.Instance.ShootingCooldown -= _affectedStats["WeaponSpeedMultiplyer"];
+        if (_affectedStats.TryGetValue("DamageMultiplyer", out float damageMultiplier))
+        {
+            AbilityManager.Instance.WeaponDamage -= damageMultiplier;
+            _affectedStats.Remove("DamageMultiplyer");
+        }
 
-        _affectedStats.Remove("DamageMultiplyer");
-        _affectedStats.Remove("WeaponSpeedMultiplyer");
+        if (_affectedStats.TryGetValue("WeaponSpeedMultiplyer", out float speedMultiplier))
+        {
+            AbilityManager.Instance.ShootingCooldown -= speedMultiplier;
+            _affectedStats.Remove("WeaponSpeedMultiplyer");
+        }
     }
 }
