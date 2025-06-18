@@ -30,6 +30,11 @@ public class RogueLikeManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        GetStaminaComponent();
+    }
+
     private void SetList()
     {
         foreach (var upgrade in Upgrades)

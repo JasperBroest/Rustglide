@@ -17,6 +17,7 @@ public class Shotgun : Weapon, IPlayerInput
 
     private void Update()
     {
+        GetInput();
         if (!onCooldown)
         {
             ShotgunShoot();
