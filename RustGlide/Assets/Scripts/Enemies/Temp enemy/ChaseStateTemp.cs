@@ -27,7 +27,7 @@ public class ChaseStateTemp : IStateTemp
         // If in attack range, switch state
         if (Vector3.Distance(controller.transform.position, controller.Target.transform.position) <= controller.AttackRange)
         {
-            controller.ChangeState((IStateTemp)controller.attackStateTemp);
+            controller.ChangeState(controller.attackStateTemp);
             return;
         }
     }

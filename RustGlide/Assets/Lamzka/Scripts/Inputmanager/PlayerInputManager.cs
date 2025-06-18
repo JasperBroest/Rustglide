@@ -32,13 +32,10 @@ public class PlayerInputManager : InputSubject
         if (context.performed)
         {
             NotifyTriggerRValue(true);
-            Debug.Log("true");
-
         }
         else if (context.canceled)
         {
             NotifyTriggerRValue(false);
-            Debug.Log("false");
         }
     }
 

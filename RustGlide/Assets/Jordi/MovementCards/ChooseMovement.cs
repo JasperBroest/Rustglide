@@ -9,6 +9,7 @@ public class ChooseMovement : MonoBehaviour
     [SerializeField] private GameObject gorilla;
 
     private bool HasChosen;
+    private bool DisableUpdate = false;
     private string ChosenMovement;
 
     GameObject XrOrigin;
@@ -20,8 +21,9 @@ public class ChooseMovement : MonoBehaviour
 
     private void Update()
     {
-        if (HasChosen)
+        if (HasChosen && !DisableUpdate)
         {
+            DisableUpdate = true;
             AbilityManager.Instance.HasChosen = true;
             AbilityManager.Instance.ChosenMovement = ChosenMovement;
             XrOrigin.GetComponentInChildren<StaminaBar>().enabled = true;
@@ -35,6 +37,7 @@ public class ChooseMovement : MonoBehaviour
         GameObject Player = Instantiate(gorilla, FindFirstObjectByType<XROrigin>().transform);
         Player.transform.parent = null;
         XrOrigin.SetActive(false);
+        Player.GetComponentInChildren<StaminaBar>().enabled = true;
         ChosenMovement = "gorilla";
         HasChosen = true;
     }

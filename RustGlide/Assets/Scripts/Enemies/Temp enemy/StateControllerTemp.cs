@@ -50,8 +50,6 @@ public class StateControllerTemp : MonoBehaviour
         {
             currentState.UpdateState(this);
         }
-
-        Debug.Log(currentState);
     }
 
     public void ChangeState(IStateTemp newState)

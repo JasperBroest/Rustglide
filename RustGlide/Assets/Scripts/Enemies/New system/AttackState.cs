@@ -4,36 +4,28 @@ using UnityEngine;
 
 public class AttackState : IState
 {
-    private bool canAttack = true;
+    private StateController controller;
+    private bool didAttack = false;
+    private Coroutine attackCoroutine;
 
     public void OnEnter(StateController controller)
     {
+        didAttack = false;
+        this.controller = controller;
         // "What was that!?"
+
+        controller.rb.linearVelocity = Vector3.zero;
+
+
+        attackCoroutine = controller.StartCoroutine(AttackCooldown());
     }
 
     public void UpdateState(StateController controller)
     {
-        Vector3 boxCenter = new Vector3(controller.transform.position.x, controller.transform.position.y, controller.transform.position.z + 0.2f);
-        Vector3 halfExtents = new Vector3(0.5f, 0.5f, 0.5f);
-        RaycastHit hit;
-        if (Physics.BoxCast(boxCenter, halfExtents, controller.transform.forward, out hit, controller.transform.rotation, controller.AttackRange))
-        {
-            if (hit.collider.CompareTag("Player"))
-            {
-                if (canAttack)
-                {
-                    canAttack = false;
-                    controller.StartCoroutine(AttackCooldown());
-
-                    // Damage target
-                    hit.collider.GetComponentInChildren<StaminaBar>().TakeDamage(controller.AttackDamage);
-                }
-            }
-        }
-
         // Go back to chasing
-        if (Vector3.Distance(controller.transform.position, controller.Target.transform.position) >= controller.AttackRange)
+        if (didAttack)
         {
+            controller.StopCoroutine(attackCoroutine);
             controller.ChangeState(controller.chaseState);
         }
     }
@@ -50,7 +42,14 @@ public class AttackState : IState
     
     private IEnumerator AttackCooldown()
     {
-        yield return new WaitForSeconds(1.5f);
-        canAttack = true;
+        yield return new WaitForSeconds(1f);
+        controller.rb.AddForce(controller.graphics.transform.forward * 15f, ForceMode.VelocityChange);
+        yield return new WaitForSeconds(3f);
+        didAttack = true;
+    }
+
+    public void FixedUpdateState(StateController controller)
+    {
+        return;
     }
 }

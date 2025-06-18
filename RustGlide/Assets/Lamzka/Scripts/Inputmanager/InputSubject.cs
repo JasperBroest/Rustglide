@@ -24,7 +24,4 @@ public class InputSubject : MonoBehaviour
     {
         InputObserver.ForEach((InputObserver) => InputObserver.LeftTrigger(LState));
     }
-
-
-
 }

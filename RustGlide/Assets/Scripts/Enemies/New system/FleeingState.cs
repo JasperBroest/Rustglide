@@ -21,4 +21,9 @@ public class FleeingState : IState
     {
         // "Must've been the wind"
     }
+
+    public void FixedUpdateState(StateController controller)
+    {
+        throw new System.NotImplementedException();
+    }
 }

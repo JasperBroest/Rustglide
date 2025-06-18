@@ -1,5 +1,6 @@
 using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AbilityManager : MonoBehaviour
@@ -57,7 +58,17 @@ public class AbilityManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private void Update()
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += OnSceneChanged;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= OnSceneChanged;
+    }
+
+    private void OnSceneChanged(Scene currentScene, Scene nextScene)
     {
         if (HasChosen)
         {

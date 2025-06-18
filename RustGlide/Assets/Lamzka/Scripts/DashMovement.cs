@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DashMovement : MonoBehaviour, IPlayerInput
+public class DashMovement : MonoBehaviour/*, IPlayerInput*/
 {
     [Header("Dependencys")]
     public GameObject CubeRight;
@@ -35,19 +35,26 @@ public class DashMovement : MonoBehaviour, IPlayerInput
     public void RightTrigger(bool RState)
     {
         IsRightTriggerPressed = RState;
-        Debug.Log(RState + "Right");
     }
     public void LeftTrigger(bool LState)
     {
         IsLeftTriggerPressed = LState;
-        Debug.Log(LState + "Left");
+    }
+    public void RightGrip(bool RGState)
+    {
+        
+    }
+
+    public void LeftGrip(bool LGState)
+    {
+        
     }
 
     private void Start()
     {
         AudioSource.clip = ThrusterSound;
         /*  GetGun();*/
-        GetInput();
+        //GetInput();
     }
 
     void Update()
@@ -141,7 +148,7 @@ public class DashMovement : MonoBehaviour, IPlayerInput
         GameObject CurrentInput;
 
         CurrentInput = GameObject.FindWithTag("PlayerInput");
-        CurrentInput.GetComponent<InputSubject>().AddObserver(this);
+        //CurrentInput.GetComponent<InputSubject>().AddObserver(this);
 
     }
 }

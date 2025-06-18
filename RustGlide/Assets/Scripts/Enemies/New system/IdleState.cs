@@ -24,7 +24,7 @@ public class IdleState : IState
             RaycastHit hit;
             if (Physics.Raycast(controller.transform.position, direction, out hit, controller.VisionRadius))
             {
-                if (hit.collider.CompareTag("Player"))
+                if (hit.collider.gameObject.layer == 3)
                 {
                     controller.FoundTarget = true;
                     controller.Target = hit.collider.gameObject;
@@ -56,5 +56,10 @@ public class IdleState : IState
     private IEnumerator PatrolCooldown()
     {
         yield return new WaitForSeconds(5f);
+    }
+
+    public void FixedUpdateState(StateController controller)
+    {
+        return;
     }
 }

@@ -2,23 +2,24 @@ using System.Collections;
 using System.Collections.Concurrent;
 using UnityEngine;
 
-public class AttackStateTemp : IState
+public class AttackStateTemp : IStateTemp
 {
     private bool canAttack = true;
 
-    public void OnEnter(StateController controller)
+    public void OnEnter(StateControllerTemp controller)
     {
         // "What was that!?"
     }
 
-    public void UpdateState(StateController controller)
+    public void UpdateState(StateControllerTemp controller)
     {
         Vector3 boxCenter = new Vector3(controller.transform.position.x, controller.transform.position.y, controller.transform.position.z + 0.2f);
         Vector3 halfExtents = new Vector3(0.5f, 0.5f, 0.5f);
         RaycastHit hit;
         if (Physics.BoxCast(boxCenter, halfExtents, controller.transform.forward, out hit, controller.transform.rotation, controller.AttackRange))
         {
-            if (hit.collider.CompareTag("Player"))
+            //Check if has player layer
+            if (hit.collider.gameObject.layer == 3)
             {
                 if (canAttack)
                 {
@@ -26,7 +27,11 @@ public class AttackStateTemp : IState
                     controller.StartCoroutine(AttackCooldown());
 
                     // Damage target
-                    hit.collider.GetComponentInChildren<StaminaBar>().TakeDamage(controller.AttackDamage);
+                    if (hit.collider.GetComponentInChildren<StaminaBar>() != null)
+                    {
+                        hit.collider.GetComponentInChildren<StaminaBar>().TakeDamage(controller.AttackDamage);
+                        Debug.Log("Attacked");
+                    }
                 }
             }
         }
@@ -34,16 +39,16 @@ public class AttackStateTemp : IState
         // Go back to chasing
         if (Vector3.Distance(controller.transform.position, controller.Target.transform.position) >= controller.AttackRange)
         {
-            controller.ChangeState(controller.chaseState);
+            controller.ChangeState(controller.chaseStateTemp);
         }
     }
 
-    public void OnHurt(StateController controller)
+    public void OnHurt(StateControllerTemp controller)
     {
         // Transition to Hurt State
     }
 
-    public void OnExit(StateController controller)
+    public void OnExit(StateControllerTemp controller)
     {
         // "Must've been the wind"
     }
@@ -52,5 +57,10 @@ public class AttackStateTemp : IState
     {
         yield return new WaitForSeconds(1.5f);
         canAttack = true;
+    }
+
+    public void FixedUpdateState(StateControllerTemp controller)
+    {
+        throw new System.NotImplementedException();
     }
 }

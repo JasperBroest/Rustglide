@@ -25,7 +25,7 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     bool nospeed = false;
 
-    void FixedUpdates()
+    void FixedUpdate()
     {
         ThrustPower = AbilityManager.Instance.BoosterSpeed;
     }
@@ -38,12 +38,10 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     public void RightTrigger(bool RState)
     {
         IsRightTriggerPressed = RState;
-        Debug.Log(RState + "Right");
     }
     public void LeftTrigger(bool LState)
     {
         IsLeftTriggerPressed = LState;
-        Debug.Log(LState + "Left");
     }
 
     private void Start()
