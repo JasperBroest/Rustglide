@@ -90,11 +90,8 @@ public class Weapon : GunSubject
 
     private Hand DetermineHand(XRBaseInteractor interactor)
     {
-        if(HandsHeld <= 1)
-        {
-            if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand")) return Hand.Left;
-            if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand")) return Hand.Right;
-        }
+        if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand")) return Hand.Left;
+        if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand")) return Hand.Right;
         return Hand.None;
     }
 

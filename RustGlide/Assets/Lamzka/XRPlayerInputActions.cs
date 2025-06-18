@@ -153,8 +153,30 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""e8a92600-2264-4a1f-8c82-209147ce3d29"",
+                    ""path"": ""<XRInputV1::Valve::IndexControllerOpenXR>{RightHand}/triggerpressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TriggerR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""97abf533-645a-40a9-b809-67faeed9c665"",
                     ""path"": ""<XRInputV1::Oculus::MetaQuestTouchPlusControllerOpenXR>{LeftHand}/triggerpressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TriggerL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15047bb8-336c-4cce-8398-6472d735cc6c"",
+                    ""path"": ""<XRInputV1::Valve::IndexControllerOpenXR>{LeftHand}/triggerpressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -175,8 +197,30 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a507d604-7a31-4b60-807e-8876d57d1345"",
+                    ""path"": ""<XRInputV1::Valve::IndexControllerOpenXR>{RightHand}/grippressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GripR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b778003b-2580-4dea-943d-893dc61ada3e"",
                     ""path"": ""<XRInputV1::Oculus::MetaQuestTouchPlusControllerOpenXR>{LeftHand}/grippressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GripL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08848055-0dbe-4220-b49c-0b803545f430"",
+                    ""path"": ""<XRInputV1::Valve::IndexControllerOpenXR>{LeftHand}/grippressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
