@@ -49,8 +49,11 @@ public class StaminaBar : MonoBehaviour
             float normalizedStamina = Mathf.InverseLerp(0, 100, stamina);
             vignette.intensity.value = 1f - normalizedStamina;
         }
-        CheckVelocity();
-        CalculateVelocity();
+        if(XrOrigin.name != "Gorilla Rig")
+        {
+            CheckVelocity();
+            CalculateVelocity();
+        }
         CheckForDeath();
     }
 

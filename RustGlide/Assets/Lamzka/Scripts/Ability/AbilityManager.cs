@@ -46,7 +46,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(Instance);
+            Destroy(gameObject);
         }
         else
         {
@@ -72,15 +72,17 @@ public class AbilityManager : MonoBehaviour
     {
         if (HasChosen)
         {
+            XrOrigin = FindFirstObjectByType<XROrigin>().gameObject;
             if (ChosenMovement == "XrOrigin")
             {
-                XrOrigin = FindFirstObjectByType<XROrigin>().gameObject;
                 XrOrigin.GetComponent<DashToDirection>().enabled = true;
+                XrOrigin.GetComponentInChildren<StaminaBar>().enabled = true;
             }
             else if (ChosenMovement == "gorilla")
             {
                 GameObject Player = Instantiate(gorilla, FindFirstObjectByType<XROrigin>().transform);
                 Player.transform.parent = null;
+                Player.GetComponentInChildren<StaminaBar>().enabled = true;
                 XrOrigin.SetActive(false);
             }
         }
