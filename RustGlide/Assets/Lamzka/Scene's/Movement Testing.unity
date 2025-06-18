@@ -942,6 +942,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponDamage: 2
   ShootingCooldown: 2
+  HasChosen: 0
+  ChosenMovement: 
   Stamina: 100
   StandardSpeed: 5
   DashSpeed: 0
@@ -951,6 +953,7 @@ MonoBehaviour:
   MonkeyJump: 0
   MonkeyMaxJumpSpeed: 0
   TestBool: 0
+  gorilla: {fileID: 0}
 --- !u!4 &1989200158
 Transform:
   m_ObjectHideFlags: 0
