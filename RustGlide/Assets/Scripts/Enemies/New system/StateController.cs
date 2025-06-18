@@ -43,8 +43,6 @@ public class StateController : MonoBehaviour
         ChangeState(idleState);
 
         CurrentHealth = MaxHealth;
-
-        DamageTaken = AbilityManager.Instance.WeaponDamage;
     }
 
     void Update()

@@ -256,3 +256,4 @@ MonoBehaviour:
   TextObject: {fileID: 4512682768621402983}
   Text: {fileID: 269371124470477398}
   WaitBeforeBlink: 0.5
+  hudText: []

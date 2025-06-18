@@ -23,7 +23,7 @@ public class GunHolster : MonoBehaviour, IGunGetState
 
     void Start()
     {
-        /*GetGun();*/
+        GetGun();
         /*SetGunToHolster();*/
     }
 
