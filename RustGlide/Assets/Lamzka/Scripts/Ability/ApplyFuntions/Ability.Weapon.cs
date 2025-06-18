@@ -2,10 +2,10 @@
 
 public partial class AbilityObject
 {
-    [Space(15)] [Header("Weapon Multiplyers")] [Range(0, 10)]
+    [Space(15)] [Header("Weapon Multiplyers")] [Range(0, 300)]
     public float DamageMultiplyer;
 
-    [Space(15)] [Range(0, 10)] public float WeaponSpeedMultiplyer;
+    [Space(15)] [Range(0, 300)] public float WeaponSpeedMultiplyer;
     public bool HasWeaponMultipliers => DamageMultiplyer > 0 || WeaponSpeedMultiplyer > 0;
     
     
