@@ -3123,6 +3123,75 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5053925668127403250, guid: be6a31af8d3a8054aa2bf27f6ac51048, type: 3}
+--- !u!1001 &842441020
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2343939983710758785, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343939983710758785, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343939983710758785, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4684586560005183887, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_Name
+      value: ChooseSmg
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337052326294199297, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.7625243
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337052326294199297, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337052326294199297, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.638
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337052326294199297, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337052326294199297, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337052326294199297, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337052326294199297, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337052326294199297, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337052326294199297, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337052326294199297, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
 --- !u!1 &868797808
 GameObject:
   m_ObjectHideFlags: 0
@@ -3992,9 +4061,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2613322126084258906, guid: 445f53302aafef240810daa323daf7cb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2716082082178580903, guid: 445f53302aafef240810daa323daf7cb, type: 3}
       propertyPath: ThrustPower
       value: 135.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090245000974685933, guid: 445f53302aafef240810daa323daf7cb, type: 3}
+      propertyPath: m_TagString
+      value: GunHolster
       objectReference: {fileID: 0}
     - target: {fileID: 4518321363079795204, guid: 445f53302aafef240810daa323daf7cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8497,3 +8574,4 @@ SceneRoots:
   - {fileID: 1088083068}
   - {fileID: 1735628881}
   - {fileID: 114141561}
+  - {fileID: 842441020}

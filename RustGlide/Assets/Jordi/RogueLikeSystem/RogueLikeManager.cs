@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class RogueLikeManager : MonoBehaviour
@@ -32,7 +33,10 @@ public class RogueLikeManager : MonoBehaviour
 
     private void Update()
     {
-        GetStaminaComponent();
+        if(Stamina == null)
+        {
+            GetStaminaComponent();
+        }
     }
 
     private void SetList()
@@ -83,6 +87,6 @@ public class RogueLikeManager : MonoBehaviour
 
     public void GetStaminaComponent()
     {
-        Stamina = GameObject.FindWithTag("Stamina");
+        Stamina = FindAnyObjectByType<XROrigin>().GetComponent<StaminaBar>().gameObject;
     }
 }
