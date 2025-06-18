@@ -47,12 +47,14 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     private void Start()
     {
         AudioSource.clip = ThrusterSound;
-        GetGun();
+        /*GetGun();*/
         GetInput();
     }
 
     void Update()
     {
+        GetGun();
+
         if (IsRightTriggerPressed)
         {
             AddForceToCubeRightDirection();

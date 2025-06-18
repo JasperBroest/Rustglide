@@ -23,7 +23,6 @@ public class RogueLikeManager : MonoBehaviour
 
     private void Start()
     {
-
         GetStaminaComponent();
         if (Upgrades.Count > 0)
         {
@@ -72,11 +71,9 @@ public class RogueLikeManager : MonoBehaviour
 
     public void OnGrab()
     {
-        /*Stamina.gameObject.SetActive(true);*/
+        Stamina.gameObject.SetActive(true);
         /*this.transform.parent.gameObject.SetActive(false);*/
         this.gameObject.SetActive(false);
-        Debug.Log("Test");
-        /*SceneManager.LoadScene(1);*/
     }
 
     public void GetStaminaComponent()
