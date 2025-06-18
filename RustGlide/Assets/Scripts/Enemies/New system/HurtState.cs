@@ -1,26 +1,29 @@
 using System.Collections;
 using UnityEngine;
 
-// NEED TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// NEED TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// NEED TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// NEED TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// NEED TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// NEED TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 public class HurtState : IState
 {
     public void OnEnter(StateController controller)
     {
         controller.CurrentHealth -= controller.DamageTaken;
+        if(controller.CurrentHealth < 0 )
+        {
+            EnemyManager.Instance.enemyList.Remove(controller.gameObject);
+            EnemyManager.Instance.EnemiesClearedCheck();
+            GameObject.Destroy(controller.gameObject);
+        }
+        Debug.Log(controller.MeshRenderer.gameObject.name);
+        controller.OldColor = controller.MeshRenderer.material.color;
+        controller.MeshRenderer.material.color = new Color(255, 255, 255, 255);
+        controller.StartCoroutine(HitFlashEffect(controller.MeshRenderer, controller));
     }
 
     public void UpdateState(StateController controller)
     {
-        // Spaghetti
-        controller.OldColor = controller.MeshRenderer.material.color;
-        controller.MeshRenderer.material.color = new Color(255, 255, 255, 255);
-        controller.StartCoroutine(HitFlashEffect(controller.MeshRenderer, controller));
-        controller.ChangeState(controller.PreviousState);
+        if (controller.PreviousState != controller.hurtState)
+        {
+            controller.ChangeState(controller.PreviousState);
+        }
     }
 
     public void OnHurt(StateController controller)
