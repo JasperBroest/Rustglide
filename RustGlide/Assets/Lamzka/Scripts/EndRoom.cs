@@ -50,7 +50,7 @@ public class EndRoom : MonoBehaviour
     {
         /*HudManager.StartEndSequence();*/
         yield return new WaitForSeconds(7f);
-        StoreStamina.instance.OnSceneLoaded();
+        //StoreStamina.instance.OnSceneLoaded();
         SceneManager.LoadScene(0);
     }
 }

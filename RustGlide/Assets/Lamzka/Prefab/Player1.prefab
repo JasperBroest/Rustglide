@@ -7791,9 +7791,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staminaLossSpeed: 0
-  CanPlayerDie: 1
   IsPlayerDead: 0
   stamina: 100
+  velocitySpeed: 0
   velocity: 0
 --- !u!82 &4642828533875355151
 AudioSource:
