@@ -98,6 +98,6 @@ public class StaminaBar : MonoBehaviour
     public IEnumerator finished()
     {
         yield return new WaitForSeconds(3f);
-        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 }

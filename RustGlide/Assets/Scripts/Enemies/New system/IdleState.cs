@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class IdleState : IState
 {
+    private bool extraVision = true;
+
     public void OnEnter(StateController controller)
     {
-        // Play idle animation
+        // Quick fix ehheheh
+        controller.Target = GameObject.Find("Player");
     }
 
     public void UpdateState(StateController controller)
@@ -37,6 +40,13 @@ public class IdleState : IState
         }
         #endregion
 
+        // Random extra vision checks
+        if (extraVision)
+        {
+            extraVision = false;
+            controller.StartCoroutine(ExtraVisionCheck(controller));
+        }
+
         if (controller.FoundTarget)
         {
             controller.ChangeState(controller.chaseState);
@@ -53,13 +63,26 @@ public class IdleState : IState
         // "Must've been the wind"
     }
 
-    private IEnumerator PatrolCooldown()
+    private IEnumerator ExtraVisionCheck(StateController controller)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
+        ExtraVision(controller);
     }
 
     public void FixedUpdateState(StateController controller)
     {
         return;
+    }
+
+    private void ExtraVision(StateController controller)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(controller.transform.position, Vector3.Normalize(controller.Target.transform.position - controller.transform.position), out hit, 200, controller.PlayerMask))
+        {
+            controller.Target = hit.collider.gameObject;
+            controller.TargetRigidbody= controller.Target.GetComponent<Rigidbody>();
+            controller.FoundTarget = true;
+        }
+        extraVision = true;
     }
 }
