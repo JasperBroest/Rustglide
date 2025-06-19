@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -26,7 +27,7 @@ public class StaminaBar : MonoBehaviour
     public void TakeDamage(int damage)
     {
         stamina -= damage;
-        CheckForDeath();
+        CheckVelocity();
     }
 
     private void Awake()
@@ -40,12 +41,16 @@ public class StaminaBar : MonoBehaviour
         if (volume.profile.TryGet(out vignette))
         {
             float normalizedStamina = Mathf.InverseLerp(0, 100, stamina);
-            vignette.intensity.value = 1f - normalizedStamina;
+            if (stamina <= 50)
+            {
+                // Smoothly interpolate the vignette intensity towards the target value
+                float targetIntensity = 1f - normalizedStamina;
+                vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, targetIntensity, Time.deltaTime * 3f);
+            }
         }
 
         CheckVelocity();
         CalculateVelocity();
-        CheckForDeath();
     }
 
     private void CheckVelocity()
@@ -66,6 +71,10 @@ public class StaminaBar : MonoBehaviour
                 stamina += staminaLoss / 20f;
             }
         }
+        else
+        {
+            Die();
+        }
     }
 
     private void CalculateVelocity()
@@ -78,14 +87,6 @@ public class StaminaBar : MonoBehaviour
 
         velocity = vectorVelocity.magnitude * 2f;
     }
-
-    private void CheckForDeath()
-    {
-        if (stamina <= 1)
-        {
-            Die();
-        }
-    }
     private void Die()
     {
         StartCoroutine(finished());
@@ -97,6 +98,6 @@ public class StaminaBar : MonoBehaviour
     public IEnumerator finished()
     {
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
     }
 }
