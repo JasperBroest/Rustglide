@@ -22,7 +22,7 @@ public class Beer : AblilityAbstract
 
     public IEnumerator DestroyObject()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(SO.EffectDuration + 5f);
         Destroy(gameObject);
     }
 

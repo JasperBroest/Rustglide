@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616161d63d8e684448de8416cd61c912, type: 3}
+  m_Name: kanker
+  m_EditorClassIdentifier: 
+  EffectDuration: 59.2
+  HasDownside: 0
+  DownsideDuration: 23.9
+  DownSideStaminaMultiplyer: 0
+  DownsideDamageMultiplyer: 5.7
+  DownsideStandardSpeedMultiplyer: 6.43
+  DownsideCooldownTimeMultiplyer: 7.13
+  DownsideDashSpeedMultiplyer: 7.94
+  DownsideSetBoosterSpeedMultiplyer: 5.74
+  DownsideJumpMultiplyerMultiplyer: 5.04
+  DownsideMaxJumpSpeedMultiplyer: 6.03
+  SetBoosterSpeedMultiplyer: 5.11
+  CooldownTimeMultiplyer: 4.89
+  DashSpeedMultiplyer: 3.82
+  JumpMultiplyerMultiplyer: 3.13
+  MaxJumpSpeedMultiplyer: 3.64
+  StaminaMultiplyer: 0
+  StandardSpeedMultiplyer: 0
+  DamageMultiplyer: 0
+  WeaponSpeedMultiplyer: 0

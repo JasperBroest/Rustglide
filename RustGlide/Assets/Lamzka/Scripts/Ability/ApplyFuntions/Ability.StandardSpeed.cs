@@ -2,7 +2,7 @@
 
 public partial class AbilityObject
 {
-    [Space(15)] [Header("Standard Movement")] [Range(0, 10)]
+    [Space(15)] [Header("Standard Movement")] [Range(0, 300)]
     public float StandardSpeedMultiplyer;
 
     public bool DoesEffectStandard => StandardSpeedMultiplyer > 0;

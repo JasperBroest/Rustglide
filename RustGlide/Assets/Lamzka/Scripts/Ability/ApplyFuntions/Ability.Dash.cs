@@ -2,10 +2,10 @@
 
 public partial class AbilityObject
 {
-    [Space(15)] [Header("Dash Movement")] [Range(0, 10)]
+    [Space(15)] [Header("Dash Movement")] [Range(0, 300)]
     public float CooldownTimeMultiplyer;
 
-    [Range(0, 10)] public float DashSpeedMultiplyer;
+    [Range(0, 300)] public float DashSpeedMultiplyer;
     public bool DoesEffectDash => CooldownTimeMultiplyer > 0 || DashSpeedMultiplyer > 0;
 }
 
