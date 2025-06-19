@@ -15,6 +15,7 @@ public class Smg : Weapon, IPlayerInput
 
     private void Update()
     {
+        GetInput();
         if (!onCooldown)
         {
             Shoot();

@@ -17,6 +17,7 @@ public class Shotgun : Weapon, IPlayerInput
 
     private void Update()
     {
+        GetInput();
         if (!onCooldown)
         {
             ShotgunShoot();
@@ -71,9 +72,10 @@ public class Shotgun : Weapon, IPlayerInput
                 gunHitParticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    //StateController stateController = hit.collider.GetComponent<StateController>();
-                    //stateController.ChangeState(stateController.HurtState);
-                    //hit.collider.GetComponent<EnemyHealth>().TakeDamage(dmg);
+                    StateController stateController = hit.collider.GetComponent<StateController>();
+                    stateController.DamageTaken = dmg;
+                    stateController.ChangeState(stateController.hurtState);
+                    hit.collider.GetComponent<StateController>().ChangeState(stateController.hurtState);
                     gunHitSource.clip = EnemyHitAudio;
                 }
                 else

@@ -12,23 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616161d63d8e684448de8416cd61c912, type: 3}
   m_Name: Beer
   m_EditorClassIdentifier: 
-  StaminaMultiplyer: 0
-  EffectDuration: 30
-  DamageMultiplyer: 10
-  WeaponSpeedMultiplyer: 10
-  StandardSpeedMultiplyer: 10
-  CooldownTimeMultiplyer: 0
-  DashSpeedMultiplyer: 0
-  SetBoosterSpeedMultiplyer: 10
-  JumpMultiplyerMultiplyer: 0
-  MaxJumpSpeedMultiplyer: 0
-  HasDownside: 0
-  DownsideDuration: 0
-  DownSideStaminaMultiplyer: 0
-  DownsideDamageMultiplyer: 0
-  DownsideStandardSpeedMultiplyer: 0
-  DownsideCooldownTimeMultiplyer: 0
-  DownsideDashSpeedMultiplyer: 0
-  DownsideSetBoosterSpeedMultiplyer: 0
-  DownsideJumpMultiplyerMultiplyer: 0
-  DownsideMaxJumpSpeedMultiplyer: 0
+  EffectDuration: 0
+  SetBoosterSpeedMultiplyer: 50
+  CooldownTimeMultiplyer: 50
+  DashSpeedMultiplyer: 50
+  JumpMultiplyerMultiplyer: 50
+  MaxJumpSpeedMultiplyer: 50
+  StaminaMultiplyer: 50
+  StandardSpeedMultiplyer: 50
+  DamageMultiplyer: 50
+  WeaponSpeedMultiplyer: 50

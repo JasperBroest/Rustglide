@@ -15,6 +15,7 @@ TagManager:
   - PlayerInput
   - GunHolster
   - ChooseWeapons
+  - PlayerMoveObject
   layers:
   - Default
   - TransparentFX
