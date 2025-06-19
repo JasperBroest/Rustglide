@@ -12,11 +12,14 @@ public class Shotgun : Weapon, IPlayerInput
         GetInput();
         gunShotSource = GetComponent<AudioSource>();
         gunShotParticle = GetComponentInChildren<VisualEffect>();
-        cooldown = 1f / FireRate;
+        cooldown = AbilityManager.Instance.CurrentShotgunCooldown / FireRate;
     }
 
     private void Update()
     {
+        if (gunHeld)
+            dmg = AbilityManager.Instance.CurrentShotgunDamage;
+        
         GetInput();
         if (!onCooldown)
         {

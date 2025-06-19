@@ -942,16 +942,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9663f7d89cf0fd04c8c0722bd9556caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponDamage: 2
-  ShootingCooldown: 2
+  CurrentHandGunDamage: 0
+  CurrentSMGDamage: 0
+  CurrentSMGShootingCooldown: 0
+  CurrentShotgunDamage: 0
+  CurrentShotgunCooldown: 0
   HasChosen: 0
   ChosenMovement: 
-  Stamina: 100
-  StandardSpeed: 5
+  Stamina: 0
+  StandardSpeed: 0
   DashSpeed: 0
   CooldownTime: 0
-  BoosterSpeed: 5
+  BoosterSpeed: 0
   BoosterCooldown: 0
+  DefaultHandGunDamage: 10
+  DefaultSMGDamage: 5
+  DefaultSMGShootingCooldown: 0.2
+  DefaultShotgunDamage: 3
+  DefaultShotgunShootingCooldown: 0.8
+  DefaultStamina: 100
+  DefaultStandardSpeed: 2
+  DefaultDashSpeed: 0
+  DefaultCooldownTime: 0
+  DefaultBoosterSpeed: 5
   MonkeyJump: 0
   MonkeyMaxJumpSpeed: 0
   TestBool: 0
