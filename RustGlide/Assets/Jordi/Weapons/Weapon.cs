@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -130,6 +129,23 @@ public class Weapon : GunSubject
         gunShotSource.PlayOneShot(GunShotAudio);
         ForceTubeVRInterface.Shoot(gunHaptic);
 
+        if (gameObject.TryGetComponent<Shotgun>(out Shotgun shotgun))
+        {
+            for (int i = 0; i < shotgun.numberOfProjectiles; i++)
+            {
+                Vector3 direction = Bullethole.transform.forward;
+                direction += Bullethole.transform.up * UnityEngine.Random.Range(-shotgun.spreadFactor, shotgun.spreadFactor);
+                direction += Bullethole.transform.right * UnityEngine.Random.Range(-shotgun.spreadFactor, shotgun.spreadFactor);
+
+                raycastShoot();
+            }
+        }
+        else
+            raycastShoot();
+    }
+
+    private void raycastShoot()
+    {
         //shoots a raycast out of the bullethole of the gun and spawns a particle and sound effect on the place you hit
         RaycastHit hit;
         if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.forward, out hit, Range))
