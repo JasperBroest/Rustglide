@@ -144,8 +144,9 @@ MonoBehaviour:
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
-  OldColor: {r: 0, g: 0, b: 0, a: 0}
   graphics: {fileID: 1701633289919133722}
+  DefaultMat: {fileID: 2100000, guid: 4d492df75b612b646aa8458fefd0ef86, type: 2}
+  HitMat: {fileID: 2100000, guid: 328504ad90f63284f992a5dca1ae3f93, type: 2}
 --- !u!1001 &2312268908273976036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242,6 +243,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6233304513539259261, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d492df75b612b646aa8458fefd0ef86, type: 2}
     - target: {fileID: 7713459784977065051, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
       propertyPath: m_IsActive
       value: 0
