@@ -15,6 +15,11 @@ public class Gun : Weapon, IPlayerInput
 
     private void Update()
     {
+
+        if (gunHeld)
+            dmg = AbilityManager.Instance.CurrentHandGunDamage;
+        
+        GetInput();
         Shoot();
         if (gunHoldingHand == Hand.Left && !LTriggerPressed && onCooldown || gunHoldingHand == Hand.Right && !RTriggerPressed && onCooldown)
         {

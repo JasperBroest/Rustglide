@@ -61,7 +61,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.4334278, y: 1.1, z: -0.9088345}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6274849628024171049}
@@ -86,7 +86,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.32387882
+  m_Radius: 0.35
   m_Center: {x: -0.012200236, y: -0.10891515, z: 0}
 --- !u!54 &1324753408007306921
 Rigidbody:
@@ -127,13 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd231e2517ea4d947831fdaebcbb38d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionRadius: 25
-  AttackRange: 8
+  VisionRadius: 50
+  AttackRange: 10
   AttackSpeed: 1.5
   AttackDamage: 20
-  MaxHealth: 40
+  MaxHealth: 50
   CurrentHealth: 0
-  maxSpeed: 138.44
+  maxSpeed: 10
   minSpeed: 1
   FoundTarget: 0
   DamageTaken: 0
@@ -144,8 +144,9 @@ MonoBehaviour:
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
-  OldColor: {r: 0, g: 0, b: 0, a: 0}
   graphics: {fileID: 1701633289919133722}
+  DefaultMat: {fileID: 2100000, guid: 4d492df75b612b646aa8458fefd0ef86, type: 2}
+  HitMat: {fileID: 2100000, guid: 328504ad90f63284f992a5dca1ae3f93, type: 2}
 --- !u!1001 &2312268908273976036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242,6 +243,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6233304513539259261, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d492df75b612b646aa8458fefd0ef86, type: 2}
     - target: {fileID: 7713459784977065051, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
       propertyPath: m_IsActive
       value: 0

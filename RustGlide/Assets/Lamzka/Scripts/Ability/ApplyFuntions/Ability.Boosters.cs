@@ -4,7 +4,7 @@ using UnityEngine;
 public partial class AbilityObject
 {
     
-    [Space(15)] [Header("Booster Movement")] [Range(0, 10)]
+    [Space(15)] [Header("Booster Movement")] [Range(0, 300)]
     public float SetBoosterSpeedMultiplyer;
     public bool DoesEffectBoost => SetBoosterSpeedMultiplyer > 0;
 

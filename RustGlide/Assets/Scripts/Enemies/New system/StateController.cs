@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class StateController : MonoBehaviour
 {
@@ -31,9 +30,10 @@ public class StateController : MonoBehaviour
     public Rigidbody TargetRigidbody;
     public MeshRenderer MeshRenderer;
     public LayerMask PlayerMask;
-    public Color OldColor;
     public IState PreviousState;
     public GameObject graphics;
+    public Material DefaultMat;
+    public Material HitMat;
 
     private void Start()
     {
@@ -52,7 +52,7 @@ public class StateController : MonoBehaviour
             currentState.UpdateState(this);
         }
 
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
     }
 
     private void FixedUpdate()

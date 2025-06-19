@@ -434,7 +434,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.92, y: 0.95, z: 13.14}
-  m_LocalScale: {x: 1.2905006, y: 0.96787554, z: 0.96787554}
+  m_LocalScale: {x: 0.5, y: 0.375, z: 0.375}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3905517513954442632}
@@ -464,6 +464,7 @@ MonoBehaviour:
   Range: 1000
   gunHaptic: {fileID: 11400000, guid: abb9c96e0f7239b45a7e397569b6fe71, type: 2}
   gunHeld: 0
+  gunHoldingHand: 2
   spreadFactor: 0.2
   numberOfProjectiles: 15
   FireRate: 2
@@ -486,7 +487,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 392
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0

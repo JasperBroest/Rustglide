@@ -11,6 +11,6 @@ public class UpgradeGorilla : MonoBehaviour
         {
             GorillaPlayer.GetComponentInChildren<Player>().jumpMultiplier++;
         }
-        Chosen.instance.DeactivateCard();
+        //Chosen.instance.DeactivateCard();
     }
 }

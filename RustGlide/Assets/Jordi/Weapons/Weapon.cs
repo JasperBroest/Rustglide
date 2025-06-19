@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -24,7 +23,7 @@ public class Weapon : GunSubject
     public Hand gunHoldingHand = Hand.None;
 
     protected bool cooldownCoroutineRunning = false;
-    protected int HandsHeld = 0;
+    [SerializeField]protected int HandsHeld = 0;
     protected float dmg = 10;
     protected AudioSource gunShotSource;
     protected AudioSource gunHitSource;
@@ -65,24 +64,23 @@ public class Weapon : GunSubject
 
     private void FixedUpdate()
     {
-        dmg = AbilityManager.Instance.WeaponDamage;
-        cooldown = AbilityManager.Instance.ShootingCooldown;
+        dmg = AbilityManager.Instance.CurrentSMGShootingCooldown;
+        cooldown = AbilityManager.Instance.DefaultSMGShootingCooldown;
     }
 
     private void OnSelectEntered(SelectEnterEventArgs args)
     {
-        XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
+        var interactor = args.interactorObject as XRBaseInteractor;
         if (interactor != null)
         {
-            Debug.Log($"Picked up by: {interactor.name}");
             gunHoldingHand = DetermineHand(interactor);
         }
     }
 
     private void OnSelectExited(SelectExitEventArgs args)
     {
-        XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
-        if (interactor != null)
+        var interactor = args.interactorObject as XRBaseInteractor;
+        if (interactor != null && HandsHeld == 0)
         {
             gunHoldingHand = Hand.None;
         }
@@ -90,9 +88,18 @@ public class Weapon : GunSubject
 
     private Hand DetermineHand(XRBaseInteractor interactor)
     {
-        if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand")) return Hand.Left;
-        if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand")) return Hand.Right;
-        return Hand.None;
+        if (HandsHeld == 1)
+        {
+            if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand"))
+            {
+                gunHoldingHand = Hand.Left;
+            }
+            else if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand"))
+            {
+                gunHoldingHand = Hand.Right;
+            }
+        }
+        return gunHoldingHand;
     }
 
     protected void Shoot()
@@ -122,9 +129,26 @@ public class Weapon : GunSubject
         gunShotSource.PlayOneShot(GunShotAudio);
         ForceTubeVRInterface.Shoot(gunHaptic);
 
+        if (gameObject.TryGetComponent<Shotgun>(out Shotgun shotgun))
+        {
+            for (int i = 0; i < shotgun.numberOfProjectiles; i++)
+            {
+                Vector3 direction = Bullethole.transform.forward;
+                direction += Bullethole.transform.up * UnityEngine.Random.Range(-shotgun.spreadFactor, shotgun.spreadFactor);
+                direction += Bullethole.transform.right * UnityEngine.Random.Range(-shotgun.spreadFactor, shotgun.spreadFactor);
+
+                raycastShoot();
+            }
+        }
+        else
+            raycastShoot();
+    }
+
+    private void raycastShoot()
+    {
         //shoots a raycast out of the bullethole of the gun and spawns a particle and sound effect on the place you hit
         RaycastHit hit;
-        if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.TransformDirection(Vector3.forward), out hit, Range))
+        if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.forward, out hit, Range))
         {
             GameObject SpawnedObject = Instantiate(hitAudioObject);
             SpawnedObject.transform.parent = null;

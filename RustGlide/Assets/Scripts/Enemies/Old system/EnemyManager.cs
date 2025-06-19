@@ -54,7 +54,15 @@ public class EnemyManager : MonoBehaviour
         else
         {
             gameDone = true;
-            SceneManager.LoadScene(1);
+
+            if(SceneManager.GetActiveScene().buildIndex == 0)
+                SceneManager.LoadScene(1);
+            else if(SceneManager.GetActiveScene().buildIndex == 1)
+                SceneManager.LoadScene(2);
+            else if(SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                //something
+            }
         }
     }
 }

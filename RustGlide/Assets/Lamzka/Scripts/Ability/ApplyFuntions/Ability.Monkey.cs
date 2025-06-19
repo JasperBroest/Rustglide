@@ -2,10 +2,10 @@
 
 public partial class AbilityObject
 {
-    [Space(15)] [Header("Monkey Movement")] [Range(0, 10)]
+    [Space(15)] [Header("Monkey Movement")] [Range(0, 300)]
     public float JumpMultiplyerMultiplyer;
 
-    [Range(0, 10)] public float MaxJumpSpeedMultiplyer;
+    [Range(0, 300)] public float MaxJumpSpeedMultiplyer;
     public bool DoesEffectMonkey => JumpMultiplyerMultiplyer > 0 || JumpMultiplyerMultiplyer > 0;
 }
 

@@ -4243,14 +4243,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5104351194558270364}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a47e86b7c3c70b641bc8da37e31cca08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CubeRight: {fileID: 9117312895076266647}
   CubeLeft: {fileID: 8827288209575989626}
-  PlayerRigidbody: {fileID: 1340753266231617356}
   ThrusterSound: {fileID: 8300000, guid: 42b9de0f4104ee04d99478a3beabdeda, type: 3}
   AudioSource: {fileID: 5563463332260211684}
   ThrustPower: 5
@@ -7915,16 +7914,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8374432687314140200}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb55de007b3abbe4195575ccf4541cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staminaLossSpeed: 0
-  IsPlayerDead: 0
-  stamina: 100
-  velocitySpeed: 5
   velocity: 0
+  velocitySpeed: 5
+  stamina: 100
 --- !u!82 &4642828533875355151
 AudioSource:
   m_ObjectHideFlags: 0
