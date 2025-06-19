@@ -24,7 +24,7 @@ public class Weapon : GunSubject
     public Hand gunHoldingHand = Hand.None;
 
     protected bool cooldownCoroutineRunning = false;
-    protected int HandsHeld = 0;
+    [SerializeField]protected int HandsHeld = 0;
     protected float dmg = 10;
     protected AudioSource gunShotSource;
     protected AudioSource gunHitSource;
@@ -81,7 +81,7 @@ public class Weapon : GunSubject
     private void OnSelectExited(SelectExitEventArgs args)
     {
         var interactor = args.interactorObject as XRBaseInteractor;
-        if (interactor != null)
+        if (interactor != null && HandsHeld == 0)
         {
             gunHoldingHand = Hand.None;
         }
@@ -89,12 +89,18 @@ public class Weapon : GunSubject
 
     private Hand DetermineHand(XRBaseInteractor interactor)
     {
-        if (HandsHeld <= 1)
+        if (HandsHeld == 1)
         {
-            if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand")) return Hand.Left;
-            if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand")) return Hand.Right;
+            if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand"))
+            {
+                gunHoldingHand = Hand.Left;
+            }
+            else if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand"))
+            {
+                gunHoldingHand = Hand.Right;
+            }
         }
-        return Hand.None;
+        return gunHoldingHand;
     }
 
     protected void Shoot()
