@@ -52,7 +52,7 @@ public class StateController : MonoBehaviour
             currentState.UpdateState(this);
         }
 
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
     }
 
     private void FixedUpdate()
