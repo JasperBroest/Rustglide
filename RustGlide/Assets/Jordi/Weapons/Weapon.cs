@@ -137,45 +137,52 @@ public class Weapon : GunSubject
                 direction += Bullethole.transform.up * UnityEngine.Random.Range(-shotgun.spreadFactor, shotgun.spreadFactor);
                 direction += Bullethole.transform.right * UnityEngine.Random.Range(-shotgun.spreadFactor, shotgun.spreadFactor);
 
-                raycastShoot();
+                //shoots a raycast out of the bullethole of the gun and spawns a particle and sound effect on the place you hit
+                RaycastHit hit;
+                if (Physics.Raycast(Bullethole.transform.position, direction.normalized, out hit, Range))
+                {
+                    raycastShoot(hit);
+                }
             }
         }
         else
-            raycastShoot();
+        {
+            //shoots a raycast out of the bullethole of the gun and spawns a particle and sound effect on the place you hit
+            RaycastHit hit;
+            if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.forward, out hit, Range))
+            {
+                raycastShoot(hit);
+            }
+        }
     }
 
-    private void raycastShoot()
+    private void raycastShoot(RaycastHit hit)
     {
-        //shoots a raycast out of the bullethole of the gun and spawns a particle and sound effect on the place you hit
-        RaycastHit hit;
-        if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.forward, out hit, Range))
+        GameObject SpawnedObject = Instantiate(hitAudioObject);
+        SpawnedObject.transform.parent = null;
+        SpawnedObject.transform.position = hit.point;
+        gunHitSource = SpawnedObject.GetComponent<AudioSource>();
+        gunHitParticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
+
+        //if the thing you hit is an enemy do damage to it and play enemy hit sound
+        if (hit.collider.CompareTag("Enemy"))
         {
-            GameObject SpawnedObject = Instantiate(hitAudioObject);
-            SpawnedObject.transform.parent = null;
-            SpawnedObject.transform.position = hit.point;
-            gunHitSource = SpawnedObject.GetComponent<AudioSource>();
-            gunHitParticle = SpawnedObject.GetComponentInChildren<ParticleSystem>();
-
-            //if the thing you hit is an enemy do damage to it and play enemy hit sound
-            if (hit.collider.CompareTag("Enemy"))
-            {
-                StateController stateController = hit.collider.GetComponent<StateController>();
-                stateController.DamageTaken = dmg;
-                stateController.ChangeState(stateController.hurtState);
-                hit.collider.GetComponent<StateController>().ChangeState(stateController.hurtState);
-                gunHitSource.clip = EnemyHitAudio;
-            }
-            // if not then play normal hit sound
-            else
-            {
-                gunHitSource.clip = GunHitAudio;
-            }
-            gunHitParticle.Play();
-            gunHitSource.PlayOneShot(gunHitSource.clip);
-
-            //delete the spawned object with the audio and hit sound after a couple seconds
-            StartCoroutine(DeleteSource(SpawnedObject));
+            StateController stateController = hit.collider.GetComponent<StateController>();
+            stateController.DamageTaken = dmg;
+            stateController.ChangeState(stateController.hurtState);
+            hit.collider.GetComponent<StateController>().ChangeState(stateController.hurtState);
+            gunHitSource.clip = EnemyHitAudio;
         }
+        // if not then play normal hit sound
+        else
+        {
+            gunHitSource.clip = GunHitAudio;
+        }
+        gunHitParticle.Play();
+        gunHitSource.PlayOneShot(gunHitSource.clip);
+
+        //delete the spawned object with the audio and hit sound after a couple seconds
+        StartCoroutine(DeleteSource(SpawnedObject));
     }
 
     //sets the cooldown of the gun so it doesnt shoot every frame
