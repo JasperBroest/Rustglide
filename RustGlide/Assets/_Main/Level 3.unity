@@ -27213,22 +27213,22 @@ MonoBehaviour:
   CurrentShotgunCooldown: 0
   HasChosen: 0
   ChosenMovement: 
-  Stamina: 100
-  StandardSpeed: 5
+  Stamina: 0
+  StandardSpeed: 0
   DashSpeed: 0
   CooldownTime: 0
-  BoosterSpeed: 10
+  BoosterSpeed: 0
   BoosterCooldown: 0
-  DefaultHandGunDamage: 0
+  DefaultHandGunDamage: 10
   DefaultSMGDamage: 0
   DefaultSMGShootingCooldown: 0
   DefaultShotgunDamage: 0
   DefaultShotgunShootingCooldown: 0
-  DefaultStamina: 0
-  DefaultStandardSpeed: 0
+  DefaultStamina: 100
+  DefaultStandardSpeed: 5
   DefaultDashSpeed: 0
   DefaultCooldownTime: 0
-  DefaultBoosterSpeed: 0
+  DefaultBoosterSpeed: 10
   MonkeyJump: 0
   MonkeyMaxJumpSpeed: 0
   TestBool: 0

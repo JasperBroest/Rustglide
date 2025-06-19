@@ -12,10 +12,8 @@ public class AttackState : IState
     {
         didAttack = false;
         this.controller = controller;
-        // "What was that!?"
 
         controller.rb.linearVelocity = Vector3.zero;
-
 
         attackCoroutine = controller.StartCoroutine(AttackCooldown());
     }
@@ -42,9 +40,12 @@ public class AttackState : IState
     
     private IEnumerator AttackCooldown()
     {
-        yield return new WaitForSeconds(1f);
-        controller.rb.AddForce(controller.graphics.transform.forward * 15f, ForceMode.VelocityChange);
-        yield return new WaitForSeconds(3f);
+        controller.graphics.transform.rotation = Quaternion.LookRotation(controller.Target.transform.position - controller.graphics.transform.position, Vector3.up
+        );
+
+        yield return new WaitForSeconds(0.5f);
+        controller.rb.AddForce(Vector3.Normalize(controller.Target.transform.position - controller.transform.position) * 20f, ForceMode.VelocityChange);
+        yield return new WaitForSeconds(1.5f);
         didAttack = true;
     }
 
