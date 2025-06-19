@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 {
-    [Header("dependencys")]
+    [Header("Dependencys")]
     public GameObject CubeRight;
     public GameObject CubeLeft;
-    public Rigidbody PlayerRigidbody;
+    private Rigidbody playerRidgidbody;
 
     [Header("Audio")]
     public AudioClip ThrusterSound;
@@ -21,14 +21,8 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     private bool isGrounded;
 
-    private bool isGunHeld;
+    private bool isGunHeld = false;
 
-    bool nospeed = false;
-
-    void FixedUpdate()
-    {
-        ThrustPower = AbilityManager.Instance.BoosterSpeed;
-    }
 
     public void NotifyGrab(bool IsGunGrabbed)
     {
@@ -47,12 +41,14 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     private void Start()
     {
         AudioSource.clip = ThrusterSound;
-        /*GetGun();*/
+        playerRidgidbody = GetComponent<Rigidbody>();
         GetInput();
     }
 
-    void Update()
+    private void FixedUpdate()
     {
+        ThrustPower = AbilityManager.Instance.BoosterSpeed;
+
         GetGun();
 
         if (IsRightTriggerPressed)
@@ -86,7 +82,7 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
             if (!AudioSource.isPlaying)
                 AudioSource.PlayOneShot(ThrusterSound);
 
-            PlayerRigidbody.AddForce(CubeRight.transform.forward * ThrustPower);
+            playerRidgidbody.AddForce(CubeRight.transform.forward * ThrustPower);
         }
 
     }
@@ -97,7 +93,7 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
         {
             if (!AudioSource.isPlaying)
                 AudioSource.PlayOneShot(ThrusterSound);
-            PlayerRigidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
+            playerRidgidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
         }
 
     }
@@ -126,10 +122,10 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     private void CheckForSlow()
     {
-        if (PlayerRigidbody.linearVelocity.x >= 3 || PlayerRigidbody.linearVelocity.x <= -3 || PlayerRigidbody.linearVelocity.z >= 3 || PlayerRigidbody.linearVelocity.z <= -3 && isGrounded)
+        if (playerRidgidbody.linearVelocity.x >= 3 || playerRidgidbody.linearVelocity.x <= -3 || playerRidgidbody.linearVelocity.z >= 3 || playerRidgidbody.linearVelocity.z <= -3 && isGrounded)
         {
-            PlayerRigidbody.AddForce(-PlayerRigidbody.linearVelocity.x, 0, -PlayerRigidbody.linearVelocity.z);
-            PlayerRigidbody.linearVelocity = PlayerRigidbody.linearVelocity / 2;
+            playerRidgidbody.AddForce(-playerRidgidbody.linearVelocity.x, 0, -playerRidgidbody.linearVelocity.z);
+            playerRidgidbody.linearVelocity = playerRidgidbody.linearVelocity / 2;
 
         }
     }
