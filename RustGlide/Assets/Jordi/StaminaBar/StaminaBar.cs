@@ -102,6 +102,7 @@ public class StaminaBar : MonoBehaviour
     {
         if (!IsPlayerDead)
         {
+            AbilityManager.Instance.ResetStats();
             GameObject.Find("HUD manager").GetComponent<HudManager>().StartDeathSequence();
             StartCoroutine(finished());
             vignette.center.value = new Vector2(-1, -1);
@@ -116,4 +117,6 @@ public class StaminaBar : MonoBehaviour
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(0);
     }
+    
+    
 }

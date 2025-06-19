@@ -65,8 +65,8 @@ public class Weapon : GunSubject
 
     private void FixedUpdate()
     {
-        dmg = AbilityManager.Instance.WeaponDamage;
-        cooldown = AbilityManager.Instance.ShootingCooldown;
+        dmg = AbilityManager.Instance.CurrentSMGShootingCooldown;
+        cooldown = AbilityManager.Instance.DefaultSMGShootingCooldown;
     }
 
     private void OnSelectEntered(SelectEnterEventArgs args)
