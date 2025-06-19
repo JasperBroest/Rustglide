@@ -10,11 +10,15 @@ public class Smg : Weapon, IPlayerInput
         GetInput();
         gunShotSource = GetComponent<AudioSource>();
         gunShotParticle = GetComponentInChildren<VisualEffect>();
-        cooldown = 1f / FireRate;
+        cooldown = AbilityManager.Instance.CurrentSMGShootingCooldown / FireRate;
     }
 
     private void Update()
     {
+        
+        if (gunHeld)
+            dmg = AbilityManager.Instance.CurrentSMGDamage;
+        
         GetInput();
         if (!onCooldown)
         {
