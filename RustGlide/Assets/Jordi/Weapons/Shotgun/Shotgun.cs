@@ -30,6 +30,7 @@ public class Shotgun : Weapon, IPlayerInput
         {
             StartCoroutine(SetCooldown());
         }
+
     }
 
     private void GetInput()
