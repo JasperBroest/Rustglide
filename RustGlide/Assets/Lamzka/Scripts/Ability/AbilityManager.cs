@@ -93,8 +93,7 @@ public class AbilityManager : MonoBehaviour
     [HideInInspector] [SerializeField] GameObject gorilla;
     [HideInInspector] GameObject XrOrigin;
     
-    
-
+ 
 
     private void Awake()
     {
