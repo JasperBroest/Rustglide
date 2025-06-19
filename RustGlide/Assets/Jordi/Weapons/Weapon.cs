@@ -71,17 +71,16 @@ public class Weapon : GunSubject
 
     private void OnSelectEntered(SelectEnterEventArgs args)
     {
-        XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
+        var interactor = args.interactorObject as XRBaseInteractor;
         if (interactor != null)
         {
-            Debug.Log($"Picked up by: {interactor.name}");
             gunHoldingHand = DetermineHand(interactor);
         }
     }
 
     private void OnSelectExited(SelectExitEventArgs args)
     {
-        XRBaseInteractor interactor = args.interactorObject as XRBaseInteractor;
+        var interactor = args.interactorObject as XRBaseInteractor;
         if (interactor != null)
         {
             gunHoldingHand = Hand.None;
@@ -90,8 +89,11 @@ public class Weapon : GunSubject
 
     private Hand DetermineHand(XRBaseInteractor interactor)
     {
-        if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand")) return Hand.Left;
-        if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand")) return Hand.Right;
+        if (HandsHeld <= 1)
+        {
+            if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand")) return Hand.Left;
+            if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand")) return Hand.Right;
+        }
         return Hand.None;
     }
 
@@ -124,7 +126,7 @@ public class Weapon : GunSubject
 
         //shoots a raycast out of the bullethole of the gun and spawns a particle and sound effect on the place you hit
         RaycastHit hit;
-        if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.TransformDirection(Vector3.forward), out hit, Range))
+        if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.forward, out hit, Range))
         {
             GameObject SpawnedObject = Instantiate(hitAudioObject);
             SpawnedObject.transform.parent = null;

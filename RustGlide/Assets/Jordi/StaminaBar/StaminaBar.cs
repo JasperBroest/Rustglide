@@ -9,18 +9,17 @@ using UnityEngine.SceneManagement;
 
 public class StaminaBar : MonoBehaviour
 {
-    [SerializeField] private float staminaLossSpeed;
-
-    /*public bool CanPlayerDie = true;*/
-    public bool IsPlayerDead = false;
-    [Range(0, 100)] public float stamina;
-
-    private int staminaLoss;
-    private Vector3 vectorVelocity;
-    [SerializeField][Range(0, 10)] private float velocitySpeed;
+    // Velocity
     [SerializeField] private float velocity;
-    private XROrigin XrOrigin;
+    [SerializeField][Range(0, 10)] private float velocitySpeed;
+
+    // Stamina
+    [Range(0, 100)] public float stamina;
+    private int staminaLoss;
+
+    // Other
     private Vector3 previousPosition;
+    private XROrigin XrOrigin;
     private Volume volume;
     private Vignette vignette;
 
@@ -36,24 +35,16 @@ public class StaminaBar : MonoBehaviour
         volume = FindFirstObjectByType<Volume>();
     }
 
-    private void Start()
-    {
-        stamina = 100;
-    }
-
     private void Update()
     {
-        staminaLossSpeed = StoreStamina.instance.staminaLevelMultiplier;
         if (volume.profile.TryGet(out vignette))
         {
             float normalizedStamina = Mathf.InverseLerp(0, 100, stamina);
             vignette.intensity.value = 1f - normalizedStamina;
         }
-        if(XrOrigin.name != "Gorilla Rig")
-        {
-            CheckVelocity();
-            CalculateVelocity();
-        }
+
+        CheckVelocity();
+        CalculateVelocity();
         CheckForDeath();
     }
 
@@ -61,12 +52,15 @@ public class StaminaBar : MonoBehaviour
     {
         if (stamina >= 0)
         {
+            // Calculates stamina decrease based on how fast player is moving
             if (velocity < velocitySpeed)
             {
                 staminaLoss = 6 - Mathf.CeilToInt(velocity);
-                float lossSpeed = (staminaLoss * staminaLossSpeed) / 20f;
+                float lossSpeed = staminaLoss / 20f;
                 stamina -= lossSpeed;
             }
+
+            // Dont go over 100
             else if (stamina <= 100)
             {
                 stamina += staminaLoss / 20f;
@@ -77,15 +71,9 @@ public class StaminaBar : MonoBehaviour
     private void CalculateVelocity()
     {
         Vector3 currentPosition;
-        if (XrOrigin.name == "Gorilla Rig")
-        {
-            currentPosition = XrOrigin.transform.GetChild(2).position;
-        }
-        else
-        {
-            currentPosition = XrOrigin.transform.position;
-        }
-        vectorVelocity = (currentPosition - previousPosition) / Time.deltaTime;
+        currentPosition = XrOrigin.transform.position;
+
+        Vector3 vectorVelocity = (currentPosition - previousPosition) / Time.deltaTime;
         previousPosition = currentPosition;
 
         velocity = vectorVelocity.magnitude * 2f;
@@ -100,14 +88,8 @@ public class StaminaBar : MonoBehaviour
     }
     private void Die()
     {
-        if (!IsPlayerDead)
-        {
-            AbilityManager.Instance.ResetStats();
-            GameObject.Find("HUD manager").GetComponent<HudManager>().StartDeathSequence();
-            StartCoroutine(finished());
-            vignette.center.value = new Vector2(-1, -1);
-            IsPlayerDead = true;
-        }
+        StartCoroutine(finished());
+        vignette.center.value = new Vector2(-1, -1);
 
     }
 
@@ -117,6 +99,4 @@ public class StaminaBar : MonoBehaviour
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(0);
     }
-    
-    
 }

@@ -15,6 +15,7 @@ public class Gun : Weapon, IPlayerInput
 
     private void Update()
     {
+        GetInput();
         Shoot();
         if (gunHoldingHand == Hand.Left && !LTriggerPressed && onCooldown || gunHoldingHand == Hand.Right && !RTriggerPressed && onCooldown)
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class RogueLikeManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class RogueLikeManager : MonoBehaviour
     [HideInInspector] public List<GameObject> localUpgrades;
     [HideInInspector] public List<int> localDropChance;
     [HideInInspector] public bool ChosenUpgradesFilled;
+
+    public bool HasChosen = false;
 
     private GameObject Stamina;
 
@@ -30,6 +33,14 @@ public class RogueLikeManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Stamina == null)
+        {
+            GetStaminaComponent();
+        }
+    }
+
     private void SetList()
     {
         foreach (var upgrade in Upgrades)
@@ -41,14 +52,13 @@ public class RogueLikeManager : MonoBehaviour
 
     private void GenerateThree()
     {
-        Stamina.gameObject.SetActive(false);
+        //Stamina.gameObject.SetActive(false);
         SetList();
         for (int i = 0; i < 3; i++)
         {
             GameObject droppingItem = null;
             int totalWeight = localDropChance.Sum(item => item);
             RandValue = UnityEngine.Random.Range(1, totalWeight + 1);
-            Debug.Log(RandValue);
             int cumulative = 0;
             for (int j = 0; j < localUpgrades.Count; j++)
             {
@@ -71,13 +81,15 @@ public class RogueLikeManager : MonoBehaviour
 
     public void OnGrab()
     {
-        Stamina.gameObject.SetActive(true);
+        //Stamina.gameObject.SetActive(true);
         /*this.transform.parent.gameObject.SetActive(false);*/
+        HasChosen = true;
+        AbilityManager.Instance.HasChosen = true;
         this.gameObject.SetActive(false);
     }
 
     public void GetStaminaComponent()
     {
-        Stamina = GameObject.FindWithTag("Stamina");
+        Stamina = FindAnyObjectByType<XROrigin>().GetComponentInChildren<StaminaBar>().gameObject;
     }
 }
