@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616161d63d8e684448de8416cd61c912, type: 3}
+  m_Name: WeaponSpeenUp
+  m_EditorClassIdentifier: 
+  EffectDuration: 0
+  SetBoosterSpeedMultiplyer: 0
+  CooldownTimeMultiplyer: 0
+  DashSpeedMultiplyer: 0
+  JumpMultiplyerMultiplyer: 0
+  MaxJumpSpeedMultiplyer: 0
+  StaminaMultiplyer: 0
+  StandardSpeedMultiplyer: 0
+  DamageMultiplyer: 0
+  WeaponSpeedMultiplyer: 0.3

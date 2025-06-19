@@ -5,7 +5,6 @@ using UnityEngine;
 public class ChaseState : IState
 {
     
-    public float maxForce = 4f;
     private Vector3 currentPosition;
     private Vector3 previousPosition;
     private Vector3 targetVelocity;
@@ -43,7 +42,7 @@ public class ChaseState : IState
 
         // Set velocity of enemy
         float rotationAmount = rotationSpeed * Time.deltaTime * Mathf.Deg2Rad;
-        targetVelocity = Vector3.RotateTowards(controller.rb.linearVelocity, avoidanceVector.normalized * maxForce, rotationAmount, 1000f);
+        targetVelocity = Vector3.RotateTowards(controller.rb.linearVelocity, avoidanceVector.normalized * controller.maxSpeed, rotationAmount, 1000f);
         
     }
 
@@ -80,7 +79,7 @@ public class ChaseState : IState
 
         // Calculate steeringforce
         Vector3 steering = desired - controller.rb.linearVelocity;
-        Vector3 force = maxForce * steering;
+        Vector3 force = controller.maxSpeed * steering;
 
 
         // Rotate to face movement direction

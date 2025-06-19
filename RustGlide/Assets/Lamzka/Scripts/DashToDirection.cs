@@ -63,7 +63,6 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
         if (IsLeftTriggerPressed)
         {
             AddForceToCubeLeftDirection();
-
         }
         else if (!IsLeftTriggerPressed && AudioSource.isPlaying)
         {
@@ -91,6 +90,7 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
         if (!isGunHeld)
         {
+            Debug.Log(isGunHeld);
             if (!AudioSource.isPlaying)
                 AudioSource.PlayOneShot(ThrusterSound);
             playerRidgidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
