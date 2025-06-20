@@ -55,14 +55,24 @@ public class EnemyManager : MonoBehaviour
         {
             gameDone = true;
 
-            if(SceneManager.GetActiveScene().buildIndex == 0)
-                SceneManager.LoadScene(1);
-            else if(SceneManager.GetActiveScene().buildIndex == 1)
-                SceneManager.LoadScene(2);
-            else if(SceneManager.GetActiveScene().buildIndex == 2)
+            if (SceneManager.GetActiveScene().buildIndex == 0)
             {
-                //something
+                SceneManager.LoadScene(1);
             }
+            else if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                SceneManager.LoadScene(2);
+            }
+            else if (SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                SceneManager.LoadScene(3);
+            }
+            else if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                // Endscene??? doesnt exist yet
+                //SceneManager.LoadScene(4);
+            }
+    
         }
     }
 }

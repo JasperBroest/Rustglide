@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd231e2517ea4d947831fdaebcbb38d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionRadius: 50
+  VisionRadius: 25
   AttackRange: 10
   AttackSpeed: 1.5
   AttackDamage: 20
