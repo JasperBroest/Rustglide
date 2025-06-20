@@ -605,6 +605,7 @@ MonoBehaviour:
   gunHaptic: {fileID: 11400000, guid: b6df3fcce1df1e34ea737c5840ad9520, type: 2}
   gunHeld: 0
   gunHoldingHand: 2
+  HandsHeld: 0
 --- !u!54 &6731655114814330523
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -699,18 +700,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RogueLikeManager, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -3971,7 +3971,7 @@ MonoBehaviour:
   DefaultStandardSpeed: 0
   DefaultDashSpeed: 0
   DefaultCooldownTime: 0
-  DefaultBoosterSpeed: 10
+  DefaultBoosterSpeed: 21.24
   MonkeyJump: 0
   MonkeyMaxJumpSpeed: 0
   TestBool: 0
@@ -4191,10 +4191,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5456831876352208712, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5642525368980929122, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
       propertyPath: m_Name
       value: ChooseGun
@@ -4332,15 +4328,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4518321363079795204, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 208
+      value: 73.2
       objectReference: {fileID: 0}
     - target: {fileID: 4518321363079795204, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.48
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4518321363079795204, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -54
+      value: -54.3
       objectReference: {fileID: 0}
     - target: {fileID: 4518321363079795204, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4380,7 +4376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8374432687314140200, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
