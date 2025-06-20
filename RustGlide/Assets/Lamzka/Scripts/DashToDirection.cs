@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
@@ -11,13 +12,19 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     [Header("Booster Settings")] public float ThrustPower;
 
-    [Header("Input")] private bool IsRightTriggerPressed;
-    private bool IsLeftTriggerPressed;
+    [Header("Input")] public bool IsRightTriggerPressed;
+    public bool IsLeftTriggerPressed;
+
+    [Header("activatedHand")]
+    public bool rightBoosterActivated = true;
+    public bool leftBoosterActivated = true;
 
 
     private bool isGrounded;
 
-    private bool isGunHeld = false;
+    public bool isGunHeld = false;
+
+    private GameObject[] guns;
 
 
     public void NotifyGrab(bool IsGunGrabbed)
@@ -40,28 +47,26 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
         AudioSource.clip = ThrusterSound;
         playerRidgidbody = GetComponent<Rigidbody>();
         GetInput();
+        GetGun();
     }
 
     private void FixedUpdate()
     {
         ThrustPower = AbilityManager.Instance.BoosterSpeed;
 
-        GetGun();
-
-        if (IsRightTriggerPressed)
+        if (IsRightTriggerPressed && rightBoosterActivated)
         {
-            if (!isGunHeld)
-                AddForceToCubeRightDirection();
+            AddForceToCubeRightDirection();
         }
         else if (!IsRightTriggerPressed && AudioSource.isPlaying)
         {
             StopNoise();
         }
 
-        if (IsLeftTriggerPressed)
+        if (IsLeftTriggerPressed && leftBoosterActivated)
         {
-            if (!isGunHeld)
-                AddForceToCubeLeftDirection();
+
+            AddForceToCubeLeftDirection();
         }
         else if (!IsLeftTriggerPressed && AudioSource.isPlaying)
         {
@@ -124,7 +129,13 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     private void GetGun()
     {
-        GameObject.FindWithTag("Gun").GetComponent<GunSubject>().AddObserver(this);
+        if (guns == null)
+            guns = GameObject.FindGameObjectsWithTag("Gun");
+
+        foreach (GameObject gun in guns)
+        {
+            gun.GetComponent<GunSubject>().AddObserver(this);
+        }
     }
 
     private void GetInput()

@@ -35,12 +35,14 @@ public class Weapon : GunSubject
     protected bool LTriggerPressed;
     protected XRBaseInteractor currentInteractor;
     private XRGrabInteractable grab;
+    private DashToDirection dashToDirection;
 
     private void Awake()
     {
         grab = GetComponent<XRGrabInteractable>();
         grab.selectEntered.AddListener(OnSelectEntered);
         grab.selectExited.AddListener(OnSelectExited);
+        dashToDirection = FindAnyObjectByType<DashToDirection>();
     }
 
     private void OnDestroy()
@@ -83,6 +85,8 @@ public class Weapon : GunSubject
         if (interactor != null && HandsHeld == 0)
         {
             gunHoldingHand = Hand.None;
+            dashToDirection.leftBoosterActivated = true;
+            dashToDirection.rightBoosterActivated = true;
         }
     }
 
@@ -93,10 +97,12 @@ public class Weapon : GunSubject
             if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand"))
             {
                 gunHoldingHand = Hand.Left;
+                dashToDirection.leftBoosterActivated = false;
             }
             else if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand"))
             {
                 gunHoldingHand = Hand.Right;
+                dashToDirection.rightBoosterActivated = false;
             }
         }
         return gunHoldingHand;

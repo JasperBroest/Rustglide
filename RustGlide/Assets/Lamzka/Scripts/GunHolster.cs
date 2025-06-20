@@ -21,16 +21,6 @@ public class GunHolster : MonoBehaviour, IGunGetState
         }
     }
 
-    void Start()
-    {
-        
-        /*SetGunToHolster();*/
-    }
-
-    void Update()
-    {
-        
-    }
 
     public void GetGun()
     {
