@@ -77,11 +77,14 @@ public class IdleState : IState
     private void ExtraVision(StateController controller)
     {
         RaycastHit hit;
-        if (Physics.Raycast(controller.transform.position, Vector3.Normalize(controller.Target.transform.position - controller.transform.position), out hit, 200, controller.PlayerMask))
+        if (Physics.Raycast(controller.transform.position, Vector3.Normalize(controller.Target.transform.position - controller.transform.position), out hit, 200))
         {
-            controller.Target = hit.collider.gameObject;
-            controller.TargetRigidbody= controller.Target.GetComponent<Rigidbody>();
-            controller.FoundTarget = true;
+            if (hit.collider.gameObject.layer == 3)
+            {
+                controller.Target = hit.collider.gameObject;
+                controller.TargetRigidbody= controller.Target.GetComponent<Rigidbody>();
+                controller.FoundTarget = true;
+            }
         }
         extraVision = true;
     }
