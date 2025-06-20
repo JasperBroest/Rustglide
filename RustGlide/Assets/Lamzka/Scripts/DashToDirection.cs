@@ -2,20 +2,16 @@ using UnityEngine;
 
 public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 {
-    [Header("Dependencys")]
-    public GameObject CubeRight;
+    [Header("Dependencys")] public GameObject CubeRight;
     public GameObject CubeLeft;
     private Rigidbody playerRidgidbody;
 
-    [Header("Audio")]
-    public AudioClip ThrusterSound;
+    [Header("Audio")] public AudioClip ThrusterSound;
     public AudioSource AudioSource;
 
-    [Header("Booster Settings")]
-    public float ThrustPower;
+    [Header("Booster Settings")] public float ThrustPower;
 
-    [Header("Input")]
-    private bool IsRightTriggerPressed;
+    [Header("Input")] private bool IsRightTriggerPressed;
     private bool IsLeftTriggerPressed;
 
 
@@ -33,6 +29,7 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     {
         IsRightTriggerPressed = RState;
     }
+
     public void LeftTrigger(bool LState)
     {
         IsLeftTriggerPressed = LState;
@@ -53,7 +50,8 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
         if (IsRightTriggerPressed)
         {
-            AddForceToCubeRightDirection();
+            if (!isGunHeld)
+                AddForceToCubeRightDirection();
         }
         else if (!IsRightTriggerPressed && AudioSource.isPlaying)
         {
@@ -62,12 +60,14 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
         if (IsLeftTriggerPressed)
         {
-            AddForceToCubeLeftDirection();
+            if (!isGunHeld)
+                AddForceToCubeLeftDirection();
         }
         else if (!IsLeftTriggerPressed && AudioSource.isPlaying)
         {
             StopNoise();
         }
+
         if (!IsLeftTriggerPressed && isGrounded)
         {
             CheckForSlow();
@@ -76,26 +76,18 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     void AddForceToCubeRightDirection()
     {
-        if (!isGunHeld)
-        {
-            if (!AudioSource.isPlaying)
-                AudioSource.PlayOneShot(ThrusterSound);
+        if (!AudioSource.isPlaying)
+            AudioSource.PlayOneShot(ThrusterSound);
 
-            playerRidgidbody.AddForce(CubeRight.transform.forward * ThrustPower);
-        }
-
+        playerRidgidbody.AddForce(CubeRight.transform.forward * ThrustPower);
     }
+
     void AddForceToCubeLeftDirection()
     {
-
-        if (!isGunHeld)
-        {
-            Debug.Log(isGunHeld);
-            if (!AudioSource.isPlaying)
-                AudioSource.PlayOneShot(ThrusterSound);
-            playerRidgidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
-        }
-
+        Debug.Log(isGunHeld);
+        if (!AudioSource.isPlaying)
+            AudioSource.PlayOneShot(ThrusterSound);
+        playerRidgidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
     }
 
     void StopNoise()
@@ -122,11 +114,11 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     private void CheckForSlow()
     {
-        if (playerRidgidbody.linearVelocity.x >= 3 || playerRidgidbody.linearVelocity.x <= -3 || playerRidgidbody.linearVelocity.z >= 3 || playerRidgidbody.linearVelocity.z <= -3 && isGrounded)
+        if (playerRidgidbody.linearVelocity.x >= 3 || playerRidgidbody.linearVelocity.x <= -3 ||
+            playerRidgidbody.linearVelocity.z >= 3 || playerRidgidbody.linearVelocity.z <= -3 && isGrounded)
         {
             playerRidgidbody.AddForce(-playerRidgidbody.linearVelocity.x, 0, -playerRidgidbody.linearVelocity.z);
             playerRidgidbody.linearVelocity = playerRidgidbody.linearVelocity / 2;
-
         }
     }
 
@@ -141,6 +133,5 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
         CurrentInput = GameObject.FindWithTag("PlayerInput");
         CurrentInput.GetComponent<InputSubject>().AddObserver(this);
-
     }
 }
