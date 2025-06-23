@@ -69,8 +69,7 @@ public class EnemyManager : MonoBehaviour
             }
             else if (SceneManager.GetActiveScene().buildIndex == 3)
             {
-                // Endscene??? doesnt exist yet
-                //SceneManager.LoadScene(4);
+                SceneManager.LoadScene(1);
             }
     
         }
