@@ -3053,6 +3053,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7588183969571791341, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7816500948286035245, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 58.31086
@@ -3964,14 +3968,14 @@ MonoBehaviour:
   BoosterCooldown: 0
   DefaultHandGunDamage: 10
   DefaultSMGDamage: 8
-  DefaultSMGShootingCooldown: 0.2
-  DefaultShotgunDamage: 5
+  DefaultSMGShootingCooldown: 0.15
+  DefaultShotgunDamage: 6
   DefaultShotgunShootingCooldown: 0.8
   DefaultStamina: 0
   DefaultStandardSpeed: 0
   DefaultDashSpeed: 0
   DefaultCooldownTime: 0
-  DefaultBoosterSpeed: 21.24
+  DefaultBoosterSpeed: 12
   MonkeyJump: 0
   MonkeyMaxJumpSpeed: 0
   TestBool: 0
