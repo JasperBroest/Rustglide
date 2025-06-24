@@ -5,11 +5,13 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using System;
+using NUnit.Framework.Internal;
 
 public enum Hand { Left, Right, None }
 
 public class Weapon : GunSubject
 {
+    [Range(0, 1)][SerializeField] protected float spreadFactor;
     [SerializeField] protected GameObject Bullethole;
     [SerializeField] protected AudioClip GunShotAudio;
     [SerializeField] protected AudioClip GunHitAudio;
@@ -35,12 +37,14 @@ public class Weapon : GunSubject
     protected bool LTriggerPressed;
     protected XRBaseInteractor currentInteractor;
     private XRGrabInteractable grab;
+    private DashToDirection dashToDirection;
 
     private void Awake()
     {
         grab = GetComponent<XRGrabInteractable>();
         grab.selectEntered.AddListener(OnSelectEntered);
         grab.selectExited.AddListener(OnSelectExited);
+        dashToDirection = FindAnyObjectByType<DashToDirection>();
     }
 
     private void OnDestroy()
@@ -83,6 +87,8 @@ public class Weapon : GunSubject
         if (interactor != null && HandsHeld == 0)
         {
             gunHoldingHand = Hand.None;
+            dashToDirection.leftBoosterActivated = true;
+            dashToDirection.rightBoosterActivated = true;
         }
     }
 
@@ -93,10 +99,12 @@ public class Weapon : GunSubject
             if (interactor.gameObject.layer == LayerMask.NameToLayer("LeftHand"))
             {
                 gunHoldingHand = Hand.Left;
+                dashToDirection.leftBoosterActivated = false;
             }
             else if (interactor.gameObject.layer == LayerMask.NameToLayer("RightHand"))
             {
                 gunHoldingHand = Hand.Right;
+                dashToDirection.rightBoosterActivated = false;
             }
         }
         return gunHoldingHand;
@@ -134,8 +142,8 @@ public class Weapon : GunSubject
             for (int i = 0; i < shotgun.numberOfProjectiles; i++)
             {
                 Vector3 direction = Bullethole.transform.forward;
-                direction += Bullethole.transform.up * UnityEngine.Random.Range(-shotgun.spreadFactor, shotgun.spreadFactor);
-                direction += Bullethole.transform.right * UnityEngine.Random.Range(-shotgun.spreadFactor, shotgun.spreadFactor);
+                direction += Bullethole.transform.up * UnityEngine.Random.Range(-spreadFactor, spreadFactor);
+                direction += Bullethole.transform.right * UnityEngine.Random.Range(-spreadFactor, spreadFactor);
 
                 //shoots a raycast out of the bullethole of the gun and spawns a particle and sound effect on the place you hit
                 RaycastHit hit;
@@ -147,9 +155,13 @@ public class Weapon : GunSubject
         }
         else
         {
+            Vector3 direction = Bullethole.transform.forward;
+            direction += Bullethole.transform.up * UnityEngine.Random.Range(-spreadFactor, spreadFactor);
+            direction += Bullethole.transform.right * UnityEngine.Random.Range(-spreadFactor, spreadFactor);
+
             //shoots a raycast out of the bullethole of the gun and spawns a particle and sound effect on the place you hit
             RaycastHit hit;
-            if (Physics.Raycast(Bullethole.transform.position, Bullethole.transform.forward, out hit, Range))
+            if (Physics.Raycast(Bullethole.transform.position, direction.normalized, out hit, Range))
             {
                 raycastShoot(hit);
             }

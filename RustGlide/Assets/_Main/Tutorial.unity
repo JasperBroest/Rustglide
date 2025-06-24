@@ -3053,6 +3053,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7588183969571791341, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7816500948286035245, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 58.31086
@@ -3964,14 +3968,14 @@ MonoBehaviour:
   BoosterCooldown: 0
   DefaultHandGunDamage: 10
   DefaultSMGDamage: 8
-  DefaultSMGShootingCooldown: 0.2
-  DefaultShotgunDamage: 5
+  DefaultSMGShootingCooldown: 0.15
+  DefaultShotgunDamage: 6
   DefaultShotgunShootingCooldown: 0.8
   DefaultStamina: 0
   DefaultStandardSpeed: 0
   DefaultDashSpeed: 0
   DefaultCooldownTime: 0
-  DefaultBoosterSpeed: 10
+  DefaultBoosterSpeed: 12
   MonkeyJump: 0
   MonkeyMaxJumpSpeed: 0
   TestBool: 0
@@ -4191,10 +4195,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5456831876352208712, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5642525368980929122, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
       propertyPath: m_Name
       value: ChooseGun
@@ -4332,15 +4332,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4518321363079795204, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 208
+      value: 73.2
       objectReference: {fileID: 0}
     - target: {fileID: 4518321363079795204, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.48
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4518321363079795204, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -54
+      value: -54.3
       objectReference: {fileID: 0}
     - target: {fileID: 4518321363079795204, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4380,7 +4380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8374432687314140200, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

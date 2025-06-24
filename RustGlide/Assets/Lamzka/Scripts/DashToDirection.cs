@@ -1,27 +1,30 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 {
-    [Header("Dependencys")]
-    public GameObject CubeRight;
+    [Header("Dependencys")] public GameObject CubeRight;
     public GameObject CubeLeft;
     private Rigidbody playerRidgidbody;
 
-    [Header("Audio")]
-    public AudioClip ThrusterSound;
+    [Header("Audio")] public AudioClip ThrusterSound;
     public AudioSource AudioSource;
 
-    [Header("Booster Settings")]
-    public float ThrustPower;
+    [Header("Booster Settings")] public float ThrustPower;
 
-    [Header("Input")]
-    private bool IsRightTriggerPressed;
-    private bool IsLeftTriggerPressed;
+    [Header("Input")] public bool IsRightTriggerPressed;
+    public bool IsLeftTriggerPressed;
+
+    [Header("activatedHand")]
+    public bool rightBoosterActivated = true;
+    public bool leftBoosterActivated = true;
 
 
     private bool isGrounded;
 
-    private bool isGunHeld = false;
+    public bool isGunHeld = false;
+
+    private GameObject[] guns;
 
 
     public void NotifyGrab(bool IsGunGrabbed)
@@ -33,6 +36,7 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     {
         IsRightTriggerPressed = RState;
     }
+
     public void LeftTrigger(bool LState)
     {
         IsLeftTriggerPressed = LState;
@@ -43,15 +47,14 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
         AudioSource.clip = ThrusterSound;
         playerRidgidbody = GetComponent<Rigidbody>();
         GetInput();
+        GetGun();
     }
 
     private void FixedUpdate()
     {
         ThrustPower = AbilityManager.Instance.BoosterSpeed;
 
-        GetGun();
-
-        if (IsRightTriggerPressed)
+        if (IsRightTriggerPressed && rightBoosterActivated)
         {
             AddForceToCubeRightDirection();
         }
@@ -60,14 +63,16 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
             StopNoise();
         }
 
-        if (IsLeftTriggerPressed)
+        if (IsLeftTriggerPressed && leftBoosterActivated)
         {
+
             AddForceToCubeLeftDirection();
         }
         else if (!IsLeftTriggerPressed && AudioSource.isPlaying)
         {
             StopNoise();
         }
+
         if (!IsLeftTriggerPressed && isGrounded)
         {
             CheckForSlow();
@@ -76,26 +81,18 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     void AddForceToCubeRightDirection()
     {
-        if (!isGunHeld)
-        {
-            if (!AudioSource.isPlaying)
-                AudioSource.PlayOneShot(ThrusterSound);
+        if (!AudioSource.isPlaying)
+            AudioSource.PlayOneShot(ThrusterSound);
 
-            playerRidgidbody.AddForce(CubeRight.transform.forward * ThrustPower);
-        }
-
+        playerRidgidbody.AddForce(CubeRight.transform.forward * ThrustPower);
     }
+
     void AddForceToCubeLeftDirection()
     {
-
-        if (!isGunHeld)
-        {
-            Debug.Log(isGunHeld);
-            if (!AudioSource.isPlaying)
-                AudioSource.PlayOneShot(ThrusterSound);
-            playerRidgidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
-        }
-
+        Debug.Log(isGunHeld);
+        if (!AudioSource.isPlaying)
+            AudioSource.PlayOneShot(ThrusterSound);
+        playerRidgidbody.AddForce(CubeLeft.transform.forward * ThrustPower);
     }
 
     void StopNoise()
@@ -122,17 +119,23 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     private void CheckForSlow()
     {
-        if (playerRidgidbody.linearVelocity.x >= 3 || playerRidgidbody.linearVelocity.x <= -3 || playerRidgidbody.linearVelocity.z >= 3 || playerRidgidbody.linearVelocity.z <= -3 && isGrounded)
+        if (playerRidgidbody.linearVelocity.x >= 3 || playerRidgidbody.linearVelocity.x <= -3 ||
+            playerRidgidbody.linearVelocity.z >= 3 || playerRidgidbody.linearVelocity.z <= -3 && isGrounded)
         {
             playerRidgidbody.AddForce(-playerRidgidbody.linearVelocity.x, 0, -playerRidgidbody.linearVelocity.z);
             playerRidgidbody.linearVelocity = playerRidgidbody.linearVelocity / 2;
-
         }
     }
 
     private void GetGun()
     {
-        GameObject.FindWithTag("Gun").GetComponent<GunSubject>().AddObserver(this);
+        if (guns == null)
+            guns = GameObject.FindGameObjectsWithTag("Gun");
+
+        foreach (GameObject gun in guns)
+        {
+            gun.GetComponent<GunSubject>().AddObserver(this);
+        }
     }
 
     private void GetInput()
@@ -141,6 +144,5 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
         CurrentInput = GameObject.FindWithTag("PlayerInput");
         CurrentInput.GetComponent<InputSubject>().AddObserver(this);
-
     }
 }

@@ -3,7 +3,6 @@ using UnityEngine.VFX;
 
 public class Shotgun : Weapon, IPlayerInput
 {
-    [Range(0, 1)] public float spreadFactor = 0.1f;
     [Range(0, 1000)] public int numberOfProjectiles = 10;
 
     [SerializeField] private int FireRate;
