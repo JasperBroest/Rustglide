@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,8 @@ public class EnemyManager : MonoBehaviour
 
     public EnemyWave[] waves;
     private int waveCount = 0;
+
+    public int killCount;
 
     [System.Serializable]
     public struct EnemyWave
@@ -49,7 +52,9 @@ public class EnemyManager : MonoBehaviour
     {
         if (waveCount < 3)
         {
+            FindAnyObjectByType<XROrigin>().GetComponentInChildren<EnemiesLeft>().waveKillCount = 0;
             EnemySpawner.Instance.SpawnWave(waves[waveCount].enemy, waves[waveCount].enemyAmount);
+            FindAnyObjectByType<XROrigin>().GetComponentInChildren<EnemiesLeft>().enemyCounter = enemyList.Count;
         }
         else
         {
