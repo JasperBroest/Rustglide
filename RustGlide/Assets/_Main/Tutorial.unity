@@ -4202,6 +4202,7 @@ MonoBehaviour:
   DefaultDashSpeed: 0
   DefaultCooldownTime: 0
   DefaultBoosterSpeed: 12
+  DeafaultXrayEnemyAmount: 5
   MonkeyJump: 0
   MonkeyMaxJumpSpeed: 0
   TestBool: 0
@@ -6493,63 +6494,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1520601120714743400, guid: f3cbe363e7d81514fac695c915cd8a43, type: 3}
---- !u!1001 &1747084674
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2262789839698136888, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 89.74722
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262789839698136888, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262789839698136888, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -42.21644
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262789839698136888, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262789839698136888, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262789839698136888, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262789839698136888, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262789839698136888, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262789839698136888, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2262789839698136888, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5813853337301803443, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
-      propertyPath: m_Name
-      value: Enemy_NoNavmesh
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
 --- !u!64 &1749200177
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -53131,4 +53075,3 @@ SceneRoots:
   - {fileID: 543450652658161846}
   - {fileID: 543450651818223783}
   - {fileID: 145384881}
-  - {fileID: 1747084674}

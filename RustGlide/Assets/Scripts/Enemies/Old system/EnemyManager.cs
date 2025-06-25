@@ -19,8 +19,8 @@ public class EnemyManager : MonoBehaviour
 
     public int killCount;
 
-    private ScriptableRenderer renderer;
     private List<ScriptableRendererFeature> features;
+    public int XrayEnemyAmount;
 
     [System.Serializable]
     public struct EnemyWave
@@ -48,7 +48,7 @@ public class EnemyManager : MonoBehaviour
         {
             Instance = this;
         }
-        
+        XrayEnemyAmount = AbilityManager.Instance.DefaultXrayEnemyAmount;
     }
 
     private void Start()
@@ -85,7 +85,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
-        if (enemyList.Count <= 5)
+        if (enemyList.Count <= XrayEnemyAmount)
         {
             ToggleFeature(true);
         }

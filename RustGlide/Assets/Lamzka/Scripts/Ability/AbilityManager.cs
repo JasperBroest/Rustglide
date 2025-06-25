@@ -43,6 +43,9 @@ public class AbilityManager : MonoBehaviour
     [HideInInspector]public float DashSpeed;
     [HideInInspector]public float CooldownTime;
 
+    [Header("Xray")]
+    public int XrayEnemyAmount;
+
     [Header("Booster Movement")] 
     public float BoosterSpeed;
     [HideInInspector]public float BoosterCooldown;
@@ -70,19 +73,13 @@ public class AbilityManager : MonoBehaviour
     
     [Header("Standard Movement defaults")] 
     public float DefaultStandardSpeed;
-    
-    
-    [Header("Dash Movement defaults")]
-    [HideInInspector] public float DefaultDashSpeed;
-    [HideInInspector] public float DefaultCooldownTime;
-    
-    [Header("Booster Movement defaults  ")] 
+        
+    [Header("Booster Movement defaults")] 
     public float DefaultBoosterSpeed;
     [HideInInspector] float DefaultBoosterCooldown;
-    
-    
-    
-    
+
+    [Header("Xray defaults")]
+    public int DefaultXrayEnemyAmount;
 
     [HideInInspector] [Header("Monkey Movement")] public float MonkeyJump;
     [HideInInspector] public float MonkeyMaxJumpSpeed;
@@ -160,9 +157,6 @@ public class AbilityManager : MonoBehaviour
         Stamina =  DefaultStamina;
 
         StandardSpeed = DefaultStandardSpeed;
-        
-        DashSpeed = DefaultDashSpeed;
-        CooldownTime = DefaultCooldownTime;
 
         BoosterSpeed = DefaultBoosterSpeed;
         BoosterCooldown =  DefaultBoosterCooldown;
