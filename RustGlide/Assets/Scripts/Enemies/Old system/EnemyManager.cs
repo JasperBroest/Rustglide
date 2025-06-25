@@ -1,6 +1,10 @@
 using System.Collections.Generic;
+using System.Reflection;
 using Unity.XR.CoreUtils;
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
@@ -14,6 +18,9 @@ public class EnemyManager : MonoBehaviour
     private int waveCount = 0;
 
     public int killCount;
+
+    private ScriptableRenderer renderer;
+    private List<ScriptableRendererFeature> features;
 
     [System.Serializable]
     public struct EnemyWave
@@ -41,20 +48,60 @@ public class EnemyManager : MonoBehaviour
         {
             Instance = this;
         }
+        
     }
 
     private void Start()
     {
         InitializeWave();
+        UniversalRenderPipelineAsset urpAsset = (UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline;
+
+        ScriptableRendererData[] rendererDataList = urpAsset.GetType().GetField("m_RendererDataList", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(urpAsset) as ScriptableRendererData[];
+        if (rendererDataList == null || rendererDataList.Length == 0)
+        {
+            Debug.LogError("No renderer data found.");
+            return;
+        }
+
+        ScriptableRendererData rendererData = rendererDataList[0];
+        features = rendererData.rendererFeatures;
+        Debug.Log(features);
+    }
+
+    public void ToggleFeature(bool enabled)
+    {
+        foreach (var feature in features)
+        {
+            if (feature.name == "Xray")
+            {
+                feature.SetActive(enabled);
+                Debug.Log($"{"Xray"} set to {enabled}");
+                return;
+            }
+        }
+
+        Debug.LogWarning($"Render feature Xray not found.");
+    }
+
+    private void Update()
+    {
+        if (enemyList.Count <= 5)
+        {
+            ToggleFeature(true);
+        }
+        else
+        {
+            ToggleFeature(false);
+        }
     }
 
     private void InitializeWave()
     {
         if (waveCount < 3)
         {
-            FindAnyObjectByType<XROrigin>().GetComponentInChildren<EnemiesLeft>().waveKillCount = 0;
             EnemySpawner.Instance.SpawnWave(waves[waveCount].enemy, waves[waveCount].enemyAmount);
-            FindAnyObjectByType<XROrigin>().GetComponentInChildren<EnemiesLeft>().enemyCounter = enemyList.Count;
+            FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include).enemyCounter = enemyList.Count;
+            FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include).waveKillCount = 0;
         }
         else
         {
