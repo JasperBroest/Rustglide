@@ -48,7 +48,6 @@ public class EnemyManager : MonoBehaviour
         {
             Instance = this;
         }
-        XrayEnemyAmount = AbilityManager.Instance.DefaultXrayEnemyAmount;
     }
 
     private void Start()
@@ -65,7 +64,7 @@ public class EnemyManager : MonoBehaviour
 
         ScriptableRendererData rendererData = rendererDataList[0];
         features = rendererData.rendererFeatures;
-        Debug.Log(features);
+        XrayEnemyAmount = AbilityManager.Instance.DefaultXrayEnemyAmount;
     }
 
     public void ToggleFeature(bool enabled)
@@ -97,7 +96,7 @@ public class EnemyManager : MonoBehaviour
 
     private void InitializeWave()
     {
-        if (waveCount < 3)
+        if (waveCount < waves.Length)
         {
             EnemySpawner.Instance.SpawnWave(waves[waveCount].enemy, waves[waveCount].enemyAmount);
             FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include).enemyCounter = enemyList.Count;
