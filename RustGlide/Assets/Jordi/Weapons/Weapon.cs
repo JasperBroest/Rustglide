@@ -66,12 +66,6 @@ public class Weapon : GunSubject
         LTriggerPressed = LState;
     }
 
-    private void FixedUpdate()
-    {
-        dmg = AbilityManager.Instance.CurrentSMGShootingCooldown;
-        cooldown = AbilityManager.Instance.DefaultSMGShootingCooldown;
-    }
-
     private void OnSelectEntered(SelectEnterEventArgs args)
     {
         var interactor = args.interactorObject as XRBaseInteractor;

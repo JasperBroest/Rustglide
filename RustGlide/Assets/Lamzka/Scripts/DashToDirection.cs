@@ -1,5 +1,7 @@
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Android;
 
 public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 {
@@ -14,7 +16,7 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     [Header("Audio")] public AudioClip ThrusterSound;
     public AudioSource AudioSource;
 
-    [Header("Booster Settings")] public float ThrustPower;
+    private float ThrustPower;
 
     [Header("Input")] public bool IsRightTriggerPressed;
     public bool IsLeftTriggerPressed;
@@ -23,6 +25,8 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     public bool rightBoosterActivated = true;
     public bool leftBoosterActivated = true;
 
+    private GameObject leftHand;
+    private GameObject rightHand;
 
     private bool isGrounded;
 
@@ -44,6 +48,12 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     public void LeftTrigger(bool LState)
     {
         IsLeftTriggerPressed = LState;
+    }
+
+    private void Awake()
+    {
+        leftHand = GameObject.Find("Left Controller");
+        rightHand = GameObject.Find("Right Controller");
     }
 
     private void Start()
@@ -73,25 +83,31 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
         if (IsRightTriggerPressed && rightBoosterActivated)
         {
             AddForceToCubeRightDirection();
+            rightHand.GetComponentInChildren<ParticleSystem>().Play();
         }
-        else if (!IsRightTriggerPressed && AudioSource.isPlaying)
+        else if (!IsRightTriggerPressed)
         {
-            StopNoise();
+            rightHand.GetComponentInChildren<ParticleSystem>().Stop();
         }
 
         if (IsLeftTriggerPressed && leftBoosterActivated)
         {
-
             AddForceToCubeLeftDirection();
+            leftHand.GetComponentInChildren<ParticleSystem>().Play();
         }
-        else if (!IsLeftTriggerPressed && AudioSource.isPlaying)
+        else if (!IsLeftTriggerPressed)
         {
-            StopNoise();
+            leftHand.GetComponentInChildren<ParticleSystem>().Stop();
         }
 
         if (!IsLeftTriggerPressed && isGrounded)
         {
             CheckForSlow();
+        }
+
+        if(!IsLeftTriggerPressed && !IsRightTriggerPressed && AudioSource.isPlaying)
+        {
+            StopNoise();
         }
     }
 
@@ -105,7 +121,6 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     void AddForceToCubeLeftDirection()
     {
-        Debug.Log(isGunHeld);
         if (!AudioSource.isPlaying)
             AudioSource.PlayOneShot(ThrusterSound);
         playerRidgidbody.AddForce(CubeLeft.transform.forward * ThrustPower);

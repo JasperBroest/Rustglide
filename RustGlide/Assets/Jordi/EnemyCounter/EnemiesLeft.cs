@@ -1,15 +1,16 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemiesLeft : MonoBehaviour
 {
-    private int enemyCounter;
+    public int enemyCounter;
+    public int waveKillCount;
     public TextMeshProUGUI text;
 
     private void Update()
     {
-        enemyCounter = EnemyManager.Instance.enemyList.Count;
-        text.text = "Enemies left: " + enemyCounter;
+        text.text = EnemyManager.Instance.killCount + " of " + enemyCounter + " killed" + Environment.NewLine + "Total kills: " + EnemyManager.Instance.killCount;
     }
 }

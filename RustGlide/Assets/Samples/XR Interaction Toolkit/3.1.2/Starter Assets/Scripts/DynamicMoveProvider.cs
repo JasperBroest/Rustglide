@@ -4,8 +4,6 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
 
 namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 {
-    using UnityEngine;
-
     /// <summary>
     /// A version of continuous movement that automatically controls the frame of reference that
     /// determines the forward direction of movement based on user preference for each hand.
@@ -188,10 +186,5 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 
             return base.ComputeDesiredMove(input);
         }
-
-
-        //my own part of the script lmao
-
     }
-
 }
