@@ -15,7 +15,9 @@ public class Smg : Weapon, IPlayerInput
 
     private void Update()
     {
-        
+        dmg = AbilityManager.Instance.CurrentSMGDamage;
+        cooldown = AbilityManager.Instance.DefaultSMGShootingCooldown;
+
         if (gunHeld)
             dmg = AbilityManager.Instance.CurrentSMGDamage;
         

@@ -10,7 +10,7 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     [Header("Audio")] public AudioClip ThrusterSound;
     public AudioSource AudioSource;
 
-    [Header("Booster Settings")] public float ThrustPower;
+    private float ThrustPower;
 
     [Header("Input")] public bool IsRightTriggerPressed;
     public bool IsLeftTriggerPressed;
@@ -89,7 +89,6 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     void AddForceToCubeLeftDirection()
     {
-        Debug.Log(isGunHeld);
         if (!AudioSource.isPlaying)
             AudioSource.PlayOneShot(ThrusterSound);
         playerRidgidbody.AddForce(CubeLeft.transform.forward * ThrustPower);

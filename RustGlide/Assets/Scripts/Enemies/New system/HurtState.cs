@@ -1,16 +1,21 @@
 using System.Collections;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class HurtState : IState
 {
-    private Color oldColor;
+    public bool hasDied = false;
+
     public void OnEnter(StateController controller)
     {
         controller.CurrentHealth -= controller.DamageTaken;
-        if(controller.CurrentHealth < 0 )
+        if(controller.CurrentHealth < 0 && !hasDied)
         {
+            hasDied = true;
             EnemyManager.Instance.enemyList.Remove(controller.gameObject);
             EnemyManager.Instance.EnemiesClearedCheck();
+            EnemyManager.Instance.killCount++;
+            GameObject.FindAnyObjectByType<XROrigin>().GetComponentInChildren<EnemiesLeft>().waveKillCount++;
             GameObject.Destroy(controller.gameObject);
         }
         controller.GetComponentInChildren<Renderer>().material = controller.HitMat;
