@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerSpeed 20Procent
   m_EditorClassIdentifier: 
   EffectDuration: 0
-  SetBoosterSpeedMultiplyer: 0
+  SetBoosterSpeedMultiplyer: 20
   CooldownTimeMultiplyer: 0
   DashSpeedMultiplyer: 0
   JumpMultiplyerMultiplyer: 0

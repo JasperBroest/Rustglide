@@ -5,7 +5,11 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 {
     [Header("Dependencys")] public GameObject CubeRight;
     public GameObject CubeLeft;
+    
+    public ParticleSystem SpeedParticles;
+    
     private Rigidbody playerRidgidbody;
+    
 
     [Header("Audio")] public AudioClip ThrusterSound;
     public AudioSource AudioSource;
@@ -52,6 +56,18 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     private void FixedUpdate()
     {
+        if(playerRidgidbody.linearVelocity.magnitude > 5) SpeedParticles.Play();
+            else if(playerRidgidbody.linearVelocity.magnitude < 5)SpeedParticles.Stop();
+        
+        Vector3 velocity = playerRidgidbody.linearVelocity;
+
+        if (velocity.sqrMagnitude > 0.01f)
+        {
+            Quaternion rotation = Quaternion.LookRotation( -velocity.normalized);
+            SpeedParticles.transform.rotation = rotation;
+        }
+
+
         ThrustPower = AbilityManager.Instance.BoosterSpeed;
 
         if (IsRightTriggerPressed && rightBoosterActivated)
