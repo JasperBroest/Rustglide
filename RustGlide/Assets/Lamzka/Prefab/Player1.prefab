@@ -2991,7 +2991,7 @@ Transform:
   m_GameObject: {fileID: 4231792364059923566}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.1755, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4122,7 +4122,6 @@ MonoBehaviour:
   CubeLeft: {fileID: 8827288209575989626}
   ThrusterSound: {fileID: 8300000, guid: 42b9de0f4104ee04d99478a3beabdeda, type: 3}
   AudioSource: {fileID: 5563463332260211684}
-  ThrustPower: 135.02
   IsRightTriggerPressed: 0
   IsLeftTriggerPressed: 0
   rightBoosterActivated: 1

@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,10 @@ public class PlayerInputManager : InputSubject
 
         controls.Player.TriggerL.performed += OnTriggerL;
         controls.Player.TriggerL.canceled += OnTriggerL;
+
+
+        controls.Player.Menu.performed += OnMenu;
+        
     }
 
     private void OnEnable()
@@ -48,6 +53,15 @@ public class PlayerInputManager : InputSubject
         else if (context.canceled)
         {
             NotifyTriggerLValue(false);
+        }
+    }
+
+    public void OnMenu(InputAction.CallbackContext context)
+    {
+        var menuManager = GameObject.Find("MainMenuCanvas").GetComponentInParent<Canvas>();
+        if (menuManager != null)
+        {
+            menuManager.enabled = !menuManager.enabled;
         }
     }
 }

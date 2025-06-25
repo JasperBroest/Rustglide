@@ -126,6 +126,15 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""0bac72b2-7a14-4a35-81da-bebce0ae3aeb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -227,6 +236,17 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""GripL"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95a5f7ea-5512-4fcc-af90-f8f26ddf1ac5"",
+                    ""path"": ""<XRInputV1::Oculus::MetaQuestTouchPlusControllerOpenXR>{LeftHand}/menu"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -239,6 +259,7 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_TriggerL = m_Player.FindAction("TriggerL", throwIfNotFound: true);
         m_Player_GripR = m_Player.FindAction("GripR", throwIfNotFound: true);
         m_Player_GripL = m_Player.FindAction("GripL", throwIfNotFound: true);
+        m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
     }
 
     ~@XRPlayerInputActions()
@@ -323,6 +344,7 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_TriggerL;
     private readonly InputAction m_Player_GripR;
     private readonly InputAction m_Player_GripL;
+    private readonly InputAction m_Player_Menu;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -350,6 +372,10 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/GripL".
         /// </summary>
         public InputAction @GripL => m_Wrapper.m_Player_GripL;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Menu".
+        /// </summary>
+        public InputAction @Menu => m_Wrapper.m_Player_Menu;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -388,6 +414,9 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
             @GripL.started += instance.OnGripL;
             @GripL.performed += instance.OnGripL;
             @GripL.canceled += instance.OnGripL;
+            @Menu.started += instance.OnMenu;
+            @Menu.performed += instance.OnMenu;
+            @Menu.canceled += instance.OnMenu;
         }
 
         /// <summary>
@@ -411,6 +440,9 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
             @GripL.started -= instance.OnGripL;
             @GripL.performed -= instance.OnGripL;
             @GripL.canceled -= instance.OnGripL;
+            @Menu.started -= instance.OnMenu;
+            @Menu.performed -= instance.OnMenu;
+            @Menu.canceled -= instance.OnMenu;
         }
 
         /// <summary>
@@ -479,5 +511,12 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnGripL(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Menu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMenu(InputAction.CallbackContext context);
     }
 }
