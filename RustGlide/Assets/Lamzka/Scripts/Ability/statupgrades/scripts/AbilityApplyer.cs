@@ -26,7 +26,11 @@ public class AbilityApplyer : AblilityAbstract, IPlayerInput,IAbilityHasBeenChos
 
     public bool HasBeenChosen(bool State)
     {
-        throw new NotImplementedException();
+        if (State) DestroyYourselfNOW();
+        
+        Debug.Log(State);
+        Debug.Log(isUsed);
+        return State;
     }
 
     public void RightTrigger(bool RState)
@@ -77,6 +81,14 @@ public class AbilityApplyer : AblilityAbstract, IPlayerInput,IAbilityHasBeenChos
         CurrentInput.GetComponent<InputSubject>().AddObserver(this);
     }
 
+    private void DestroyYourselfNOW()
+    {
+        if (!isUsed)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     IEnumerator WaitBeforeDestroy()
     {
         OnApply();

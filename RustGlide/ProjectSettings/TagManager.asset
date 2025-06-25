@@ -16,6 +16,7 @@ TagManager:
   - GunHolster
   - ChooseWeapons
   - PlayerMoveObject
+  - Ability
   layers:
   - Default
   - TransparentFX

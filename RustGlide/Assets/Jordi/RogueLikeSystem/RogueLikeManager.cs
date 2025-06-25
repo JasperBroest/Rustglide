@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
-public class RogueLikeManager : MonoBehaviour
+public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
 {
     public List<AllUpgrades> Upgrades;
     [HideInInspector] public List<GameObject> localUpgrades;
@@ -32,7 +32,11 @@ public class RogueLikeManager : MonoBehaviour
             GenerateThree();
         }
     }
-
+    public bool HasBeenChosen(bool State)
+    {
+        if (State) Destroy(this);
+        return State;
+    }
     private void Update()
     {
         if(Stamina == null)
