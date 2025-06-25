@@ -4123,6 +4123,11 @@ MonoBehaviour:
   ThrusterSound: {fileID: 8300000, guid: 42b9de0f4104ee04d99478a3beabdeda, type: 3}
   AudioSource: {fileID: 5563463332260211684}
   ThrustPower: 135.02
+  IsRightTriggerPressed: 0
+  IsLeftTriggerPressed: 0
+  rightBoosterActivated: 1
+  leftBoosterActivated: 1
+  isGunHeld: 0
 --- !u!1 &5125660541661385530
 GameObject:
   m_ObjectHideFlags: 0
@@ -7790,7 +7795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 0
-  velocitySpeed: 0
+  velocitySpeed: 3
   stamina: 100
 --- !u!82 &4642828533875355151
 AudioSource:
