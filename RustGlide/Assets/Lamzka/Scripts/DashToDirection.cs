@@ -1,5 +1,7 @@
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Android;
 
 public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 {
@@ -19,6 +21,8 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     public bool rightBoosterActivated = true;
     public bool leftBoosterActivated = true;
 
+    private GameObject leftHand;
+    private GameObject rightHand;
 
     private bool isGrounded;
 
@@ -42,6 +46,12 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
         IsLeftTriggerPressed = LState;
     }
 
+    private void Awake()
+    {
+        leftHand = GameObject.Find("Left Controller");
+        rightHand = GameObject.Find("Right Controller");
+    }
+
     private void Start()
     {
         AudioSource.clip = ThrusterSound;
@@ -57,25 +67,31 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
         if (IsRightTriggerPressed && rightBoosterActivated)
         {
             AddForceToCubeRightDirection();
+            rightHand.GetComponentInChildren<ParticleSystem>().Play();
         }
-        else if (!IsRightTriggerPressed && AudioSource.isPlaying)
+        else if (!IsRightTriggerPressed)
         {
-            StopNoise();
+            rightHand.GetComponentInChildren<ParticleSystem>().Stop();
         }
 
         if (IsLeftTriggerPressed && leftBoosterActivated)
         {
-
             AddForceToCubeLeftDirection();
+            leftHand.GetComponentInChildren<ParticleSystem>().Play();
         }
-        else if (!IsLeftTriggerPressed && AudioSource.isPlaying)
+        else if (!IsLeftTriggerPressed)
         {
-            StopNoise();
+            leftHand.GetComponentInChildren<ParticleSystem>().Stop();
         }
 
         if (!IsLeftTriggerPressed && isGrounded)
         {
             CheckForSlow();
+        }
+
+        if(!IsLeftTriggerPressed && !IsRightTriggerPressed && AudioSource.isPlaying)
+        {
+            StopNoise();
         }
     }
 
