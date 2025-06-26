@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Gun, RightHand, LeftHand, GorillaPlayer, Xray
 - Active game object:
-  - Name: EnemiesLeftCanvas
+  - Name: AbilityManager
   - Tag: Untagged
-  - Layer: UI
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
