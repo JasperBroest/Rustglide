@@ -1,7 +1,5 @@
 using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.Android;
 
 public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 {
@@ -25,8 +23,6 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     public bool rightBoosterActivated = true;
     public bool leftBoosterActivated = true;
 
-    private GameObject leftHand;
-    private GameObject rightHand;
 
     private bool isGrounded;
 
@@ -48,12 +44,6 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     public void LeftTrigger(bool LState)
     {
         IsLeftTriggerPressed = LState;
-    }
-
-    private void Awake()
-    {
-        leftHand = GameObject.Find("Left Controller");
-        rightHand = GameObject.Find("Right Controller");
     }
 
     private void Start()
@@ -83,31 +73,25 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
         if (IsRightTriggerPressed && rightBoosterActivated)
         {
             AddForceToCubeRightDirection();
-            rightHand.GetComponentInChildren<ParticleSystem>().Play();
         }
-        else if (!IsRightTriggerPressed)
+        else if (!IsRightTriggerPressed && AudioSource.isPlaying)
         {
-            rightHand.GetComponentInChildren<ParticleSystem>().Stop();
+            StopNoise();
         }
 
         if (IsLeftTriggerPressed && leftBoosterActivated)
         {
+
             AddForceToCubeLeftDirection();
-            leftHand.GetComponentInChildren<ParticleSystem>().Play();
         }
-        else if (!IsLeftTriggerPressed)
+        else if (!IsLeftTriggerPressed && AudioSource.isPlaying)
         {
-            leftHand.GetComponentInChildren<ParticleSystem>().Stop();
+            StopNoise();
         }
 
         if (!IsLeftTriggerPressed && isGrounded)
         {
             CheckForSlow();
-        }
-
-        if(!IsLeftTriggerPressed && !IsRightTriggerPressed && AudioSource.isPlaying)
-        {
-            StopNoise();
         }
     }
 
