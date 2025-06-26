@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6274849628024171049}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3862953346196301111}
   - component: {fileID: 1324753408007306921}
   - component: {fileID: 7192940926094738269}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy_NoNavmesh
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -155,13 +155,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6274849628024171049}
     m_Modifications:
+    - target: {fileID: 174029814436038176, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 517315326250888060, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 595209800633970362, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 824679147764017825, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1051493926225150757, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070361749214771702, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2782336405316560763, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -235,13 +251,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyngDrone_v1
       objectReference: {fileID: 0}
+    - target: {fileID: 2890028997576884460, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089240364232888029, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3768478131505169544, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3812890541256447124, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4039821466824885589, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261268640804061518, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464797102657809617, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6233304513539259261, guid: 2fb6e3b761ddefd4e86a72b3713fbeca, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

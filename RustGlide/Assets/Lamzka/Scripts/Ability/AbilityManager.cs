@@ -79,10 +79,11 @@ public class AbilityManager : MonoBehaviour
     [Header("Booster Movement defaults  ")] 
     public float DefaultBoosterSpeed;
     [HideInInspector] float DefaultBoosterCooldown;
-    
-    
-    
-    
+
+    [Header("Xray Defaults")]
+    public int DefaultXrayEnemyAmount;
+
+
 
     [HideInInspector] [Header("Monkey Movement")] public float MonkeyJump;
     [HideInInspector] public float MonkeyMaxJumpSpeed;
