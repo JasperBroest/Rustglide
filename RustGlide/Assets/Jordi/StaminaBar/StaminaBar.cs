@@ -15,7 +15,7 @@ public class StaminaBar : MonoBehaviour
     [SerializeField][Range(0, 10)] private float velocitySpeed;
 
     // Stamina
-    [Range(0, 696969696969696969)] public float stamina;
+    [Range(0, 1000)] public float stamina;
     private int staminaLoss;
 
     // Other
@@ -34,6 +34,8 @@ public class StaminaBar : MonoBehaviour
     {
         XrOrigin = FindFirstObjectByType<XROrigin>();
         volume = FindFirstObjectByType<Volume>();
+
+        stamina = AbilityManager.Instance.Stamina;
     }
 
     private void Update()
@@ -66,7 +68,7 @@ public class StaminaBar : MonoBehaviour
             }
 
             // Dont go over 100
-            else if (stamina <= 100)
+            else if (stamina <= AbilityManager.Instance.Stamina)
             {
                 stamina += staminaLoss / 20f;
             }

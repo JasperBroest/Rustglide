@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Gun, RightHand, LeftHand, GorillaPlayer, Xray
 - Active game object:
-  - Name: StaminaBar
-  - Tag: Stamina
-  - Layer: Player
+  - Name: EnemiesLeftCanvas
+  - Tag: Untagged
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
