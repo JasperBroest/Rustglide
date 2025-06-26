@@ -14,6 +14,9 @@ public class PlayerInputManager : InputSubject
 
         controls.Player.TriggerL.performed += OnTriggerL;
         controls.Player.TriggerL.canceled += OnTriggerL;
+        
+        controls.Player.Menu.canceled += OnMenu;
+        
     }
 
     private void OnEnable()
@@ -48,6 +51,15 @@ public class PlayerInputManager : InputSubject
         else if (context.canceled)
         {
             NotifyTriggerLValue(false);
+        }
+    }
+
+    private void OnMenu(InputAction.CallbackContext context)
+    {
+        Canvas menu = FindFirstObjectByType<MainMenuManager>().GetComponentInParent<Canvas>();
+        if (menu != null)
+        {
+            menu.enabled = !menu.enabled;
         }
     }
 }
