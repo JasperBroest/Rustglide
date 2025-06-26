@@ -149,6 +149,34 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1016725360906240196, guid: e047c4d637db9774cb666f216138a283, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0000004209975
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016725360906240196, guid: e047c4d637db9774cb666f216138a283, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000040080138
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016725360906240196, guid: e047c4d637db9774cb666f216138a283, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710796
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016725360906240196, guid: e047c4d637db9774cb666f216138a283, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071057
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016725360906240196, guid: e047c4d637db9774cb666f216138a283, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016725360906240196, guid: e047c4d637db9774cb666f216138a283, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016725360906240196, guid: e047c4d637db9774cb666f216138a283, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1370476695488119841, guid: e047c4d637db9774cb666f216138a283, type: 3}
       propertyPath: m_UseGravity
       value: 0
@@ -277,6 +305,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7433258554783065540, guid: e047c4d637db9774cb666f216138a283, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cf0539ec3eaed6149b6cc2d9a628a4e9, type: 2}
     - target: {fileID: 8815062459316884538, guid: e047c4d637db9774cb666f216138a283, type: 3}
       propertyPath: m_Name
       value: Mighty punch Variant
