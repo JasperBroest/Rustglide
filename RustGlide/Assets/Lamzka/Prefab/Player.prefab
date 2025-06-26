@@ -4125,8 +4125,6 @@ Transform:
   - {fileID: 1660685332020057731}
   - {fileID: 3813895785254519909}
   - {fileID: 8828215409078984814}
-  - {fileID: 6526212004044081573}
-  - {fileID: 5712308749018638945}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &4339716714862285053
@@ -4252,7 +4250,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CubeRight: {fileID: 9117312895076266647}
   CubeLeft: {fileID: 8827288209575989626}
-  SpeedParticles: {fileID: 4327552223130390404}
   ThrusterSound: {fileID: 8300000, guid: 42b9de0f4104ee04d99478a3beabdeda, type: 3}
   AudioSource: {fileID: 5563463332260211684}
   ThrustPower: 5
