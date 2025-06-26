@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class EnemyManager : MonoBehaviour
 {
     public List<GameObject> enemyList = new();
-    public bool gameDone = false;
 
     public static EnemyManager Instance;
 
@@ -97,14 +96,22 @@ public class EnemyManager : MonoBehaviour
         if (waveCount < waves.Length)
         {
             EnemySpawner.Instance.SpawnWave(waves[waveCount].enemy, waves[waveCount].enemyAmount);
-            FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include).enemyCounter = enemyList.Count;
-            FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include).waveKillCount = 0;
+            var enemiesLeft = FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include);
+            if (enemiesLeft != null)
+            {
+                enemiesLeft.enemyCounter = enemyList.Count;
+                enemiesLeft.waveKillCount = 0;
+            }
+            else
+            {
+                Debug.LogWarning("EnemiesLeft component not found in the scene.");
+            }
         }
         else
         {
-            gameDone = true;
+            LevelManager.Instance.LoadNextLevel();
 
-            if (SceneManager.GetActiveScene().buildIndex == 0)
+            /*if (SceneManager.GetActiveScene().buildIndex == 0)
             {
                 SceneManager.LoadScene(1);
             }
@@ -119,7 +126,7 @@ public class EnemyManager : MonoBehaviour
             else if (SceneManager.GetActiveScene().buildIndex == 3)
             {
                 SceneManager.LoadScene(1);
-            }
+            }*/
             
         }
     }
