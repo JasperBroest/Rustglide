@@ -2,13 +2,13 @@
 - Project name: RustGlide
 - Unity version: Unity 6000.1.1f1
 - Active scene:
-  - Name: Main Menu
+  - Name: Tutorial
   - Tags:
     - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Enemy, Ground, EndTrigger, Gun, GorillaPlayer, DashPlayer, RocketPlayer, Stamina, PlayerInput, GunHolster, ChooseWeapons, PlayerMoveObject, Ability
   - Layers:
-    - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Gun, RightHand, LeftHand, GorillaPlayer
+    - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Gun, RightHand, LeftHand, GorillaPlayer, Xray
 - Active game object:
-  - Name: MainMenuCanvasONHAND
-  - Tag: Untagged
-  - Layer: LeftHand
+  - Name: StaminaBar
+  - Tag: Stamina
+  - Layer: Player
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

@@ -15,7 +15,7 @@ public class StaminaBar : MonoBehaviour
     [SerializeField][Range(0, 10)] private float velocitySpeed;
 
     // Stamina
-    [Range(0, 100)] public float stamina;
+    [Range(0, 696969696969696969)] public float stamina;
     private int staminaLoss;
 
     // Other

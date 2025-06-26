@@ -4069,10 +4069,11 @@ MonoBehaviour:
   DefaultShotgunDamage: 6
   DefaultShotgunShootingCooldown: 0.8
   DefaultStamina: 0
-  DefaultStandardSpeed: 0
+  DefaultStandardSpeed: 5
   DefaultDashSpeed: 0
   DefaultCooldownTime: 0
-  DefaultBoosterSpeed: 12
+  DefaultBoosterSpeed: 6
+  DefaultXrayEnemyAmount: 3
   MonkeyJump: 0
   MonkeyMaxJumpSpeed: 0
   TestBool: 0
@@ -4481,7 +4482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8374432687314140200, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
