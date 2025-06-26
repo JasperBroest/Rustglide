@@ -4,10 +4,10 @@ using System.Linq;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
-public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
+public class AbilityChooser : MonoBehaviour
 {
     public List<AllUpgrades> Upgrades;
-    [HideInInspector] public List<GameObject> localUpgrades;
+    [HideInInspector] public List<AbilityObject> localUpgrades;
     [HideInInspector] public List<int> localDropChance;
     [HideInInspector] public bool ChosenUpgradesFilled;
 
@@ -20,7 +20,7 @@ public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
     [System.Serializable]
     public struct AllUpgrades
     {
-        public GameObject Upgrade;
+        public AbilityObject Upgrade;
         [Range(0, 100)] public int DropChance;
     }
 
@@ -32,11 +32,7 @@ public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
             GenerateThree();
         }
     }
-    public bool HasBeenChosen(bool State)
-    {
-        if (State) Destroy(this);
-        return State;
-    }
+
     private void Update()
     {
         if(Stamina == null)
@@ -69,7 +65,7 @@ public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
                 cumulative += localDropChance[j];
                 if (RandValue <= cumulative)
                 {
-                    droppingItem = localUpgrades[j];
+                    /*droppingItem = localUpgrades[j]*/;
                     localUpgrades.RemoveAt(j);
                     localDropChance.RemoveAt(j);
                     break;
