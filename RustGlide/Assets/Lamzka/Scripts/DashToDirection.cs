@@ -50,6 +50,16 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
         IsLeftTriggerPressed = LState;
     }
 
+    public void RightGrip(bool RGrip)
+    {
+        
+    }
+
+    public void LeftGrip(bool RGrip)
+    {
+
+    }
+
     private void Awake()
     {
         leftHand = GameObject.Find("Left Controller");
