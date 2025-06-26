@@ -78,7 +78,7 @@ Transform:
   m_GameObject: {fileID: 881250020927687693}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.26019, y: -0.38799995, z: 0}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -214,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 1177229168323135979}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.68219, y: -0.38799995, z: 0}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -350,7 +350,7 @@ Transform:
   m_GameObject: {fileID: 7684703957490538721}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09, y: -0.388, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -473,7 +473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3941546371582284631
 Transform:
   m_ObjectHideFlags: 0
@@ -512,4 +512,4 @@ MonoBehaviour:
   localUpgrades: []
   localDropChance: 
   ChosenUpgradesFilled: 0
-  HasChosen: 1
+  HasChosen: 0
