@@ -29,4 +29,11 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
+
+    public void aids()
+    {
+        print("sus");
+    }
+
+
 }
