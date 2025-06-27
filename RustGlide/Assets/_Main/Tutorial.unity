@@ -3964,13 +3964,13 @@ MonoBehaviour:
   StandardSpeed: 0
   DashSpeed: 0
   CooldownTime: 0
-  BoosterSpeed: 10
+  BoosterSpeed: 0
   BoosterCooldown: 0
   DefaultHandGunDamage: 10
-  DefaultSMGDamage: 8
-  DefaultSMGShootingCooldown: 0.15
-  DefaultShotgunDamage: 10
-  DefaultShotgunShootingCooldown: 1
+  DefaultSMGDamage: 5
+  DefaultSMGShootingCooldown: 0.1
+  DefaultShotgunDamage: 8
+  DefaultShotgunShootingCooldown: 0.6
   DefaultStamina: 50
   DefaultStandardSpeed: 5
   DefaultDashSpeed: 0
@@ -4327,6 +4327,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2613322126084258906, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
+      propertyPath: stamina
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716082082178580903, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3829706045535050840, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3829706045535050840, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4518321363079795204, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 73.2
@@ -4370,6 +4386,14 @@ PrefabInstance:
     - target: {fileID: 5104351194558270364, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019420188476483261, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8374432687314140200, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
