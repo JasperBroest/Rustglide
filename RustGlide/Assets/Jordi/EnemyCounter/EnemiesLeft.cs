@@ -11,6 +11,6 @@ public class EnemiesLeft : MonoBehaviour
 
     private void Update()
     {
-        text.text = EnemyManager.Instance.killCount + "/" + enemyCounter + Environment.NewLine + "Total kills: " + EnemyManager.Instance.killCount;
+        text.text = waveKillCount + "/" + enemyCounter + Environment.NewLine + "Total kills: " + EnemyManager.Instance.killCount;
     }
 }
