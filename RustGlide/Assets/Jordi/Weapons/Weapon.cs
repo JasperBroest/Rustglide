@@ -35,6 +35,8 @@ public class Weapon : GunSubject
     protected bool onCooldown = false;
     protected bool RTriggerPressed;
     protected bool LTriggerPressed;
+    protected bool RGripPressed;
+    protected bool LGripPressed;
     protected XRBaseInteractor currentInteractor;
     private XRGrabInteractable grab;
     private DashToDirection dashToDirection;
@@ -64,6 +66,16 @@ public class Weapon : GunSubject
     public void LeftTrigger(bool LState)
     {
         LTriggerPressed = LState;
+    }
+
+    public void RightGrip(bool RGrip)
+    {
+        RGripPressed = RGrip;
+    }
+
+    public void LeftGrip(bool LGrip)
+    {
+        LGripPressed = LGrip;
     }
 
     private void OnSelectEntered(SelectEnterEventArgs args)

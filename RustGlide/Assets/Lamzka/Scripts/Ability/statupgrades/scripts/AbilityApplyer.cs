@@ -42,7 +42,17 @@ public class AbilityApplyer : AblilityAbstract, IPlayerInput,IAbilityHasBeenChos
     {
         lTrigger = LState;
     }
-    
+
+    public void RightGrip(bool RGrip)
+    {
+
+    }
+
+    public void LeftGrip(bool RGrip)
+    {
+
+    }
+
 
     public void OnGrab(bool State)
     {
