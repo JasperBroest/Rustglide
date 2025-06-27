@@ -19,7 +19,7 @@ public class PlayerInputManager : InputSubject
         controls.Player.GripR.canceled += OnGripR;
 
         controls.Player.GripL.performed += OnGripL;
-        controls.Player.GripR.canceled += OnGripL;
+        controls.Player.GripL.canceled += OnGripL;
 
         controls.Player.Menu.canceled += OnMenu;
         

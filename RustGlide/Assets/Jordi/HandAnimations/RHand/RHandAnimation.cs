@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class HandAnimation : MonoBehaviour, IPlayerInput
+public class RHandAnimation : MonoBehaviour, IPlayerInput
 {
-    Animator animator;
+    public Animator animator;
 
-    private bool LGripPressed;
-    private bool LTriggerPressed;
     private bool RGripPressed;
     private bool RTriggerPressed;
 
@@ -16,13 +14,12 @@ public class HandAnimation : MonoBehaviour, IPlayerInput
 
     public void LeftGrip(bool LGrip)
     {
-        LGripPressed = LGrip;
+        
     }
 
     public void LeftTrigger(bool LState)
     {
-        LTriggerPressed = LState;
-        Debug.Log(LTriggerPressed);
+        
     }
 
     public void RightGrip(bool Rgrip)
@@ -37,26 +34,29 @@ public class HandAnimation : MonoBehaviour, IPlayerInput
 
     private void Update()
     {
-        if(LGripPressed)
+        GetInput();
+        if (RGripPressed)
         {
             animator.SetFloat("Grip", 1);
-            Debug.Log(animator.GetFloat("Grip"));
         }
         else
         {
             animator.SetFloat("Grip", 0);
-            Debug.Log(animator.GetFloat("Grip"));
         }
 
-        if (LTriggerPressed)
+        if (RTriggerPressed)
         {
             animator.SetFloat("Trigger", 1);
-            Debug.Log(animator.GetFloat("Trigger"));
         }
         else
         {
             animator.SetFloat("Trigger", 0);
-            Debug.Log(animator.GetFloat("Trigger"));
         }
+    }
+
+    private void GetInput()
+    {
+        GameObject CurrentInput = GameObject.FindWithTag("PlayerInput");
+        CurrentInput.GetComponent<InputSubject>().AddObserver(this);
     }
 }
