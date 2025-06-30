@@ -58,11 +58,11 @@ public class AbilityApplyer : AblilityAbstract, IPlayerInput,IAbilityHasBeenChos
     {
         try
         {
-            GameObject.Find("RogueLikeManager").GetComponent<RogueLikeManager>().OnGrab();
+            GameObject.FindGameObjectWithTag("RogueLikeManager").GetComponent<RogueLikeManager>().OnGrab();
         }
         catch (Exception e)
         {
-           Debug.Log("Stop cheating you asshole!!!");
+           Debug.Log("Stop cheating!!!");
             throw;
         }
         
