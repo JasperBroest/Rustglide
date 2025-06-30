@@ -127,18 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2343939983710758785, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0215
-      objectReference: {fileID: 0}
-    - target: {fileID: 2343939983710758785, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0642
-      objectReference: {fileID: 0}
-    - target: {fileID: 2343939983710758785, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.0166
-      objectReference: {fileID: 0}
     - target: {fileID: 4684586560005183887, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
       propertyPath: m_Name
       value: ChooseSmg
@@ -185,15 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8665146349224056099, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8665146349224056099, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7183265000726330686, guid: 76890bf5c48b63f41ae53e50e8ce12b5, type: 3}
-    - target: {fileID: 8665146349224056099, guid: ad9fb6034ce2d7d45a3e4b0cbe469f22, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RogueLikeManager, Assembly-CSharp
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1548,18 +1528,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1574013303031793581, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.283
-      objectReference: {fileID: 0}
-    - target: {fileID: 1574013303031793581, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 1574013303031793581, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.057
-      objectReference: {fileID: 0}
     - target: {fileID: 2669549813036197967, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
       propertyPath: m_LocalPosition.x
       value: 78.56578
@@ -1602,7 +1570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456831876352208712, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5642525368980929122, guid: b34833cbd90f3a649ac27ce1c4228c47, type: 3}
       propertyPath: m_Name
@@ -2052,31 +2020,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5486610438793496626, guid: 0d5264e32bfa79449a4543aef9d32b85, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5486610438793496626, guid: 0d5264e32bfa79449a4543aef9d32b85, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7183265000726330686, guid: 76890bf5c48b63f41ae53e50e8ce12b5, type: 3}
-    - target: {fileID: 5486610438793496626, guid: 0d5264e32bfa79449a4543aef9d32b85, type: 3}
-      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RogueLikeManager, Assembly-CSharp
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8671191867452728747, guid: 0d5264e32bfa79449a4543aef9d32b85, type: 3}
       propertyPath: m_Name
       value: ChooseShotgun
-      objectReference: {fileID: 0}
-    - target: {fileID: 8762308791568575731, guid: 0d5264e32bfa79449a4543aef9d32b85, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.979
-      objectReference: {fileID: 0}
-    - target: {fileID: 8762308791568575731, guid: 0d5264e32bfa79449a4543aef9d32b85, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.098
-      objectReference: {fileID: 0}
-    - target: {fileID: 8762308791568575731, guid: 0d5264e32bfa79449a4543aef9d32b85, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.038
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

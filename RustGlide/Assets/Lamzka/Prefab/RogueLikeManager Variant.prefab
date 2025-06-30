@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RogueLikeManager Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7796884271344136838, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
+      propertyPath: m_TagString
+      value: RogueLikeManager
+      objectReference: {fileID: 0}
     - target: {fileID: 8508522216114778991, guid: 803aefdc7e743434f9d241d1c50403ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
