@@ -15,7 +15,7 @@ public class StaminaBar : MonoBehaviour
     [SerializeField][Range(0, 10)] private float velocitySpeed;
 
     // Stamina
-    bool staminaOn = false;
+    public bool staminaOn = false;
     [Range(0, 1000)] public float stamina;
     private int staminaLoss;
 
