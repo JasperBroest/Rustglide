@@ -3,7 +3,6 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -55,7 +54,6 @@ public class EnemyManager : MonoBehaviour
         ScriptableRendererData[] rendererDataList = urpAsset.GetType().GetField("m_RendererDataList", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(urpAsset) as ScriptableRendererData[];
         if (rendererDataList == null || rendererDataList.Length == 0)
         {
-            Debug.LogError("No renderer data found.");
             return;
         }
 
@@ -71,12 +69,9 @@ public class EnemyManager : MonoBehaviour
             if (feature.name == "Xray")
             {
                 feature.SetActive(enabled);
-                Debug.Log($"{"Xray"} set to {enabled}");
                 return;
             }
         }
-
-        Debug.LogWarning($"Render feature Xray not found.");
     }
 
     private void Update()
@@ -95,39 +90,20 @@ public class EnemyManager : MonoBehaviour
     {
         if (waveCount < waves.Length)
         {
+            // Spawn new wave
             EnemySpawner.Instance.SpawnWave(waves[waveCount].enemy, waves[waveCount].enemyAmount);
+
+            // Show how many enemies left
             var enemiesLeft = FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include);
             if (enemiesLeft != null)
             {
                 enemiesLeft.enemyCounter = enemyList.Count;
                 enemiesLeft.waveKillCount = 0;
             }
-            else
-            {
-                Debug.LogWarning("EnemiesLeft component not found in the scene.");
-            }
         }
         else
         {
-            LevelManager.Instance.LoadNextLevel();
-
-            /*if (SceneManager.GetActiveScene().buildIndex == 0)
-            {
-                SceneManager.LoadScene(1);
-            }
-            else if (SceneManager.GetActiveScene().buildIndex == 1)
-            {
-                SceneManager.LoadScene(2);
-            }
-            else if (SceneManager.GetActiveScene().buildIndex == 2)
-            {
-                SceneManager.LoadScene(3);
-            }
-            else if (SceneManager.GetActiveScene().buildIndex == 3)
-            {
-                SceneManager.LoadScene(1);
-            }*/
-            
+            LevelManager.Instance.LoadNextLevel();        
         }
     }
 }

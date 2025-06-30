@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(Instance);
+            Destroy(gameObject);
         }
         else
         {
@@ -31,6 +31,16 @@ public class LevelManager : MonoBehaviour
         if (LevelIndexCheck() == 0)
         {
             SceneManager.LoadScene(2);  // Level 2
+            Transform[] spawns = FindFirstObjectByType<EnemySpawner>().GetComponentsInChildren<Transform>(includeInactive: true);
+            for (int i = 0; i < spawns.Length; i++)
+            {
+                if (spawns[i].gameObject.activeSelf == false)
+                {
+                    spawns[i].gameObject.SetActive(true);
+                    print(spawns[i].gameObject);
+                    break;
+                }
+            }
         }
         // Odd
         if (LevelIndexCheck() == 1)
