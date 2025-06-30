@@ -5,12 +5,12 @@ public class MainMenuManager : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("BeginScene");
     }
 
     public void Tutorial()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void Quit()
@@ -20,6 +20,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Main Menu");
     }
 }
