@@ -38,7 +38,7 @@ public class EnemyManager : MonoBehaviour
         if (enemyList.Count <= 0)
         {
             waveCount++;
-            InitializeWave();
+            SpawnAbilityChooserBeforeWave();
         }
     }
 
