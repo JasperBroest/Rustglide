@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -17,6 +18,13 @@ public class EnemyManager : MonoBehaviour
 
     private List<ScriptableRendererFeature> features;
     public int XrayEnemyAmount;
+    
+    //Ability related:
+    
+    
+    public GameObject RougeLikeManagerPrefab;
+    public GameObject SpawnerForRougeLikeManager;
+    
 
     [System.Serializable]
     public struct EnemyWave
@@ -48,7 +56,11 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeWave();
+        
+        
+        /*InitializeWave();*/
+        SpawnAbilityChooserBeforeWave();
+        
         UniversalRenderPipelineAsset urpAsset = (UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline;
 
         ScriptableRendererData[] rendererDataList = urpAsset.GetType().GetField("m_RendererDataList", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(urpAsset) as ScriptableRendererData[];
@@ -76,6 +88,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
+        
         if (enemyList.Count <= XrayEnemyAmount)
         {
             ToggleFeature(true);
@@ -88,6 +101,7 @@ public class EnemyManager : MonoBehaviour
 
     private void InitializeWave()
     {
+        
         if (waveCount < waves.Length)
         {
             // Spawn new wave
@@ -106,4 +120,22 @@ public class EnemyManager : MonoBehaviour
             LevelManager.Instance.LoadNextLevel();        
         }
     }
+
+    public void SpawnAbilityChooserBeforeWave()
+    {
+        //SpawnAbilityChooser at its spawn location (on the player)
+        
+        GameObject clone = Instantiate(RougeLikeManagerPrefab);
+        clone.transform.SetParent(GameObject.FindWithTag("ChooserSpawn").transform);
+        clone.transform.position = GameObject.FindWithTag("ChooserSpawn").transform.position;
+        
+        
+        
+    }
+
+    public void ConfirmPlayerHasChosen()
+    { 
+        InitializeWave();
+    }
+    
 }

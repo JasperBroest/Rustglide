@@ -74,6 +74,7 @@ public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
 
     public void OnGrab()
     {
+        GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>().ConfirmPlayerHasChosen();
         HasChosen = true;
         AbilityManager.Instance.HasChosen = true;
         this.gameObject.SetActive(false);

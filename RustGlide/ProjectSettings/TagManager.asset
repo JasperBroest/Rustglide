@@ -17,6 +17,8 @@ TagManager:
   - ChooseWeapons
   - PlayerMoveObject
   - Ability
+  - ChooserSpawn
+  - EnemyManager
   layers:
   - Default
   - TransparentFX
