@@ -19,6 +19,7 @@ TagManager:
   - Ability
   - ChooserSpawn
   - EnemyManager
+  - RogueLikeManager
   layers:
   - Default
   - TransparentFX
