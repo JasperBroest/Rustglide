@@ -20,5 +20,5 @@ MonoBehaviour:
   MaxJumpSpeedMultiplyer: 0
   StaminaMultiplyer: 0
   StandardSpeedMultiplyer: 0
-  DamageMultiplyer: 10
+  DamageMultiplyer: 35
   WeaponSpeedMultiplyer: 0
