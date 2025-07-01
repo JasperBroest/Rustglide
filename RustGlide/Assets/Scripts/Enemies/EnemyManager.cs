@@ -101,7 +101,6 @@ public class EnemyManager : MonoBehaviour
 
     private void InitializeWave()
     {
-        
         if (waveCount < waves.Length)
         {
             // Spawn new wave
@@ -117,7 +116,7 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-            LevelManager.Instance.LoadNextLevel();        
+            LevelManager.Instance.LoadNextLevel();
         }
     }
 
