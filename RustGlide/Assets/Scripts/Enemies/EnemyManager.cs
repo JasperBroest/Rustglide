@@ -35,7 +35,7 @@ public class EnemyManager : MonoBehaviour
 
     public void EnemiesClearedCheck()
     {
-        if (enemyList.Count <= 0)
+        if (enemyList.Count == 0)
         {
             waveCount++;
             SpawnAbilityChooserBeforeWave();
