@@ -15,6 +15,7 @@ public class StaminaBar : MonoBehaviour
     [SerializeField][Range(0, 10)] private float velocitySpeed;
 
     // Stamina
+    public bool staminaOn = false;
     [Range(0, 1000)] public float stamina;
     private int staminaLoss;
 
@@ -23,6 +24,7 @@ public class StaminaBar : MonoBehaviour
     private XROrigin XrOrigin;
     private Volume volume;
     private Vignette vignette;
+    GameObject chooseWeapon;
 
     public void TakeDamage(int damage)
     {
@@ -36,6 +38,8 @@ public class StaminaBar : MonoBehaviour
         volume = FindFirstObjectByType<Volume>();
 
         stamina = AbilityManager.Instance.Stamina;
+
+        chooseWeapon = GameObject.Find("ChooseWeapon");
     }
 
     private void Update()
@@ -51,8 +55,19 @@ public class StaminaBar : MonoBehaviour
             }
         }
 
-        CheckVelocity();
-        CalculateVelocity();
+        if(chooseWeapon != null)
+        {
+            if(chooseWeapon.GetComponent<RogueLikeManager>().HasChosen)
+            {
+                staminaOn = true;
+            }
+        }
+
+        if(staminaOn)
+        {
+            CheckVelocity();
+            CalculateVelocity();
+        }
     }
 
     private void CheckVelocity()

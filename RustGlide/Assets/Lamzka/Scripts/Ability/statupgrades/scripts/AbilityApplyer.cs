@@ -12,11 +12,11 @@ public class AbilityApplyer : AblilityAbstract, IPlayerInput,IAbilityHasBeenChos
     public AudioClip SoundOnApply;
     public GameObject visual;
 
-    private bool isUsed;
+    public bool isUsed;
     
     private bool rTrigger;
     private bool lTrigger;
-    private bool isGrabbed;
+    public bool isGrabbed;
 
     private void Start()
     {
@@ -42,10 +42,30 @@ public class AbilityApplyer : AblilityAbstract, IPlayerInput,IAbilityHasBeenChos
     {
         lTrigger = LState;
     }
-    
+
+    public void RightGrip(bool RGrip)
+    {
+
+    }
+
+    public void LeftGrip(bool RGrip)
+    {
+
+    }
+
 
     public void OnGrab(bool State)
     {
+        try
+        {
+            GameObject.FindGameObjectWithTag("RogueLikeManager").GetComponent<RogueLikeManager>().OnGrab();
+        }
+        catch (Exception e)
+        {
+           Debug.Log("Stop cheating!!!");
+            throw;
+        }
+        
         isGrabbed = State;
     }
 

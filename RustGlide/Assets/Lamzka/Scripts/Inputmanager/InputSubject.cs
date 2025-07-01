@@ -24,4 +24,14 @@ public class InputSubject : MonoBehaviour
     {
         InputObserver.ForEach((InputObserver) => InputObserver.LeftTrigger(LState));
     }
+
+    protected void NotifyGripRValue(bool Rgrip)
+    {
+        InputObserver.ForEach((InputObserver) => InputObserver.RightGrip(Rgrip));
+    }
+
+    protected void NotifyGripLValue(bool Lgrip)
+    {
+        InputObserver.ForEach((InputObserver) => InputObserver.LeftGrip(Lgrip));
+    }
 }

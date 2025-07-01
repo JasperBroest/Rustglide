@@ -1,16 +1,13 @@
 using System.Collections.Generic;
 using System.Reflection;
-using Unity.XR.CoreUtils;
-using UnityEditor.Rendering.Universal;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
 {
     public List<GameObject> enemyList = new();
-    public bool gameDone = false;
 
     public static EnemyManager Instance;
 
@@ -21,6 +18,13 @@ public class EnemyManager : MonoBehaviour
 
     private List<ScriptableRendererFeature> features;
     public int XrayEnemyAmount;
+    
+    //Ability related:
+    
+    
+    public GameObject RougeLikeManagerPrefab;
+    public GameObject SpawnerForRougeLikeManager;
+    
 
     [System.Serializable]
     public struct EnemyWave
@@ -34,7 +38,7 @@ public class EnemyManager : MonoBehaviour
         if (enemyList.Count <= 0)
         {
             waveCount++;
-            InitializeWave();
+            SpawnAbilityChooserBeforeWave();
         }
     }
 
@@ -52,13 +56,16 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeWave();
+        
+        
+        /*InitializeWave();*/
+        SpawnAbilityChooserBeforeWave();
+        
         UniversalRenderPipelineAsset urpAsset = (UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline;
 
         ScriptableRendererData[] rendererDataList = urpAsset.GetType().GetField("m_RendererDataList", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(urpAsset) as ScriptableRendererData[];
         if (rendererDataList == null || rendererDataList.Length == 0)
         {
-            Debug.LogError("No renderer data found.");
             return;
         }
 
@@ -74,16 +81,14 @@ public class EnemyManager : MonoBehaviour
             if (feature.name == "Xray")
             {
                 feature.SetActive(enabled);
-                Debug.Log($"{"Xray"} set to {enabled}");
                 return;
             }
         }
-
-        Debug.LogWarning($"Render feature Xray not found.");
     }
 
     private void Update()
     {
+        
         if (enemyList.Count <= XrayEnemyAmount)
         {
             ToggleFeature(true);
@@ -96,33 +101,41 @@ public class EnemyManager : MonoBehaviour
 
     private void InitializeWave()
     {
+        
         if (waveCount < waves.Length)
         {
+            // Spawn new wave
             EnemySpawner.Instance.SpawnWave(waves[waveCount].enemy, waves[waveCount].enemyAmount);
-            FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include).enemyCounter = enemyList.Count;
-            FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include).waveKillCount = 0;
+
+            // Show how many enemies left
+            var enemiesLeft = FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include);
+            if (enemiesLeft != null)
+            {
+                enemiesLeft.enemyCounter = enemyList.Count;
+                enemiesLeft.waveKillCount = 0;
+            }
         }
         else
         {
-            gameDone = true;
-
-            if (SceneManager.GetActiveScene().buildIndex == 0)
-            {
-                SceneManager.LoadScene(1);
-            }
-            else if (SceneManager.GetActiveScene().buildIndex == 1)
-            {
-                SceneManager.LoadScene(2);
-            }
-            else if (SceneManager.GetActiveScene().buildIndex == 2)
-            {
-                SceneManager.LoadScene(3);
-            }
-            else if (SceneManager.GetActiveScene().buildIndex == 3)
-            {
-                SceneManager.LoadScene(1);
-            }
-
+            LevelManager.Instance.LoadNextLevel();        
         }
     }
+
+    public void SpawnAbilityChooserBeforeWave()
+    {
+        //SpawnAbilityChooser at its spawn location (on the player)
+        
+        GameObject clone = Instantiate(RougeLikeManagerPrefab);
+        clone.transform.SetParent(GameObject.FindWithTag("ChooserSpawn").transform);
+        clone.transform.position = GameObject.FindWithTag("ChooserSpawn").transform.position;
+        
+        
+        
+    }
+
+    public void ConfirmPlayerHasChosen()
+    { 
+        InitializeWave();
+    }
+    
 }
