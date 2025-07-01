@@ -295,7 +295,7 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dd8f7b74-1c7a-4aa0-bae3-9ec65dfd2e51"",
-                    ""path"": ""<OculusTouchController>{LeftHand}/thumbstick/left"",
+                    ""path"": ""<XRInputV1::Oculus::OculusTouchControllerOpenXR>{LeftHand}/secondarybutton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

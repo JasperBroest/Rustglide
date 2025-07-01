@@ -113,7 +113,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   graphics: {fileID: 2791051613985044422}
-  DefaultMat: {fileID: 2100000, guid: 4d492df75b612b646aa8458fefd0ef86, type: 2}
+  DefaultMat: {fileID: 2100000, guid: 909cec73ae9e6b647adef34acf414143, type: 2}
   HitMat: {fileID: 2100000, guid: 328504ad90f63284f992a5dca1ae3f93, type: 2}
 --- !u!1 &2457931101999228623
 GameObject:

@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class EnemyManager : MonoBehaviour
 
     public void EnemiesClearedCheck()
     {
-        if (enemyList.Count == 0)
+        if (enemyList.Count <= 0)
         {
             waveCount++;
             SpawnAbilityChooserBeforeWave();
@@ -117,7 +118,10 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-            LevelManager.Instance.LoadNextLevel();        
+            if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                SceneManager.LoadScene("BeginScene");
+            }
         }
     }
 
@@ -128,6 +132,7 @@ public class EnemyManager : MonoBehaviour
         GameObject clone = Instantiate(RougeLikeManagerPrefab);
         clone.transform.SetParent(GameObject.FindWithTag("ChooserSpawn").transform);
         clone.transform.position = GameObject.FindWithTag("ChooserSpawn").transform.position;
+        clone.transform.rotation = GameObject.FindWithTag("ChooserSpawn").transform.rotation;
         
         
         

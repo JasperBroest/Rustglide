@@ -557,6 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 496582692}
   - component: {fileID: 496582691}
+  - component: {fileID: 496582693}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -644,6 +645,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &496582693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496582690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &562488971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,21 +1080,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8497698071874029702, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
+      propertyPath: waves.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497698071874029702, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
       propertyPath: waves.Array.data[0].enemy
       value: 
       objectReference: {fileID: 5813853337301803443, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
     - target: {fileID: 8497698071874029702, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
       propertyPath: waves.Array.data[1].enemy
       value: 
-      objectReference: {fileID: 5195211934915299418, guid: 252c792636b90414a912c6ce3d022ff4, type: 3}
+      objectReference: {fileID: 5813853337301803443, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
     - target: {fileID: 8497698071874029702, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
       propertyPath: waves.Array.data[2].enemy
       value: 
-      objectReference: {fileID: 321984829434160229, guid: ea3dc9a1a0a36df428e746dd1a0b77b9, type: 3}
+      objectReference: {fileID: 5813853337301803443, guid: 27d1066ab23fa7b43822c624ab659346, type: 3}
     - target: {fileID: 8497698071874029702, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
       propertyPath: SpawnerForRougeLikeManager
       value: 
       objectReference: {fileID: 1081596790}
+    - target: {fileID: 8497698071874029702, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
+      propertyPath: waves.Array.data[0].enemyAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497698071874029702, guid: 4e2aa8b0fbbadee43ae7dc20ae941b4a, type: 3}
+      propertyPath: waves.Array.data[2].enemyAmount
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
