@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Gun, RightHand, LeftHand, GorillaPlayer, Xray, Ignore
 - Active game object:
-  - Name: Windnoise
+  - Name: Point Light
   - Tag: Untagged
-  - Layer: Player
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
