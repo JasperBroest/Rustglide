@@ -28,8 +28,6 @@ public class StaminaBar : MonoBehaviour
     private AudioSource audioSource;
     GameObject chooseWeapon;
 
-    private AudioSource audioSource;
-
     public void TakeDamage(int damage)
     {
         stamina -= damage;
