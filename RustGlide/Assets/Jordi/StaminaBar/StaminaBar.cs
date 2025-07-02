@@ -26,9 +26,12 @@ public class StaminaBar : MonoBehaviour
     private Vignette vignette;
     GameObject chooseWeapon;
 
+    private AudioSource audioSource;
+
     public void TakeDamage(int damage)
     {
         stamina -= damage;
+        audioSource.Play();
         CheckVelocity();
     }
 
@@ -36,6 +39,7 @@ public class StaminaBar : MonoBehaviour
     {
         XrOrigin = FindFirstObjectByType<XROrigin>();
         volume = FindFirstObjectByType<Volume>();
+        audioSource = GetComponent<AudioSource>();
 
         stamina = AbilityManager.Instance.Stamina;
 
