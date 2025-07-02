@@ -1311,7 +1311,7 @@ MonoBehaviour:
   BoosterCooldown: 0
   DefaultHandGunDamage: 10
   DefaultSMGDamage: 5
-  DefaultSMGShootingCooldown: 0.1
+  DefaultSMGShootingCooldown: 0.09
   DefaultShotgunDamage: 8
   DefaultShotgunShootingCooldown: 0.6
   DefaultStamina: 50
