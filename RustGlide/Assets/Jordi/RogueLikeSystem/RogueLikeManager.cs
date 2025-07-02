@@ -13,8 +13,6 @@ public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
 
     public bool HasChosen = false;
 
-    private GameObject Stamina;
-
     private int RandValue;
 
     [System.Serializable]
@@ -26,23 +24,16 @@ public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
 
     private void Start()
     {
-        GetStaminaComponent();
         if (Upgrades.Count > 0)
         {
             GenerateThree();
         }
+        HasChosen=false;
     }
     public bool HasBeenChosen(bool State)
     {
         if (State) Destroy(this);
         return State;
-    }
-    private void Update()
-    {
-        if(Stamina == null)
-        {
-            GetStaminaComponent();
-        }
     }
 
     private void SetList()
@@ -56,7 +47,6 @@ public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
 
     private void GenerateThree()
     {
-        //Stamina.gameObject.SetActive(false);
         SetList();
         for (int i = 0; i < 3; i++)
         {
@@ -83,17 +73,17 @@ public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
         ChosenUpgradesFilled = true;
     }
 
-    public void OnGrab()
+    public void OnAbilityChoose()
     {
-        //Stamina.gameObject.SetActive(true);
-        /*this.transform.parent.gameObject.SetActive(false);*/
+        GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>().ConfirmPlayerHasChosen();
         HasChosen = true;
         AbilityManager.Instance.HasChosen = true;
         this.gameObject.SetActive(false);
     }
-
-    public void GetStaminaComponent()
+    public void OnGrab()
     {
-        Stamina = FindAnyObjectByType<XROrigin>().GetComponentInChildren<StaminaBar>().gameObject;
+        HasChosen = true;
+        AbilityManager.Instance.HasChosen = true;
+        this.gameObject.SetActive(false);
     }
 }

@@ -17,6 +17,9 @@ TagManager:
   - ChooseWeapons
   - PlayerMoveObject
   - Ability
+  - ChooserSpawn
+  - EnemyManager
+  - RogueLikeManager
   layers:
   - Default
   - TransparentFX
@@ -29,7 +32,7 @@ TagManager:
   - LeftHand
   - GorillaPlayer
   - Xray
-  - 
+  - Ignore
   - 
   - 
   - 

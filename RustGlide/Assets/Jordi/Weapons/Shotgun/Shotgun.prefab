@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 421290767283201275}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.002, y: -0.064, z: -0.0015}
+  m_LocalPosition: {x: -0.808, y: 0.033, z: -0.0015}
   m_LocalScale: {x: 0.11, y: 0.12, z: 0.09}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24721,7 +24721,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.92, y: 0.95, z: 13.14}
-  m_LocalScale: {x: 0.35, y: 0.2625, z: 0.2625}
+  m_LocalScale: {x: 0.26805437, y: 0.20104076, z: 0.20104076}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3905517513954442632}
@@ -24742,6 +24742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ce1ce9ca5a52a4597f707e032b4e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spreadFactor: 0.2
   Bullethole: {fileID: 8045413505274405789}
   GunShotAudio: {fileID: 8300000, guid: 539b7e25bad50454dac2a0add805450f, type: 3}
   GunHitAudio: {fileID: 8300000, guid: 8a6b7ec067979e7499d63d3ebea6400a, type: 3}
@@ -24749,26 +24750,10 @@ MonoBehaviour:
   hitAudioObject: {fileID: 2070650280826579499, guid: 80c92821996037e45bd2cace20ae55b7, type: 3}
   Animator: {fileID: 8350763050629083536}
   Range: 1000
-  Trigger:
-    m_Name: Trigger
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f5988b4a-06b3-42eb-89d0-bad0c6510e3a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 2a1244ae-ec76-479f-ba32-12cae0165cf3
-      m_Path: <XRController>{RightHand}/{Trigger}
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Trigger
-      m_Flags: 0
-    m_Flags: 0
   gunHaptic: {fileID: 11400000, guid: abb9c96e0f7239b45a7e397569b6fe71, type: 2}
   gunHeld: 0
-  spreadFactor: 0.2
+  gunHoldingHand: 2
+  HandsHeld: 0
   numberOfProjectiles: 10
   FireRate: 2
 --- !u!54 &2684751193695958949

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8497698071874029702}
   m_Layer: 0
   m_Name: EnemyManager
-  m_TagString: Untagged
+  m_TagString: EnemyManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList: []
-  gameDone: 0
   waves:
   - enemy: {fileID: 5267208821676531391, guid: dc920a747835b0644a95fdcbd79c1146, type: 3}
     enemyAmount: 1
@@ -53,3 +52,7 @@ MonoBehaviour:
     enemyAmount: 2
   - enemy: {fileID: 5267208821676531391, guid: dc920a747835b0644a95fdcbd79c1146, type: 3}
     enemyAmount: 4
+  killCount: 0
+  XrayEnemyAmount: 0
+  RougeLikeManagerPrefab: {fileID: 2248051662489073968, guid: b2663032c4c464547a462429818ef1d4, type: 3}
+  SpawnerForRougeLikeManager: {fileID: 0}

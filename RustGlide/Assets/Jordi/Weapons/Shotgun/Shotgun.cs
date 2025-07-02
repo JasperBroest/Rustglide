@@ -3,20 +3,22 @@ using UnityEngine.VFX;
 
 public class Shotgun : Weapon, IPlayerInput
 {
-    [Range(0, 1000)] public int numberOfProjectiles = 10;
+    [Range(0, 1000)] public float numberOfProjectiles = 10;
 
-    [SerializeField] private int FireRate;
+    [SerializeField] private float FireRate;
 
     private void Start()
     {
         GetInput();
         gunShotSource = GetComponent<AudioSource>();
         gunShotParticle = GetComponentInChildren<VisualEffect>();
-        cooldown = AbilityManager.Instance.CurrentShotgunCooldown / FireRate;
+        
     }
 
     private void Update()
     {
+        cooldown = AbilityManager.Instance.CurrentShotgunCooldown;
+        
         if (gunHeld)
             dmg = AbilityManager.Instance.CurrentShotgunDamage;
         
