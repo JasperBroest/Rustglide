@@ -20,6 +20,13 @@ public class StaminaBar : MonoBehaviour
     [Range(0, 1000)] public float stamina;
     private int staminaLoss;
 
+    public AudioClip HurtSound;
+    public AudioClip DeathSound; 
+    
+    public AudioSource HeartBeataudioSource;
+        
+    
+    
     // Other
     private Vector3 previousPosition;
     private XROrigin XrOrigin;
@@ -28,12 +35,14 @@ public class StaminaBar : MonoBehaviour
     private AudioSource audioSource;
     GameObject chooseWeapon;
 
-    private AudioSource audioSource;
+    
+    bool hasDied;
+    
 
     public void TakeDamage(int damage)
     {
         stamina -= damage;
-        audioSource.Play();
+        audioSource.PlayOneShot(HurtSound);
         CheckVelocity();
     }
 
@@ -50,11 +59,15 @@ public class StaminaBar : MonoBehaviour
 
     private void Start()
     {
+
+        hasDied = false;
         audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
+        ChangeWindVolumeOnvelocity();
+        
         if (volume.profile.TryGet(out vignette))
         {
             float normalizedStamina = Mathf.InverseLerp(0, 100, stamina);
@@ -117,12 +130,47 @@ public class StaminaBar : MonoBehaviour
     }
     private void Die()
     {
+
+        vignette.color.value = Color.black;
+
+        if (!hasDied)
+        {
+            audioSource.PlayOneShot(DeathSound);
+        }
+        hasDied = true;
+        
         AbilityManager.Instance.ResetStats();
         StartCoroutine(finished());
         vignette.center.value = new Vector2(-1, -1);
-        audioSource.Play();
+        
         
 
+    }
+    
+    
+    void ChangeWindVolumeOnvelocity()
+    {
+        if (stamina <= 50f)
+        {
+            float max = 0.650f;
+        
+            float currentVolume = Mathf.Clamp01(stamina / 15) * max;
+            HeartBeataudioSource.volume = currentVolume;
+            
+            if (!HeartBeataudioSource.isPlaying)
+            {
+                HeartBeataudioSource.Play();
+            }
+            
+        }
+        else if (stamina >= 50f)
+        {
+            HeartBeataudioSource.Stop();
+        }
+            
+        
+        
+        
     }
 
     //remove later
