@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Gun, RightHand, LeftHand, GorillaPlayer, Xray, Ignore
 - Active game object:
-  - Name: Player
-  - Tag: RocketPlayer
-  - Layer: Player
+  - Name: Global Volume (1)
+  - Tag: Untagged
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
