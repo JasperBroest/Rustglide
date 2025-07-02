@@ -108,6 +108,8 @@ public class EnemyManager : MonoBehaviour
             // Spawn new wave
             EnemySpawner.Instance.SpawnWave(waves[waveCount].enemy, waves[waveCount].enemyAmount);
 
+            AbilityManager.Instance.DefaultXrayEnemyAmount++;
+
             // Show how many enemies left
             var enemiesLeft = FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include);
             if (enemiesLeft != null)
@@ -142,5 +144,7 @@ public class EnemyManager : MonoBehaviour
     { 
         InitializeWave();
     }
+
+    
     
 }

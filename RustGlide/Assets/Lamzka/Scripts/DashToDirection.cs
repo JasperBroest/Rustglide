@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 {
+    public GameObject AirSound;
+    
     [Header("Dependencys")] public GameObject CubeRight;
     public GameObject CubeLeft;
     
@@ -30,6 +32,8 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
     public bool isGunHeld = false;
 
     private GameObject[] guns;
+
+    private AudioSource airSource;
 
 
     public void NotifyGrab(bool IsGunGrabbed)
@@ -65,6 +69,9 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     private void Start()
     {
+        airSource = AirSound.gameObject.GetComponent<AudioSource>();
+        
+        
         AudioSource.clip = ThrusterSound;
         playerRidgidbody = GetComponent<Rigidbody>();
         GetInput();
@@ -73,6 +80,8 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
     private void FixedUpdate()
     {
+        ChangeWindVolumeOnvelocity();
+        
         if(playerRidgidbody.linearVelocity.magnitude > 5) SpeedParticles.Play();
             else if(playerRidgidbody.linearVelocity.magnitude < 5)SpeedParticles.Stop();
         
@@ -80,9 +89,11 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
         if (velocity.sqrMagnitude > 0.01f)
         {
+            
             Quaternion rotation = Quaternion.LookRotation( -velocity.normalized);
             SpeedParticles.transform.rotation = rotation;
         }
+        
 
 
         ThrustPower = AbilityManager.Instance.BoosterSpeed;
@@ -182,5 +193,16 @@ public class DashToDirection : MonoBehaviour, IPlayerInput, IGunGetState
 
         CurrentInput = GameObject.FindWithTag("PlayerInput");
         CurrentInput.GetComponent<InputSubject>().AddObserver(this);
+    }
+    
+    void ChangeWindVolumeOnvelocity()
+    {
+        float velocity = playerRidgidbody.linearVelocity.magnitude;
+        float max = 0.401f;
+        
+        float currentVolume = Mathf.Clamp01(velocity / 20) * max;
+        airSource.volume = currentVolume;
+        
+        
     }
 }
