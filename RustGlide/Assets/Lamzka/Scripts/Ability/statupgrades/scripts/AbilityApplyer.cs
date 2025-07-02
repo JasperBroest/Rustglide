@@ -58,7 +58,7 @@ public class AbilityApplyer : AblilityAbstract, IPlayerInput,IAbilityHasBeenChos
     {
         try
         {
-            GameObject.FindGameObjectWithTag("RogueLikeManager").GetComponent<RogueLikeManager>().OnGrab();
+            GameObject.FindGameObjectWithTag("RogueLikeManager").GetComponent<RogueLikeManager>().OnAbilityChoose();
         }
         catch (Exception e)
         {

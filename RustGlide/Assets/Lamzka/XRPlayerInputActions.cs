@@ -173,6 +173,17 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""d4cdfe91-3830-492d-a125-77070c9c8c70"",
+                    ""path"": ""<XRInputV1::Oculus::OculusTouchControllerOpenXR>{RightHand}/triggerpressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TriggerR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""97abf533-645a-40a9-b809-67faeed9c665"",
                     ""path"": ""<XRInputV1::Oculus::MetaQuestTouchPlusControllerOpenXR>{LeftHand}/triggerpressed"",
                     ""interactions"": """",
@@ -186,6 +197,17 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""15047bb8-336c-4cce-8398-6472d735cc6c"",
                     ""path"": ""<XRInputV1::Valve::IndexControllerOpenXR>{LeftHand}/triggerpressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TriggerL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04e42747-9ce4-4aa7-a7f4-24108468a3fb"",
+                    ""path"": ""<XRInputV1::Oculus::OculusTouchControllerOpenXR>{LeftHand}/triggerpressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -217,6 +239,17 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""62e5120d-1ec4-48e1-91ea-8101aeef3343"",
+                    ""path"": ""<XRInputV1::Oculus::OculusTouchControllerOpenXR>{RightHand}/grippressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GripR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b778003b-2580-4dea-943d-893dc61ada3e"",
                     ""path"": ""<XRInputV1::Oculus::MetaQuestTouchPlusControllerOpenXR>{LeftHand}/grippressed"",
                     ""interactions"": """",
@@ -239,8 +272,30 @@ public partial class @XRPlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""cf042646-8764-4f4c-808e-ebea9dc433c1"",
+                    ""path"": ""<XRInputV1::Oculus::OculusTouchControllerOpenXR>{LeftHand}/grippressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GripL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f4ab4f40-79a6-4934-ac84-faa6f2254849"",
                     ""path"": ""<QuestTouchPlusController>{LeftHand}/menu"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd8f7b74-1c7a-4aa0-bae3-9ec65dfd2e51"",
+                    ""path"": ""<XRInputV1::Oculus::OculusTouchControllerOpenXR>{LeftHand}/secondarybutton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

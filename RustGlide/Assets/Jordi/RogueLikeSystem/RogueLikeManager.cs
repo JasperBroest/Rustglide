@@ -28,6 +28,7 @@ public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
         {
             GenerateThree();
         }
+        HasChosen=false;
     }
     public bool HasBeenChosen(bool State)
     {
@@ -72,9 +73,15 @@ public class RogueLikeManager : MonoBehaviour, IAbilityHasBeenChosen
         ChosenUpgradesFilled = true;
     }
 
-    public void OnGrab()
+    public void OnAbilityChoose()
     {
         GameObject.FindWithTag("EnemyManager").GetComponent<EnemyManager>().ConfirmPlayerHasChosen();
+        HasChosen = true;
+        AbilityManager.Instance.HasChosen = true;
+        this.gameObject.SetActive(false);
+    }
+    public void OnGrab()
+    {
         HasChosen = true;
         AbilityManager.Instance.HasChosen = true;
         this.gameObject.SetActive(false);

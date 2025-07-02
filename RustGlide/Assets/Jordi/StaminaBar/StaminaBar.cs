@@ -106,6 +106,7 @@ public class StaminaBar : MonoBehaviour
     }
     private void Die()
     {
+        AbilityManager.Instance.ResetStats();
         StartCoroutine(finished());
         vignette.center.value = new Vector2(-1, -1);
 
