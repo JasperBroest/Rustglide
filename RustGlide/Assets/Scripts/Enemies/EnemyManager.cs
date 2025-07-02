@@ -37,7 +37,11 @@ public class EnemyManager : MonoBehaviour
     public void EnemiesClearedCheck()
     {
         if (enemyList.Count <= 0)
-        {
+        {   
+            if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                SceneManager.LoadScene(2);
+            }
             waveCount++;
             SpawnAbilityChooserBeforeWave();
         }
@@ -57,7 +61,10 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            InitializeWave();
+        }
         
         /*InitializeWave();*/
         SpawnAbilityChooserBeforeWave();

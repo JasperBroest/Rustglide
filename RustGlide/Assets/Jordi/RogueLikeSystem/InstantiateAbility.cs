@@ -11,7 +11,7 @@ public class InstantiateAbility : MonoBehaviour
 
     private void Update()
     {
-        if(GetComponentInParent<RogueLikeManager>().ChosenUpgradesFilled)
+        if(GetComponentInParent<RogueLikeManager>().ChosenUpgradesFilled && SceneManager.GetActiveScene().name != "Tutorial")
         {
             SpawnAbilities();
             GetComponentInParent<RogueLikeManager>().ChosenUpgradesFilled = false;

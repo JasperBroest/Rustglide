@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
@@ -24,11 +25,15 @@ public class StaminaBar : MonoBehaviour
     private XROrigin XrOrigin;
     private Volume volume;
     private Vignette vignette;
+    private AudioSource audioSource;
     GameObject chooseWeapon;
+
+    private AudioSource audioSource;
 
     public void TakeDamage(int damage)
     {
         stamina -= damage;
+        audioSource.Play();
         CheckVelocity();
     }
 
@@ -36,10 +41,16 @@ public class StaminaBar : MonoBehaviour
     {
         XrOrigin = FindFirstObjectByType<XROrigin>();
         volume = FindFirstObjectByType<Volume>();
+        audioSource = GetComponent<AudioSource>();
 
         stamina = AbilityManager.Instance.Stamina;
 
         chooseWeapon = GameObject.Find("ChooseWeapon");
+    }
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -109,6 +120,8 @@ public class StaminaBar : MonoBehaviour
         AbilityManager.Instance.ResetStats();
         StartCoroutine(finished());
         vignette.center.value = new Vector2(-1, -1);
+        audioSource.Play();
+        
 
     }
 
