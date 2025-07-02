@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ce1ce9ca5a52a4597f707e032b4e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spreadFactor: 0.15
+  spreadFactor: 0.1
   Bullethole: {fileID: 8045413505274405789}
   GunShotAudio: {fileID: 8300000, guid: 539b7e25bad50454dac2a0add805450f, type: 3}
   GunHitAudio: {fileID: 8300000, guid: 8a6b7ec067979e7499d63d3ebea6400a, type: 3}
