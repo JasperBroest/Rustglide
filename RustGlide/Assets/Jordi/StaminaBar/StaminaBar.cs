@@ -130,17 +130,15 @@ public class StaminaBar : MonoBehaviour
     }
     private void Die()
     {
-
-        vignette.color.value = Color.black;
-
         if (!hasDied)
         {
             audioSource.PlayOneShot(DeathSound);
         }
         hasDied = true;
-        
+
         AbilityManager.Instance.ResetStats();
         StartCoroutine(finished());
+        vignette.color.value = Color.black;
         vignette.center.value = new Vector2(-1, -1);
         
         
