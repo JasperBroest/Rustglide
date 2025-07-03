@@ -30,7 +30,6 @@ public class EnemyManager : MonoBehaviour
     [System.Serializable]
     public struct EnemyWave
     {
-        public GameObject enemy;
         public int enemyAmount;
     }
 
@@ -113,7 +112,7 @@ public class EnemyManager : MonoBehaviour
         if (waveCount < waves.Length)
         {
             // Spawn new wave
-            EnemySpawner.Instance.SpawnWave(waves[waveCount].enemy, waves[waveCount].enemyAmount);
+            EnemySpawner.Instance.SpawnWave(waves[waveCount].enemyAmount);
 
             AbilityManager.Instance.DefaultXrayEnemyAmount++;
 

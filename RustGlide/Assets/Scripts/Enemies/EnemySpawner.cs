@@ -6,6 +6,8 @@ public class EnemySpawner : MonoBehaviour
 
     public static EnemySpawner Instance;
 
+    [SerializeField]private GameObject[] EnemyTypes;
+
     private void Awake()
     {
         // Singleton
@@ -19,14 +21,14 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void SpawnWave(GameObject enemy,int spawnAmount)
+    public void SpawnWave(int spawnAmount)
     {
         RefreshSpawnpoints();
         foreach(Transform spawn in spawnpoints)
         {
             for (int i = 0; i < spawnAmount; i++)
             {
-                GameObject clone = Instantiate(enemy, new Vector3(spawn.position.x + Random.Range(-5, 5), spawn.position.y, spawn.position.z + Random.Range(-5, 5)), Quaternion.identity);
+                GameObject clone = Instantiate(EnemyTypes[Random.Range(0, EnemyTypes.Length)], new Vector3(spawn.position.x + Random.Range(-5, 5), spawn.position.y, spawn.position.z + Random.Range(-5, 5)), Quaternion.identity);
                 EnemyManager.Instance.enemyList.Add(clone);
             }
         }
