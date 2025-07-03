@@ -2106,7 +2106,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 880774007180850119, guid: a38b10ecd20f66f4cb4f070a29e0273e, type: 3}
-  - {fileID: 1886820026795636259, guid: a38b10ecd20f66f4cb4f070a29e0273e, type: 3}
+  - {fileID: 2100000, guid: cf8f95a336674244d947285a173aa5bb, type: 2}
   - {fileID: 9185737683893222716, guid: a38b10ecd20f66f4cb4f070a29e0273e, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -11524,7 +11524,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 880774007180850119, guid: a38b10ecd20f66f4cb4f070a29e0273e, type: 3}
-  - {fileID: 1886820026795636259, guid: a38b10ecd20f66f4cb4f070a29e0273e, type: 3}
+  - {fileID: 2100000, guid: cf8f95a336674244d947285a173aa5bb, type: 2}
   - {fileID: 9185737683893222716, guid: a38b10ecd20f66f4cb4f070a29e0273e, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -15222,6 +15222,9 @@ MonoBehaviour:
   velocitySpeed: 5
   staminaOn: 0
   stamina: 50
+  HurtSound: {fileID: 0}
+  DeathSound: {fileID: 0}
+  HeartBeataudioSource: {fileID: 0}
 --- !u!82 &4642828533875355151
 AudioSource:
   m_ObjectHideFlags: 0
