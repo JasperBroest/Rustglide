@@ -17,7 +17,7 @@ public class StaminaBar : MonoBehaviour
 
     // Stamina
     public bool staminaOn = false;
-    [Range(0, 1000)] public float stamina;
+    public float stamina;
     private int staminaLoss;
 
     public AudioClip HurtSound;
