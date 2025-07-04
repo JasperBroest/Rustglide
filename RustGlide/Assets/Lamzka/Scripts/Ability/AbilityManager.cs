@@ -110,10 +110,7 @@ public class AbilityManager : MonoBehaviour
         XrOrigin = FindFirstObjectByType<XROrigin>().gameObject;
 
         DontDestroyOnLoad(this);
-    }
 
-    private void Start()
-    {
         ResetStats();
     }
 

@@ -52,16 +52,14 @@ public class StaminaBar : MonoBehaviour
         volume = FindFirstObjectByType<Volume>();
         audioSource = GetComponent<AudioSource>();
 
-        stamina = AbilityManager.Instance.Stamina;
-
         chooseWeapon = GameObject.Find("ChooseWeapon");
     }
 
     private void Start()
     {
-
         hasDied = false;
         audioSource = GetComponent<AudioSource>();
+        stamina = AbilityManager.Instance.Stamina;
     }
 
     private void Update()
@@ -96,8 +94,13 @@ public class StaminaBar : MonoBehaviour
 
     private void CheckVelocity()
     {
-        if (stamina >= 0)
+        if (stamina > 0)
         {
+            if(stamina > AbilityManager.Instance.Stamina)
+            {
+                stamina = AbilityManager.Instance.Stamina;
+            }
+
             // Calculates stamina decrease based on how fast player is moving
             if (velocity < velocitySpeed)
             {
@@ -105,11 +108,11 @@ public class StaminaBar : MonoBehaviour
                 float lossSpeed = staminaLoss / 20f;
                 stamina -= lossSpeed;
             }
-
-            // Dont go over stamina 
             else if (stamina <= AbilityManager.Instance.Stamina)
             {
-                stamina += staminaLoss / 20f;
+                int staminaGainFactor = Mathf.Max(0, Mathf.CeilToInt(velocity) - 6);
+                float gainSpeed = staminaGainFactor / 20f / 4f;
+                stamina += gainSpeed;
             }
         }
         else
