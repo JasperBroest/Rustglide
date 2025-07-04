@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Player, Water, UI, Gun, RightHand, LeftHand, GorillaPlayer, Xray, Ignore
 - Active game object:
-  - Name: Global Volume
-  - Tag: Untagged
-  - Layer: Default
+  - Name: StaminaBar
+  - Tag: Stamina
+  - Layer: Player
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

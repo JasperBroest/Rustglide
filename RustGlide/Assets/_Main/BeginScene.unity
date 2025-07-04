@@ -5675,6 +5675,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2613322126084258906, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
+      propertyPath: stamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2613322126084258906, guid: d2ebe47a9efc9f947b526292453360e8, type: 3}
       propertyPath: HurtSound
       value: 
       objectReference: {fileID: 8300000, guid: 4a7dd1d78aa0b4544b75ac2e57845e99, type: 3}

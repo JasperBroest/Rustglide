@@ -106,7 +106,7 @@ public class StaminaBar : MonoBehaviour
                 stamina -= lossSpeed;
             }
 
-            // Dont go over 100
+            // Dont go over stamina 
             else if (stamina <= AbilityManager.Instance.Stamina)
             {
                 stamina += staminaLoss / 20f;
