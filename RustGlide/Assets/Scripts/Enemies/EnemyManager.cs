@@ -96,7 +96,7 @@ public class EnemyManager : MonoBehaviour
     private void Update()
     {
         
-        if (enemyList.Count <= XrayEnemyAmount)
+        if (enemyList.Count <= AbilityManager.Instance.DefaultXrayEnemyAmount)
         {
             ToggleFeature(true);
         }
@@ -114,7 +114,7 @@ public class EnemyManager : MonoBehaviour
             // Spawn new wave
             EnemySpawner.Instance.SpawnWave(waves[waveCount].enemyAmount);
 
-            AbilityManager.Instance.DefaultXrayEnemyAmount++;
+            AbilityManager.Instance.DefaultXrayEnemyAmount += 2;
 
             // Show how many enemies left
             var enemiesLeft = FindAnyObjectByType<EnemiesLeft>(FindObjectsInactive.Include);

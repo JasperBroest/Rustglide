@@ -1414,16 +1414,16 @@ MonoBehaviour:
   CooldownTime: 0
   BoosterSpeed: 0
   BoosterCooldown: 0
-  DefaultHandGunDamage: 10
-  DefaultSMGDamage: 5
+  DefaultHandGunDamage: 6
+  DefaultSMGDamage: 3
   DefaultSMGShootingCooldown: 0.09
-  DefaultShotgunDamage: 8
+  DefaultShotgunDamage: 5
   DefaultShotgunShootingCooldown: 0.6
   DefaultStamina: 50
   DefaultStandardSpeed: 5
   DefaultDashSpeed: 0
   DefaultCooldownTime: 0
-  DefaultBoosterSpeed: 6
+  DefaultBoosterSpeed: 10
   DefaultXrayEnemyAmount: 3
   MonkeyJump: 0
   MonkeyMaxJumpSpeed: 0

@@ -631,6 +631,78 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4453806867672132484, guid: f6668dd4054dec2479d4c57a2f099e18, type: 3}
+--- !u!1 &146774970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 146774972}
+  - component: {fileID: 146774971}
+  m_Layer: 0
+  m_Name: AbilityManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &146774971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146774970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9663f7d89cf0fd04c8c0722bd9556caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHandGunDamage: 0
+  CurrentSMGDamage: 0
+  CurrentSMGShootingCooldown: 0
+  CurrentShotgunDamage: 0
+  CurrentShotgunCooldown: 0
+  HasChosen: 0
+  ChosenMovement: 
+  Stamina: 0
+  StandardSpeed: 0
+  DashSpeed: 0
+  CooldownTime: 0
+  BoosterSpeed: 0
+  BoosterCooldown: 0
+  DefaultHandGunDamage: 6
+  DefaultSMGDamage: 3
+  DefaultSMGShootingCooldown: 0.09
+  DefaultShotgunDamage: 5
+  DefaultShotgunShootingCooldown: 0.6
+  DefaultStamina: 50
+  DefaultStandardSpeed: 5
+  DefaultDashSpeed: 0
+  DefaultCooldownTime: 0
+  DefaultBoosterSpeed: 10
+  DefaultXrayEnemyAmount: 3
+  MonkeyJump: 0
+  MonkeyMaxJumpSpeed: 0
+  TestBool: 0
+  gorilla: {fileID: 0}
+--- !u!4 &146774972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146774970}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -95.17496, y: 36.57916, z: 237.2744}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &149874025 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4784527934590480976, guid: 5832f5f831952694485f1e3e402d9277, type: 3}
@@ -11060,78 +11132,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &2125324668
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2125324670}
-  - component: {fileID: 2125324669}
-  m_Layer: 0
-  m_Name: AbilityManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2125324669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125324668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9663f7d89cf0fd04c8c0722bd9556caf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentHandGunDamage: 0
-  CurrentSMGDamage: 0
-  CurrentSMGShootingCooldown: 0
-  CurrentShotgunDamage: 0
-  CurrentShotgunCooldown: 0
-  HasChosen: 0
-  ChosenMovement: 
-  Stamina: 0
-  StandardSpeed: 0
-  DashSpeed: 0
-  CooldownTime: 0
-  BoosterSpeed: 0
-  BoosterCooldown: 0
-  DefaultHandGunDamage: 10
-  DefaultSMGDamage: 5
-  DefaultSMGShootingCooldown: 0.09
-  DefaultShotgunDamage: 8
-  DefaultShotgunShootingCooldown: 0.6
-  DefaultStamina: 50
-  DefaultStandardSpeed: 5
-  DefaultDashSpeed: 0
-  DefaultCooldownTime: 0
-  DefaultBoosterSpeed: 6
-  DefaultXrayEnemyAmount: 3
-  MonkeyJump: 0
-  MonkeyMaxJumpSpeed: 0
-  TestBool: 0
-  gorilla: {fileID: 0}
---- !u!4 &2125324670
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125324668}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -95.17496, y: 36.57916, z: 237.2744}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8118724810469155112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11210,4 +11210,4 @@ SceneRoots:
   - {fileID: 1548795136}
   - {fileID: 883696789}
   - {fileID: 1486748828}
-  - {fileID: 2125324670}
+  - {fileID: 146774972}
