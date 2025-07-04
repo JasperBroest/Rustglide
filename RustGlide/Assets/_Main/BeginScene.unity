@@ -682,7 +682,7 @@ MonoBehaviour:
   DefaultStandardSpeed: 5
   DefaultDashSpeed: 0
   DefaultCooldownTime: 0
-  DefaultBoosterSpeed: 10
+  DefaultBoosterSpeed: 8
   DefaultXrayEnemyAmount: 3
   MonkeyJump: 0
   MonkeyMaxJumpSpeed: 0
