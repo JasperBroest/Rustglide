@@ -20,6 +20,7 @@ public class HurtState : IState
         }
         controller.GetComponentInChildren<Renderer>().material = controller.HitMat;
         controller.StartCoroutine(HitFlashEffect(controller));
+        
     }
 
     public void UpdateState(StateController controller)
@@ -43,10 +44,7 @@ public class HurtState : IState
 
         controller.GetComponentInChildren<Renderer>().material = controller.DefaultMat;
 
-        if (controller.PreviousState != controller.hurtState)
-        {
-            controller.ChangeState(controller.PreviousState);
-        }
+        controller.ChangeState(controller.chaseState);
     }
 
     public void FixedUpdateState(StateController controller)
